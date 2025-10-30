@@ -122,7 +122,7 @@ hr.clean-line {
       <p>Lesson slides, practice questions, videos.</p>
     </a>
 
-    <a class="class-tile" href="/classes/adv-higher-physics/">
+    <a class="class-tile" href="/classes/adv-higher-physics.html">
       <h2>Advanced Higher Physics</h2>
       <p>AH notes, investigations, prep for assessments.</p>
     </a>
