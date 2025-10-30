@@ -2,6 +2,7 @@
 layout: none
 title: Home
 ---
+
 <style>
 :root {
   --bg-page: #0f172a;            /* deep navy/charcoal */
@@ -52,8 +53,8 @@ body {
   border-radius: var(--radius-card);
   box-shadow: 0 30px 60px rgba(0,0,0,0.8);
   border: 2px solid rgba(148,163,184,0.2);
-  padding: 1rem 1rem 0.9rem;
-  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem 0.8rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 @keyframes headerPulse {
@@ -82,12 +83,13 @@ body {
   gap: 0.75rem;
   margin-bottom: 2rem;
 
-  /* default (tablet / desktop): auto-fit multi-column */
+  /* default (desktop/tablet wide) */
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 }
 
-/* HARD OVERRIDE for phones: one button per row, full width */
-@media (max-width: 600px) {
+/* OVERRIDE for phones / narrow screens:
+   Up to 900px wide = force single column buttons */
+@media (max-width: 900px) {
   .tile-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -110,10 +112,10 @@ body {
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* give phone users a slightly taller target */
-@media (max-width: 600px) {
+/* slightly taller/larger touch target on mobile-ish widths */
+@media (max-width: 900px) {
   .class-tile {
-    min-height: 130px;
+    min-height: 120px;
     border-radius: 0.9rem;
   }
 }
@@ -169,7 +171,7 @@ body {
 .tile-eng  { background: var(--eng-grad); }
 .tile-elec { background: var(--elec-grad); }
 
-/* override text colour for yellow tile (dark text reads better there) */
+/* Advanced Higher uses dark text because yellow is bright */
 .tile-adv .class-emoji,
 .tile-adv .class-name {
   color:#000;
@@ -187,6 +189,14 @@ body {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+/* squeeze padding a bit on narrow screens */
+@media (max-width: 900px) {
+  .quick-links-card {
+    padding: 0.75rem 0.75rem 1rem;
+  }
 }
 
 .quick-header {
@@ -195,7 +205,6 @@ body {
   color: var(--text-main);
   margin: 0 0 0.75rem;
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-  text-align: center;
   letter-spacing: 0.02em;
 }
 
