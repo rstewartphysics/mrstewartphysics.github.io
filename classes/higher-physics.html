@@ -6,123 +6,168 @@
 <title>Higher Physics</title>
 <style>
 :root {
-  --accent-blue: #1565c0;
-  --accent-blue-dark: #0d47a1;
-  --bg-page: #ffffff;
-  --bg-card: #f5f8ff;
+  --blue1: #2196f3;
+  --blue2: #1565c0;
+  --blue3: #0d47a1;
+  --bg-page: #f7f9fc;
   --text-main: #0f172a;
   --text-dim: #475569;
   --radius-card: 1rem;
   --radius-pill: 0.5rem;
-  --shadow-card: 0 12px 24px rgba(0,0,0,0.08);
-  --font-stack: -apple-system,BlinkMacSystemFont,"Inter","Roboto","Segoe UI",sans-serif;
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.1);
+  --font-stack: "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
 body {
+  margin: 0;
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-stack);
   line-height: 1.5;
-  margin: 0;
-  padding: 2rem 1rem 4rem;
   display: flex;
   justify-content: center;
+  padding: 2rem 1rem 4rem;
 }
 
-.page-wrap { width: 100%; max-width: 900px; }
-
-/* Header */
+/* Animated gradient header */
 .header-card {
+  background: linear-gradient(270deg, var(--blue1), var(--blue2), var(--blue3));
+  background-size: 600% 600%;
+  animation: gradientShift 12s ease infinite;
   border-radius: var(--radius-card);
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
   color: #fff;
   box-shadow: var(--shadow-card);
-  padding: 1.25rem 1rem 1rem;
-  margin-bottom: 1.5rem;
-  border: 2px solid var(--accent-blue-dark);
+  padding: 1.5rem 1rem 1.25rem;
+  margin-bottom: 1.8rem;
+  border: 2px solid var(--blue3);
+  text-align: center;
 }
-.course-title { margin: 0; font-size: 1.6rem; font-weight: 700; color: #fff; }
-.course-desc { margin: 0.5rem 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+.course-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.course-desc {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Layout */
+.page-wrap {width: 100%; max-width: 950px;}
 
 /* Resource cards */
 .resource-card {
-  background: var(--bg-card);
+  background: #fff;
   border-radius: var(--radius-card);
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
   box-shadow: var(--shadow-card);
   padding: 1rem 1rem 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 90px 1fr;
   grid-template-areas: "thumb main";
   column-gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Alternate tinted backgrounds */
+.resource-card:nth-child(2n) {background: #f0f6ff;}
+.resource-card:nth-child(3n) {background: #f7faff;}
+
+/* Thumbnails */
 .thumb {
   grid-area: thumb;
-  width: 80px; height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: var(--radius-card);
-  background: #fff;
-  border: 2px solid var(--accent-blue-dark);
-  box-shadow: var(--shadow-card);
-  font-size: 0.8rem; font-weight: 600;
-  color: var(--accent-blue-dark);
-  display: flex; align-items: center; justify-content: center;
+  background: #e3f2fd;
+  border: 2px solid var(--blue3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  box-shadow: var(--shadow-card);
 }
-.resource-main { grid-area: main; min-width: 0; }
-.resource-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: var(--text-main); }
-.resource-desc { margin: 0.5rem 0 0.75rem; color: var(--text-dim); font-size: 0.9rem; }
+.resource-main {grid-area: main; min-width: 0;}
+.resource-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--blue3);
+  margin: 0;
+}
+.resource-desc {
+  margin: 0.45rem 0 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
 .resource-button {
   display: inline-block;
-  background: var(--accent-blue);
+  background: var(--blue2);
   color: #fff;
   font-weight: 600;
   font-size: 0.85rem;
   text-decoration: none;
-  padding: 0.6rem 0.8rem;
+  padding: 0.6rem 0.9rem;
   border-radius: var(--radius-pill);
-  border: 2px solid var(--accent-blue-dark);
-  box-shadow: var(--shadow-card);
+  border: 2px solid var(--blue3);
+  box-shadow: 0 0 10px rgba(21,101,192,0.4);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.resource-button:hover {
+  background: var(--blue1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(21,101,192,0.6);
 }
 
 /* Footer */
-.footer-nav { text-align: center; margin-top: 2rem; }
+.footer-nav {text-align: center; margin-top: 2rem;}
 .footer-nav a {
   background: #fff;
   border-radius: var(--radius-pill);
-  border: 2px solid var(--accent-blue-dark);
+  border: 2px solid var(--blue3);
   text-decoration: none;
   padding: 0.6rem 1rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
-  color: var(--accent-blue-dark);
+  color: var(--blue3);
   display: inline-block;
   box-shadow: var(--shadow-card);
+  transition: background 0.2s;
 }
+.footer-nav a:hover {background: #e3f2fd;}
 
 @media (max-width: 480px) {
   .resource-card {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "thumb"
-      "main";
+    grid-template-areas: "thumb" "main";
   }
-  .thumb { width: 60px; height: 60px; margin-bottom: 0.5rem; }
+  .thumb {width: 70px; height: 70px; margin-bottom: 0.5rem;}
 }
 </style>
 </head>
 <body>
 <div class="page-wrap">
 
-  <!-- HEADER -->
   <section class="header-card">
     <h1 class="course-title">Higher Physics</h1>
     <p class="course-desc">
-      A collection of useful websites, notes, and tools to help you prepare for your Higher Physics course and exams.
+      A collection of essential websites, notes, and tools to support your Higher Physics learning.
     </p>
   </section>
 
-  <!-- RESOURCE CARDS -->
   <article class="resource-card">
     <div class="thumb">MR<br>FILES</div>
     <div class="resource-main">
@@ -204,7 +249,6 @@ body {
     </div>
   </article>
 
-  <!-- Footer -->
   <div class="footer-nav">
     <a href="/">⬅ Back to Home</a>
   </div>
