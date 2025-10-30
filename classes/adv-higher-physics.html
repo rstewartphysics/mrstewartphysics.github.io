@@ -37,9 +37,9 @@ body {
 .banner {
   width: 100%;
   height: auto;
-  max-height: 380px;
+  max-height: 420px; /* slightly taller to show full design */
   object-fit: cover;
-  object-position: center top; /* keeps text & icons visible */
+  object-position: center center; /* keeps text and icons visible */
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
@@ -48,8 +48,8 @@ body {
 
 @media (max-width: 768px) {
   .banner {
-    max-height: 280px;
-    object-position: center top;
+    max-height: 300px; /* room for smaller screens */
+    object-position: center center;
   }
 }
 @keyframes fadeIn {
