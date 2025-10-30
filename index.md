@@ -5,146 +5,217 @@ title: Home
 
 <style>
 :root {
-  --blue1: #2196f3;
-  --blue2: #1565c0;
-  --blue3: #0d47a1;
-  --bg-page: #f7f9fc;
-  --text-main: #0f172a;
-  --text-dim: #475569;
+  --bg-page: #0f172a;            /* deep navy/charcoal */
+  --text-main: #f8fafc;          /* near-white */
+  --text-dim: #94a3b8;           /* slate text */
   --radius-card: 1rem;
-  --radius-pill: 0.5rem;
-  --shadow-card: 0 10px 25px rgba(0,0,0,0.1);
+  --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+
+  /* subject gradients */
+  --s1-grad: linear-gradient(135deg,#06b6d4 0%,#0e7490 100%);       /* cyan/teal */
+  --s2-grad: linear-gradient(135deg,#7c3aed 0%,#4c1d95 100%);       /* purple */
+  --n5-grad: linear-gradient(135deg,#ec4899 0%,#be185d 100%);       /* magenta/pink-ish (no hearts, still bold) */
+  --higher-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);   /* blue */
+  --adv-grad: linear-gradient(135deg,#fde047 0%,#ca8a04 100%);      /* yellow/gold */
+  --eng-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);      /* orange/amber */
+  --elec-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);     /* green */
+
+  --header-grad-1: #1e293b;
+  --header-grad-2: #0f172a;
+  --header-grad-3: #1e3a8a;
 }
 
-/* Page shell */
+/* GLOBAL PAGE WRAPPER */
 body {
+  margin: 0;
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-stack);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
-  margin: 0;
-  padding: 0;
 }
 
 .page-wrap {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 2rem auto 4rem;
   padding: 0 1rem;
-  font-family: var(--font-stack);
   color: var(--text-main);
+  font-family: var(--font-stack);
 }
 
-/* HEADER */
+/* HEADER / TITLE BAR */
 .header-block {
-  background: linear-gradient(270deg, var(--blue1), var(--blue2), var(--blue3));
-  background-size: 600% 600%;
-  animation: gradientShift 12s ease infinite;
+  background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.4) 0%, rgba(15,23,42,0) 60%),
+              linear-gradient(270deg, var(--header-grad-1), var(--header-grad-2), var(--header-grad-3));
+  background-size: 400% 400%;
+  animation: headerPulse 10s ease infinite;
   border-radius: var(--radius-card);
-  color: #fff;
-  box-shadow: var(--shadow-card);
-  border: 2px solid var(--blue3);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  border: 2px solid rgba(148,163,184,0.2);
   padding: 1.5rem 1rem 1.25rem;
   margin-bottom: 2rem;
   text-align: center;
 }
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
+@keyframes headerPulse {
+  0%   {background-position: 0% 50%;}
+  50%  {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
+
 .header-title {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  color: #fff;
-  font-family: var(--font-stack);
-}
-.header-desc {
-  font-size: 1rem;
+  color: var(--text-main);
   margin: 0;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+}
+@media (min-width: 480px) {
+  .header-title {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 768px) {
+  .header-title {
+    font-size: 1.8rem;
+  }
 }
 
-/* GRID OF CLASS TILES */
+/* GRID OF CLASS BUTTONS */
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr));
   gap: 1rem;
   margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 }
 
-/* each tile */
+/* FORCE 1-COLUMN ON SMALL PHONES */
+@media (max-width: 500px) {
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* BIG BUTTON TILE */
 .class-tile {
-  background: #fff;
-  color: var(--text-main);
-  text-decoration: none;
-  border-radius: var(--radius-card);
-  padding: 1rem 1rem 1.25rem;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(0,0,0,0.05);
   display: block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 150px;
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1rem;
+  min-height: 110px;
+  border: 2px solid rgba(0,0,0,0.4);
+  outline: 2px solid rgba(255,255,255,0.07);
+  outline-offset: -4px;
+
+  /* animation + hover */
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .class-tile:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-.class-heading {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--blue3);
-  margin: 0 0 0.5rem 0;
-  line-height: 1.3;
-  font-family: var(--font-stack);
-}
-.class-desc {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  margin: 0;
-  line-height: 1.4;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.9);
 }
 
-/* QUICK LINKS SECTION */
+/* TILE TEXT */
+.class-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+}
+.class-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+@media (min-width: 480px) {
+  .class-name { font-size: 1.15rem; }
+}
+@media (min-width: 768px) {
+  .class-name { font-size: 1.25rem; }
+}
+
+/* EMOJI BADGE IN TILE */
+.class-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+@media (min-width: 480px) {
+  .class-emoji { font-size: 1.6rem; }
+}
+@media (min-width: 768px) {
+  .class-emoji { font-size: 1.8rem; }
+}
+
+/* SUBJECT COLOURS */
+.tile-s1   { background: var(--s1-grad); }
+.tile-s2   { background: var(--s2-grad); }
+.tile-n5   { background: var(--n5-grad); }
+.tile-high { background: var(--higher-grad); }
+.tile-adv  { background: var(--adv-grad); color:#000; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+.tile-eng  { background: var(--eng-grad); }
+.tile-elec { background: var(--elec-grad); }
+
+/* If tile uses light text vs dark text */
+.tile-adv .class-emoji,
+.tile-adv .class-name {
+  color:#000;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.4);
+}
+
+/* QUICK LINKS CARD */
 .quick-links-card {
-  background: #fff;
+  background: rgba(30,41,59,0.6);
   border-radius: var(--radius-card);
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 2px solid rgba(148,163,184,0.2);
   box-shadow: var(--shadow-card);
   padding: 1rem 1rem 1.25rem;
   margin-bottom: 2rem;
 }
 .quick-header {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--blue3);
+  color: var(--text-main);
   margin: 0 0 0.75rem;
-  font-family: var(--font-stack);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 .quick-links-list {
   list-style: none;
   padding-left: 0;
   margin: 0;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  text-align: center;
 }
 .quick-links-list li {
   margin-bottom: 0.5rem;
 }
 .quick-links-list a {
-  color: var(--blue2);
-  font-weight: 600;
+  color: var(--text-main);
+  font-weight: 700;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  background: rgba(15,23,42,0.6);
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 0.9rem;
+  display: inline-block;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.8);
+  border: 2px solid rgba(148,163,184,0.3);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
 }
 .quick-links-list a:hover {
-  border-bottom: 2px solid var(--blue2);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.9);
 }
 
-/* FOOTER / NOTE */
+/* FOOTER NOTE */
 .footer-note {
   font-size: 0.8rem;
   color: var(--text-dim);
@@ -161,63 +232,68 @@ body {
 
   <!-- HEADER -->
   <section class="header-block">
-    <h1 class="header-title">Welcome 👋</h1>
-    <p class="header-desc">
-      This site is for students of Berwickshire High School.<br />
-      Choose your class to get notes, homework, revision links, and support.
-    </p>
+    <h1 class="header-title">
+      Mr Stewart’s Physics, Electronics and Engineering
+    </h1>
   </section>
 
-  <!-- CLASS GRID -->
+  <!-- CLASS BUTTON GRID -->
   <section class="tile-grid">
 
-    <a class="class-tile" href="/classes/s1-science.html">
-      <h2 class="class-heading">S1 Science</h2>
-      <p class="class-desc">
-        Topics, notes, revision videos, and homework.
-      </p>
+    <!-- S1 Science -->
+    <a class="class-tile tile-s1" href="/classes/s1-science.html">
+      <div class="class-inner">
+        <div class="class-emoji">🧪</div>
+        <h2 class="class-name">S1 Science</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/s2-science.html">
-      <h2 class="class-heading">S2 Science</h2>
-      <p class="class-desc">
-        Resources and tasks for S2.
-      </p>
+    <!-- S2 Science -->
+    <a class="class-tile tile-s2" href="/classes/s2-science.html">
+      <div class="class-inner">
+        <div class="class-emoji">🔬</div>
+        <h2 class="class-name">S2 Science</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/s3-n5-physics.html">
-      <h2 class="class-heading">S3 / National 5 Physics</h2>
-      <p class="class-desc">
-        Course notes, past papers, required formulas.
-      </p>
+    <!-- S3 / National 5 Physics -->
+    <a class="class-tile tile-n5" href="/classes/s3-n5-physics.html">
+      <div class="class-inner">
+        <div class="class-emoji">⚡</div>
+        <h2 class="class-name">S3 / National 5 Physics</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/higher-physics.html">
-      <h2 class="class-heading">Higher Physics</h2>
-      <p class="class-desc">
-        Past papers by topic, tricky questions, Scholar, and more.
-      </p>
+    <!-- Higher Physics -->
+    <a class="class-tile tile-high" href="/classes/higher-physics.html">
+      <div class="class-inner">
+        <div class="class-emoji">🔭</div>
+        <h2 class="class-name">Higher Physics</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/adv-higher-physics.html">
-      <h2 class="class-heading">Advanced Higher Physics</h2>
-      <p class="class-desc">
-        AH past paper questions, Scholar, Flash Physics animations.
-      </p>
+    <!-- Advanced Higher Physics -->
+    <a class="class-tile tile-adv" href="/classes/adv-higher-physics.html">
+      <div class="class-inner">
+        <div class="class-emoji">🧠</div>
+        <h2 class="class-name">Advanced Higher Physics</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/engineering-science.html">
-      <h2 class="class-heading">Engineering Science</h2>
-      <p class="class-desc">
-        Circuits, mechanics, control systems, assignments.
-      </p>
+    <!-- Engineering Science -->
+    <a class="class-tile tile-eng" href="/classes/engineering-science.html">
+      <div class="class-inner">
+        <div class="class-emoji">🧰</div>
+        <h2 class="class-name">Engineering Science</h2>
+      </div>
     </a>
 
-    <a class="class-tile" href="/classes/practical-electronics.html">
-      <h2 class="class-heading">Practical Electronics</h2>
-      <p class="class-desc">
-        Build guides, circuit diagrams, component lists.
-      </p>
+    <!-- Practical Electronics -->
+    <a class="class-tile tile-elec" href="/classes/practical-electronics.html">
+      <div class="class-inner">
+        <div class="class-emoji">💡</div>
+        <h2 class="class-name">Practical Electronics</h2>
+      </div>
     </a>
 
   </section>
@@ -237,7 +313,7 @@ body {
 
   <!-- FOOTER NOTE -->
   <div class="footer-note">
-    If you’re stuck, ask in class first.  
+    If you’re stuck, ask in class.<br />
     Be specific: “I don’t understand Q4(b)” is better than “I don’t get physics.”
   </div>
 
