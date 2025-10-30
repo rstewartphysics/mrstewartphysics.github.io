@@ -37,14 +37,16 @@ body {
 /* BANNER */
 .banner {
   width: 100%;
+  height: auto;
+  max-height: 280px; /* limit banner height */
+  object-fit: cover;
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+  .banner { max-height: 200px; }
 }
 
 /* MENU BUTTON */
