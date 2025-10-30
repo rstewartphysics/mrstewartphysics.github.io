@@ -38,7 +38,7 @@ body {
 .banner {
   width: 100%;
   height: auto;
-  max-height: 280px; /* limit banner height */
+  max-height: 340px; /* improved banner height */
   object-fit: cover;
   display: block;
   opacity: 0;
@@ -46,7 +46,11 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
 @media (max-width: 768px) {
-  .banner { max-height: 200px; }
+  .banner { max-height: 240px; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* MENU BUTTON */
@@ -140,7 +144,7 @@ body {
 
 <!-- NAV BUTTON + BANNER -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
-<img src="/assets/homepagebanner.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
+<img src="https://rstewartphysics.github.io/assets/homepagebanner.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
 
 <div class="page-wrap">
   <!-- MAIN MENU BUTTONS -->
