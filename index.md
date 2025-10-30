@@ -1,7 +1,7 @@
 ---
 layout: none
+title: Home
 ---
-
 <link rel="stylesheet" href="/assets/style.css">
 
 <h1>Welcome 👋</h1>
