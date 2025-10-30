@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Advanced Higher Physics</title>
+<style>
+:root {
+  --yellow1: #ffeb3b;
+  --yellow2: #fbc02d;
+  --yellow3: #f57f17;
+  --blue2: #1565c0;
+  --blue3: #0d47a1;
+  --bg-page: #fffdf6;
+  --text-main: #0f172a;
+  --text-dim: #475569;
+  --radius-card: 1rem;
+  --radius-pill: 0.5rem;
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.1);
+  --font-stack: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+}
+
+/* Animated gradient header */
+.header-card {
+  background: linear-gradient(270deg, var(--yellow1), var(--yellow2), var(--yellow3));
+  background-size: 600% 600%;
+  animation: gradientShift 10s ease infinite;
+  border-radius: var(--radius-card);
+  color: #000;
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem 1rem 1.25rem;
+  margin-bottom: 1.8rem;
+  border: 2px solid var(--yellow3);
+  text-align: center;
+}
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+.course-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.course-desc {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: rgba(0,0,0,0.7);
+}
+
+/* Layout */
+.page-wrap {width: 100%; max-width: 950px;}
+
+/* Resource cards */
+.resource-card {
+  background: #fffef9;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card);
+  padding: 1rem 1rem 1.25rem;
+  margin-bottom: 1.2rem;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  grid-template-areas: "thumb main";
+  column-gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Alternate tinted backgrounds */
+.resource-card:nth-child(2n) {background: #fffbe6;}
+.resource-card:nth-child(3n) {background: #fff9d6;}
+
+/* Thumbnails */
+.thumb {
+  grid-area: thumb;
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-card);
+  background: #fff8c6;
+  border: 2px solid var(--yellow3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--yellow3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+.resource-main {grid-area: main; min-width: 0;}
+.resource-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--yellow3);
+  margin: 0;
+}
+.resource-desc {
+  margin: 0.45rem 0 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+.resource-button {
+  display: inline-block;
+  background: var(--yellow2);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--yellow3);
+  box-shadow: 0 0 10px rgba(251,192,45,0.4);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.resource-button:hover {
+  background: var(--yellow1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(251,192,45,0.6);
+}
+
+/* Footer */
+.footer-nav {text-align: center; margin-top: 2rem;}
+.footer-nav a {
+  background: #fff;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--blue3);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--blue3);
+  display: inline-block;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s;
+}
+.footer-nav a:hover {background: #e3f2fd;}
+
+@media (max-width: 480px) {
+  .resource-card {
+    grid-template-columns: 1fr;
+    grid-template-areas: "thumb" "main";
+  }
+  .thumb {width: 70px; height: 70px; margin-bottom: 0.5rem;}
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <section class="header-card">
+    <h1 class="course-title">Advanced Higher Physics</h1>
+    <p class="course-desc">
+      Key resources, notes, and tools to support your Advanced Higher Physics learning and exam preparation.
+    </p>
+  </section>
+
+  <article class="resource-card">
+    <div class="thumb">PAPERS</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Past Paper Questions by Topic</h2>
+      <p class="resource-desc">Advanced-level SQA questions arranged by topic to help refine your exam technique and identify weaker areas.</p>
+      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/ETbRUqslNcJPrnr_WK7swW4BHTrqW4SXlYiPiP-ZYW650w?e=BpXC0q" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">FILES</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Mr Stewart’s Files</h2>
+      <p class="resource-desc">Shared resources, notes, and lesson materials for Advanced Higher — the same files used in class.</p>
+      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">SCHOLAR</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Scholar</h2>
+      <p class="resource-desc">Official online learning platform with interactive tutorials, detailed notes, and self-marking questions.</p>
+      <a class="resource-button" href="https://scholar.hw.ac.uk/courses/" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">YOUTUBE</div>
+    <div class="resource-main">
+      <h2 class="resource-title">The Other Mr Stewart</h2>
+      <p class="resource-desc">A curated collection of Advanced Higher Physics video lessons and worked examples from YouTube.</p>
+      <a class="resource-button" href="https://www.youtube.com/@mrstewartphysics/playlists" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">FLASH</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Flash Physics Animations</h2>
+      <p class="resource-desc">Interactive visualisations of complex topics such as waves, fields, and quantum phenomena.</p>
+      <a class="resource-button" href="https://physicsflashrepo.ovh/" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <div class="footer-nav">
+    <a href="/">⬅ Back to Home</a>
+  </div>
+
+</div>
+</body>
+</html>
