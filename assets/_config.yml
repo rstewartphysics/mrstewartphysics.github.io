@@ -1,0 +1,12 @@
+title: "Mr Stewart | Physics & Electronics"
+description: "Class resources for Berwickshire High School"
+theme: minima
+
+# Navigation (appears as menu)
+header_pages:
+  - index.md
+  - quick-links.md
+  - contact.md
+
+markdown: kramdown
+permalink: /:categories/:title/
