@@ -5,17 +5,17 @@ title: Home
 
 <style>
 :root {
-  --bg-page: #0f172a;            /* deep navy */
-  --text-main: #f8fafc;          /* near-white */
+  --bg-page: #0f172a;
+  --text-main: #f8fafc;
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
 
-  /* subject gradients */
-  --science-grad: linear-gradient(135deg,#06b6d4 0%,#0e7490 100%);    /* teal */
-  --physics-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);    /* blue */
-  --electronics-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);/* green */
-  --engineering-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);/* orange */
+  /* gradients */
+  --science-grad: linear-gradient(135deg,#06b6d4 0%,#0e7490 100%);
+  --physics-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);
+  --electronics-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);
+  --engineering-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);
 
   --header-grad-1: #1e293b;
   --header-grad-2: #0f172a;
@@ -31,6 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
 }
+
 .page-wrap {
   max-width: 1200px;
   margin: 2rem auto 4rem;
@@ -39,6 +40,7 @@ body {
 
 /* HEADER */
 .header-block {
+  position: relative;
   background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.4) 0%, rgba(15,23,42,0) 60%),
               linear-gradient(270deg, var(--header-grad-1), var(--header-grad-2), var(--header-grad-3));
   background-size: 400% 400%;
@@ -46,8 +48,8 @@ body {
   border-radius: var(--radius-card);
   box-shadow: 0 30px 60px rgba(0,0,0,0.8);
   border: 2px solid rgba(148,163,184,0.2);
-  padding: 1rem 1rem 0.8rem;
-  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 @keyframes headerPulse {
@@ -56,17 +58,77 @@ body {
   100% {background-position: 0% 50%;}
 }
 .header-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-main);
   margin: 0;
-  line-height: 1.3;
 }
 @media (min-width: 768px) {
   .header-title { font-size: 1.8rem; }
 }
 
-/* GRID LAYOUT */
+/* MENU BUTTON */
+.menu-btn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.menu-btn:hover { transform: scale(1.1); }
+
+/* OVERLAY (semi-transparent) */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+
+/* SLIDE-IN DRAWER */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -270px;
+  height: 100%;
+  width: 270px;
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+  transition: right 0.3s ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+}
+.side-menu.open { right: 0; }
+.menu-overlay.show { display: block; }
+
+/* MENU LINKS */
+.side-menu a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: background 0.2s ease;
+}
+.side-menu a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* MAIN GRID */
 .tile-grid {
   display: grid;
   gap: 1rem;
@@ -76,8 +138,6 @@ body {
 @media (max-width: 900px) {
   .tile-grid { grid-template-columns: 1fr; }
 }
-
-/* BUTTONS */
 .class-tile {
   display: block;
   text-decoration: none;
@@ -95,8 +155,6 @@ body {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 30px 60px rgba(0,0,0,0.9);
 }
-
-/* BUTTON CONTENT */
 .class-inner {
   display: flex;
   flex-direction: column;
@@ -112,26 +170,24 @@ body {
   font-size: 1.3rem;
   font-weight: 700;
 }
-
-/* SUBJECT COLOURS */
 .tile-science     { background: var(--science-grad); }
 .tile-physics     { background: var(--physics-grad); }
 .tile-electronics { background: var(--electronics-grad); }
 .tile-engineering { background: var(--engineering-grad); }
-
 </style>
 
 <div class="page-wrap">
+
   <!-- HEADER -->
   <section class="header-block">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
     <h1 class="header-title">
       Mr Stewart’s Physics, Electronics and Engineering
     </h1>
   </section>
 
-  <!-- MAIN MENU -->
+  <!-- MAIN BUTTONS -->
   <section class="tile-grid">
-
     <a class="class-tile tile-science" href="/classes/science.html">
       <div class="class-inner">
         <div class="class-emoji">🧪</div>
@@ -159,6 +215,31 @@ body {
         <h2 class="class-name">Engineering</h2>
       </div>
     </a>
-
   </section>
+
 </div>
+
+<!-- OVERLAY + SIDE MENU -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    overlay.classList.remove('show');
+  } else {
+    menu.classList.add('open');
+    overlay.classList.add('show');
+  }
+}
+</script>
