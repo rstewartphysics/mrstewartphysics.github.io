@@ -2,6 +2,7 @@
 layout: none
 title: Home
 ---
+
 <link rel="stylesheet" href="/assets/style.css">
 
 <main style="max-width:1000px; margin:2rem auto; padding:1rem; font-family:-apple-system,BlinkMacSystemFont,'Inter','Roboto','Segoe UI',sans-serif; color:#0f172a;">
