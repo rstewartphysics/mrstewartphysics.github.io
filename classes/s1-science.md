@@ -1,5 +1,4 @@
 ---
-layout: none
 title: S1 Science
 ---
 <h1>S1 Science</h1>
