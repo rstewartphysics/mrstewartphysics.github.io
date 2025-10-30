@@ -16,10 +16,6 @@ title: Home
   --physics-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);
   --electronics-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);
   --engineering-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);
-
-  --header-grad-1: #1e293b;
-  --header-grad-2: #0f172a;
-  --header-grad-3: #1e3a8a;
 }
 
 /* PAGE BASE */
@@ -38,188 +34,131 @@ body {
   padding: 0 1rem;
 }
 
-/* HEADER */
-.header-block {
-  position: relative;
-  background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.4) 0%, rgba(15,23,42,0) 60%),
-              linear-gradient(270deg, var(--header-grad-1), var(--header-grad-2), var(--header-grad-3));
-  background-size: 400% 400%;
-  animation: headerPulse 10s ease infinite;
-  border-radius: var(--radius-card);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-  border: 2px solid rgba(148,163,184,0.2);
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
+/* BANNER */
+.banner {
+  width: 100%;
+  display: block;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
-@keyframes headerPulse {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-.header-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin: 0;
-}
-@media (min-width: 768px) {
-  .header-title { font-size: 1.8rem; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* MENU BUTTON */
 .menu-btn {
   position: absolute;
-  top: 12px;
+  top: 15px;
   right: 20px;
   font-size: 1.6rem;
   background: none;
   border: none;
-  color: var(--text-main);
+  color: #fff;
   cursor: pointer;
+  z-index: 10;
   transition: transform 0.2s ease;
 }
 .menu-btn:hover { transform: scale(1.1); }
 
-/* OVERLAY (semi-transparent) */
+/* OVERLAY + DRAWER */
 .menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  position: fixed; top:0; left:0; width:100%; height:100%;
   background: rgba(0,0,0,0.5);
-  display: none;
-  z-index: 99;
-  transition: opacity 0.3s ease;
+  display:none; z-index:99;
 }
-
-/* SLIDE-IN DRAWER */
 .side-menu {
-  position: fixed;
-  top: 0;
-  right: -270px;
-  height: 100%;
-  width: 270px;
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
   background: rgba(15,23,42,0.92);
   backdrop-filter: blur(8px);
-  box-shadow: -4px 0 20px rgba(0,0,0,0.5);
-  transition: right 0.3s ease;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  padding-top: 4rem;
+  box-shadow:-4px 0 20px rgba(0,0,0,0.5);
+  transition:right 0.3s ease;
+  z-index:100;
+  display:flex; flex-direction:column;
+  padding-top:4rem;
 }
-.side-menu.open { right: 0; }
-.menu-overlay.show { display: block; }
-
-/* MENU LINKS */
+.side-menu.open { right:0; }
+.menu-overlay.show { display:block; }
 .side-menu a {
   color: var(--text-main);
-  text-decoration: none;
-  font-size: 1.1rem;
-  padding: 0.9rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  transition: background 0.2s ease;
+  text-decoration:none;
+  font-size:1.1rem;
+  padding:0.9rem 1.5rem;
+  display:flex; align-items:center;
+  gap:0.8rem;
+  transition:background 0.2s ease;
 }
-.side-menu a:hover {
-  background: rgba(255,255,255,0.1);
-}
+.side-menu a:hover { background:rgba(255,255,255,0.1); }
 
-/* MAIN GRID */
+/* GRID */
 .tile-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  display:grid;
+  gap:1rem;
+  margin-top:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
-@media (max-width: 900px) {
-  .tile-grid { grid-template-columns: 1fr; }
-}
+@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
+
+/* BUTTONS */
 .class-tile {
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  padding: 1.5rem 1rem;
-  min-height: 120px;
-  border: 2px solid rgba(0,0,0,0.4);
-  outline: 2px solid rgba(255,255,255,0.07);
-  outline-offset: -4px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display:block;
+  text-decoration:none;
+  color:#fff;
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  padding:1.5rem 1rem;
+  min-height:120px;
+  border:2px solid rgba(0,0,0,0.4);
+  outline:2px solid rgba(255,255,255,0.07);
+  outline-offset:-4px;
+  transition:transform 0.18s ease,box-shadow 0.18s ease;
 }
 .class-tile:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.9);
 }
 .class-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-end;
-  align-items: flex-start;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:flex-end;
+  align-items:flex-start;
 }
-.class-emoji {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-.class-name {
-  font-size: 1.3rem;
-  font-weight: 700;
-}
+.class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
+.class-name {font-size:1.3rem; font-weight:700;}
+
+/* SUBJECT COLOURS */
 .tile-science     { background: var(--science-grad); }
 .tile-physics     { background: var(--physics-grad); }
 .tile-electronics { background: var(--electronics-grad); }
 .tile-engineering { background: var(--engineering-grad); }
 </style>
 
+<!-- NAV BUTTON + BANNER -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<img src="/assets/homepagebanner.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
+
 <div class="page-wrap">
-
-  <!-- HEADER -->
-  <section class="header-block">
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <h1 class="header-title">
-      Mr Stewart’s Physics, Electronics and Engineering
-    </h1>
-  </section>
-
-  <!-- MAIN BUTTONS -->
+  <!-- MAIN MENU BUTTONS -->
   <section class="tile-grid">
     <a class="class-tile tile-science" href="/classes/science.html">
-      <div class="class-inner">
-        <div class="class-emoji">🧪</div>
-        <h2 class="class-name">Science</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">🧪</div><h2 class="class-name">Science</h2></div>
     </a>
-
     <a class="class-tile tile-physics" href="/classes/physics.html">
-      <div class="class-inner">
-        <div class="class-emoji">⚡</div>
-        <h2 class="class-name">Physics</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">⚡</div><h2 class="class-name">Physics</h2></div>
     </a>
-
     <a class="class-tile tile-electronics" href="/classes/electronics.html">
-      <div class="class-inner">
-        <div class="class-emoji">💡</div>
-        <h2 class="class-name">Electronics</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">💡</div><h2 class="class-name">Electronics</h2></div>
     </a>
-
     <a class="class-tile tile-engineering" href="/classes/engineering.html">
-      <div class="class-inner">
-        <div class="class-emoji">🧰</div>
-        <h2 class="class-name">Engineering</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">🧰</div><h2 class="class-name">Engineering</h2></div>
     </a>
   </section>
-
 </div>
 
-<!-- OVERLAY + SIDE MENU -->
+<!-- DRAWER NAVIGATION -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -230,16 +169,11 @@ body {
 </nav>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('menuOverlay');
-  const isOpen = menu.classList.contains('open');
-  if (isOpen) {
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-  } else {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-  }
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
 }
 </script>
