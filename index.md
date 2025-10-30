@@ -2,10 +2,94 @@
 layout: none
 title: Home
 ---
+<style>
+:root {
+  --accent-blue: #1565c0;
+  --accent-blue-dark: #0d47a1;
+  --bg-soft: #f5f8ff;
+  --text-dark: #0f172a;
+  --radius-card: 1rem;
+  --radius-button: 0.65rem;
+  --gap-lg: 1rem;
+  --gap-xl: 1.5rem;
+  --shadow-card: 0 12px 24px rgba(0,0,0,0.08);
+  --shadow-button: 0 8px 16px rgba(0,0,0,0.12);
+  --font-stack: -apple-system, BlinkMacSystemFont, "Inter", "Roboto", "Segoe UI", sans-serif;
+}
 
-<link rel="stylesheet" href="/assets/style.css">
+body {
+  font-family: var(--font-stack);
+  color: var(--text-dark);
+  background-color: white;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
 
-<main style="max-width:1000px; margin:2rem auto; padding:1rem; font-family:-apple-system,BlinkMacSystemFont,'Inter','Roboto','Segoe UI',sans-serif; color:#0f172a;">
+/* Page wrapper */
+.page-wrap {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  color: var(--text-dark);
+  font-family: var(--font-stack);
+}
+
+/* Big tile grid on homepage */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr));
+  gap: var(--gap-lg);
+  margin-top: var(--gap-xl);
+  margin-bottom: var(--gap-xl);
+}
+
+.class-tile {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+  color: #fff;
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  display: block;
+}
+
+.class-tile h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  color: #fff;
+}
+
+.class-tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+}
+
+/* Divider */
+hr.clean-line {
+  margin:2rem 0;
+  border:none;
+  border-top:1px solid rgba(0,0,0,0.1);
+}
+
+/* Quick links section */
+.quick-links h3 {
+  font-size:1.1rem;
+  font-weight:600;
+  margin-bottom:0.75rem;
+}
+
+.quick-links ul {
+  list-style:disc;
+  padding-left:1.25rem;
+  line-height:1.5;
+  font-size:1rem;
+}
+</style>
+
+<main class="page-wrap">
 
   <h1 style="font-size:1.5rem; font-weight:600; line-height:1.2; margin-bottom:0.5rem;">
     Welcome 👋
@@ -55,13 +139,11 @@ title: Home
 
   </div>
 
-  <hr style="margin:2rem 0; border:none; border-top:1px solid rgba(0,0,0,0.1);" />
+  <hr class="clean-line"/>
 
-  <section>
-    <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:0.75rem;">
-      Quick Links
-    </h3>
-    <ul style="list-style:disc; padding-left:1.25rem; line-height:1.5; font-size:1rem;">
+  <section class="quick-links">
+    <h3>Quick Links</h3>
+    <ul>
       <li><a href="/quick-links">Revision / Study Links</a></li>
       <li><a href="/contact">Contact / Support</a></li>
     </ul>
