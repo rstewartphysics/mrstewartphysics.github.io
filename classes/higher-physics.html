@@ -18,24 +18,20 @@
   --font-stack: -apple-system,BlinkMacSystemFont,"Inter","Roboto","Segoe UI",sans-serif;
 }
 
-/* page layout */
 body {
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-stack);
-  -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   margin: 0;
   padding: 2rem 1rem 4rem;
   display: flex;
   justify-content: center;
 }
-.page-wrap {
-  width: 100%;
-  max-width: 900px;
-}
 
-/* header / banner */
+.page-wrap { width: 100%; max-width: 900px; }
+
+/* Header */
 .header-card {
   border-radius: var(--radius-card);
   background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
@@ -45,36 +41,10 @@ body {
   margin-bottom: 1.5rem;
   border: 2px solid var(--accent-blue-dark);
 }
-.course-title {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #fff;
-}
-.course-desc {
-  margin: 0.5rem 0 0 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.9);
-}
+.course-title { margin: 0; font-size: 1.6rem; font-weight: 700; color: #fff; }
+.course-desc { margin: 0.5rem 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
 
-/* section label like "Collection" / "Resources" */
-.section-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #fff;
-  background: var(--accent-blue-dark);
-  border: 2px solid var(--accent-blue);
-  border-radius: var(--radius-pill);
-  padding: 0.25rem 0.5rem;
-  line-height: 1.2;
-  box-shadow: var(--shadow-card);
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-/* each resource block (like each Wakelet item) */
+/* Resource cards */
 .resource-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
@@ -83,74 +53,31 @@ body {
   padding: 1rem 1rem 1.25rem;
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 64px 1fr;
-  grid-template-areas:
-    "thumb main";
+  grid-template-columns: 80px 1fr;
+  grid-template-areas: "thumb main";
   column-gap: 1rem;
 }
 .thumb {
   grid-area: thumb;
-  width: 64px;
-  height: 64px;
+  width: 80px; height: 80px;
   border-radius: var(--radius-card);
   background: #fff;
   border: 2px solid var(--accent-blue-dark);
   box-shadow: var(--shadow-card);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.8rem; font-weight: 600;
   color: var(--accent-blue-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   text-align: center;
 }
-.resource-main {
-  grid-area: main;
-  min-width: 0;
-}
-.resource-topline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: baseline;
-  margin-bottom: 0.4rem;
-}
-.res-type-pill {
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--accent-blue-dark);
-  color: #fff;
-  border-radius: var(--radius-pill);
-  padding: 0.25rem 0.5rem;
-  border: 2px solid var(--accent-blue);
-  line-height: 1.2;
-  box-shadow: var(--shadow-card);
-}
-.resource-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-main);
-  margin: 0;
-  line-height: 1.3;
-}
-.resource-desc {
-  margin: 0.4rem 0 0.75rem;
-  color: var(--text-dim);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-.resource-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+.resource-main { grid-area: main; min-width: 0; }
+.resource-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: var(--text-main); }
+.resource-desc { margin: 0.5rem 0 0.75rem; color: var(--text-dim); font-size: 0.9rem; }
 .resource-button {
   display: inline-block;
   background: var(--accent-blue);
   color: #fff;
   font-weight: 600;
-  font-size: 0.8rem;
-  line-height: 1.2;
+  font-size: 0.85rem;
   text-decoration: none;
   padding: 0.6rem 0.8rem;
   border-radius: var(--radius-pill);
@@ -158,11 +85,8 @@ body {
   box-shadow: var(--shadow-card);
 }
 
-/* footer nav */
-.footer-nav {
-  text-align: center;
-  margin-top: 2rem;
-}
+/* Footer */
+.footer-nav { text-align: center; margin-top: 2rem; }
 .footer-nav a {
   background: #fff;
   border-radius: var(--radius-pill);
@@ -176,7 +100,6 @@ body {
   box-shadow: var(--shadow-card);
 }
 
-/* mobile tweaks */
 @media (max-width: 480px) {
   .resource-card {
     grid-template-columns: 1fr;
@@ -184,146 +107,104 @@ body {
       "thumb"
       "main";
   }
-  .thumb {
-    width: 56px;
-    height: 56px;
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
-  }
+  .thumb { width: 60px; height: 60px; margin-bottom: 0.5rem; }
 }
 </style>
 </head>
 <body>
 <div class="page-wrap">
 
-  <!-- Banner / header like Wakelet collection header -->
+  <!-- HEADER -->
   <section class="header-card">
-    <div class="section-label">Higher Physics</div>
-    <h1 class="course-title">Higher Physics Resources & Updates</h1>
+    <h1 class="course-title">Higher Physics</h1>
     <p class="course-desc">
-      Problem sets, data booklet, recap videos, and what you're expected
-      to be working on right now. Check here for deadlines.
+      A collection of useful websites, notes, and tools to help you prepare for your Higher Physics course and exams.
     </p>
   </section>
 
-  <!-- Resource 1: Homework / Due Soon -->
+  <!-- RESOURCE CARDS -->
   <article class="resource-card">
-    <div class="thumb">
-      DUE<br>SOON
-    </div>
+    <div class="thumb">MR<br>FILES</div>
     <div class="resource-main">
-      <div class="resource-topline">
-        <div class="res-type-pill">Homework</div>
-        <h2 class="resource-title">Kinematics Problem Set</h2>
-      </div>
-      <p class="resource-desc">
-        Due: Monday 10 Nov.<br>
-        Complete the Kinematics problem set. Show full working and include units.
-        If you're stuck, write where you got to and what step confused you.
-      </p>
-      <div class="resource-buttons">
-        <a class="resource-button" href="https://onedrive.example/higher-problem-sets" target="_blank">
-          🧠 View problem set
-        </a>
-      </div>
+      <h2 class="resource-title">Mr Stewart’s Resources</h2>
+      <p class="resource-desc">All files, slides, and materials used in class — check here for the most up-to-date versions.</p>
+      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L" target="_blank">Open Resource</a>
     </div>
   </article>
 
-  <!-- Resource 2: Course Drive -->
   <article class="resource-card">
-    <div class="thumb">
-      CLASS<br>FILES
-    </div>
+    <div class="thumb">PAST<br>PAPERS</div>
     <div class="resource-main">
-      <div class="resource-topline">
-        <div class="res-type-pill">Folder</div>
-        <h2 class="resource-title">Higher Physics OneDrive</h2>
-      </div>
-      <p class="resource-desc">
-        Slides, notes, worked examples, experiments. You should have these
-        accessible on your iPad for revision and homework.
-      </p>
-      <div class="resource-buttons">
-        <a class="resource-button" href="https://onedrive.example/higher-physics" target="_blank">
-          📂 Open folder
-        </a>
-      </div>
+      <h2 class="resource-title">Past Papers by Topic</h2>
+      <p class="resource-desc">Practice SQA questions sorted by topic — great for focused revision and identifying weak areas.</p>
+      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/EajAGJabR-hIqc6tjqVCkzIBNknN3oIM3c6o23qwglFkQA?e=lWI9To" target="_blank">Open Resource</a>
     </div>
   </article>
 
-  <!-- Resource 3: Data Booklet -->
   <article class="resource-card">
-    <div class="thumb">
-      DATA<br>BKLT
-    </div>
+    <div class="thumb">TRICKY</div>
     <div class="resource-main">
-      <div class="resource-topline">
-        <div class="res-type-pill">PDF</div>
-        <h2 class="resource-title">Official Data Booklet</h2>
-      </div>
-      <p class="resource-desc">
-        This is required. You must know how to pull constants and equations
-        from it in an exam setting.
-      </p>
-      <div class="resource-buttons">
-        <a class="resource-button" href="https://onedrive.example/data-booklet.pdf" target="_blank">
-          📄 View booklet
-        </a>
-      </div>
+      <h2 class="resource-title">Tricky Questions</h2>
+      <p class="resource-desc">A collection of challenging problems that test deeper understanding and exam technique.</p>
+      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/Eqbob1cLAspLihPfnlpwkoIB8XS8ilM10Fw4Nl6lwV6yTg?e=EormyU" target="_blank">Open Resource</a>
     </div>
   </article>
 
-  <!-- Resource 4: Recap Video -->
   <article class="resource-card">
-    <div class="thumb">
-      VIDEO
-    </div>
+    <div class="thumb">NOTES</div>
     <div class="resource-main">
-      <div class="resource-topline">
-        <div class="res-type-pill">YouTube</div>
-        <h2 class="resource-title">SUVAT & vectors recap</h2>
-      </div>
-      <p class="resource-desc">
-        Watch before attempting past paper questions on motion.
-        SUVAT choice, scalar vs vector, sig figs.
-      </p>
-      <div class="resource-buttons">
-        <a class="resource-button" href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID" target="_blank">
-          ▶ Open video
-        </a>
-      </div>
-
-      <!-- If you want the video actually embedded on-page for iPads instead of a link,
-           you can ALSO add this block right under it: -->
-      <div class="video-wrapper" style="margin-top:0.75rem; border-radius: var(--radius-card); box-shadow: var(--shadow-card); overflow:hidden;">
-        <iframe
-          src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
-          allowfullscreen
-          style="width:100%; aspect-ratio:16/9; border:0; display:block;"
-        ></iframe>
-      </div>
+      <h2 class="resource-title">Physics Scotland Notes</h2>
+      <p class="resource-desc">Clear, student-friendly notes covering the full Higher course, with worked examples and explanations.</p>
+      <a class="resource-button" href="https://www.physicsscotland.co.uk/classes/higher-physics" target="_blank">Open Resource</a>
     </div>
   </article>
 
-  <!-- Resource 5: This Week / Focus -->
   <article class="resource-card">
-    <div class="thumb">
-      FOCUS
-    </div>
+    <div class="thumb">FLASH</div>
     <div class="resource-main">
-      <div class="resource-topline">
-        <div class="res-type-pill">This Week</div>
-        <h2 class="resource-title">What we’re working on</h2>
-      </div>
-      <p class="resource-desc">
-        • SUVAT equations – pick the right one for the data you have<br>
-        • Scalars vs vectors – don’t lose marks by dropping direction<br>
-        • Units and sig figs – wrong units = lost marks, even if numbers are fine
-      </p>
+      <h2 class="resource-title">Flash Physics</h2>
+      <p class="resource-desc">Quick revision summaries, formula sheets and bite-sized reminders to reinforce key ideas.</p>
+      <a class="resource-button" href="https://physicsflashrepo.ovh/" target="_blank">Open Resource</a>
     </div>
   </article>
 
-  <!-- Back -->
+  <article class="resource-card">
+    <div class="thumb">QUIZ</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Self-Marking Multiple Choice</h2>
+      <p class="resource-desc">Interactive quizzes that give instant feedback to help you check understanding and build confidence.</p>
+      <a class="resource-button" href="https://sway.office.com/t01NVX6h5b8SiFmF?ref=Link&loc=play" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">CARDS</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Quizlets</h2>
+      <p class="resource-desc">Flashcard sets for definitions, equations and units — ideal for short study sessions.</p>
+      <a class="resource-button" href="https://quizlet.com/join/TetMQdg6Y" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">SCHOLAR</div>
+    <div class="resource-main">
+      <h2 class="resource-title">Scholar</h2>
+      <p class="resource-desc">Official online learning materials from SCHOLAR with theory notes, animations and self-tests.</p>
+      <a class="resource-button" href="https://scholar.hw.ac.uk/courses/" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <div class="thumb">BBC</div>
+    <div class="resource-main">
+      <h2 class="resource-title">BBC Bitesize</h2>
+      <p class="resource-desc">Concise revision pages and short videos aligned to the Higher Physics curriculum.</p>
+      <a class="resource-button" href="https://www.bbc.co.uk/bitesize/subjects/zpyb4wx" target="_blank">Open Resource</a>
+    </div>
+  </article>
+
+  <!-- Footer -->
   <div class="footer-nav">
     <a href="/">⬅ Back to Home</a>
   </div>
