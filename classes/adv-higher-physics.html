@@ -37,20 +37,20 @@ body {
 .banner {
   width: 100%;
   height: auto;
-  max-height: 400px; /* slightly taller */
-  object-fit: contain; /* prevents cropping */
-  background-color: #0f172a; /* fills empty space with dark background */
+  max-height: 380px;
+  object-fit: cover;
+  object-position: center top; /* keeps text & icons visible */
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
+
 @media (max-width: 768px) {
-  .banner { max-height: 280px; }
-}
-  
-@media (max-width: 768px) {
-  .banner { max-height: 240px; }
+  .banner {
+    max-height: 280px;
+    object-position: center top;
+  }
 }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
