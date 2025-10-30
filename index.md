@@ -2,7 +2,6 @@
 layout: none
 title: Home
 ---
-
 <style>
 :root {
   --bg-page: #0f172a;            /* deep navy/charcoal */
@@ -15,7 +14,7 @@ title: Home
   /* subject gradients */
   --s1-grad: linear-gradient(135deg,#06b6d4 0%,#0e7490 100%);       /* cyan/teal */
   --s2-grad: linear-gradient(135deg,#7c3aed 0%,#4c1d95 100%);       /* purple */
-  --n5-grad: linear-gradient(135deg,#ec4899 0%,#be185d 100%);       /* magenta/pink-ish (no hearts, still bold) */
+  --n5-grad: linear-gradient(135deg,#ec4899 0%,#be185d 100%);       /* magenta */
   --higher-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);   /* blue */
   --adv-grad: linear-gradient(135deg,#fde047 0%,#ca8a04 100%);      /* yellow/gold */
   --eng-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);      /* orange/amber */
@@ -53,8 +52,8 @@ body {
   border-radius: var(--radius-card);
   box-shadow: 0 30px 60px rgba(0,0,0,0.8);
   border: 2px solid rgba(148,163,184,0.2);
-  padding: 1.5rem 1rem 1.25rem;
-  margin-bottom: 2rem;
+  padding: 1rem 1rem 0.9rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 @keyframes headerPulse {
@@ -64,35 +63,34 @@ body {
 }
 
 .header-title {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-main);
   margin: 0;
   line-height: 1.3;
 }
 @media (min-width: 480px) {
-  .header-title {
-    font-size: 1.6rem;
-  }
+  .header-title { font-size: 1.4rem; }
 }
 @media (min-width: 768px) {
-  .header-title {
-    font-size: 1.8rem;
-  }
+  .header-title { font-size: 1.6rem; }
 }
 
 /* GRID OF CLASS BUTTONS */
 .tile-grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-bottom: 2rem;
+
+  /* default (tablet / desktop): auto-fit multi-column */
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 }
 
-/* FORCE 1-COLUMN ON SMALL PHONES */
-@media (max-width: 500px) {
+/* HARD OVERRIDE for phones: one button per row, full width */
+@media (max-width: 600px) {
   .tile-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }
 
@@ -104,53 +102,62 @@ body {
   color: #fff;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  padding: 1.25rem 1rem;
+  padding: 1rem 1rem 1rem;
   min-height: 110px;
   border: 2px solid rgba(0,0,0,0.4);
   outline: 2px solid rgba(255,255,255,0.07);
   outline-offset: -4px;
-
-  /* animation + hover */
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
+
+/* give phone users a slightly taller target */
+@media (max-width: 600px) {
+  .class-tile {
+    min-height: 130px;
+    border-radius: 0.9rem;
+  }
+}
+
 .class-tile:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 30px 60px rgba(0,0,0,0.9);
 }
 
-/* TILE TEXT */
+/* TILE TEXT WRAPPER */
 .class-inner {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: flex-end;
 }
+
+/* EMOJI */
+.class-emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+@media (min-width: 480px) {
+  .class-emoji { font-size: 1.5rem; }
+}
+@media (min-width: 768px) {
+  .class-emoji { font-size: 1.6rem; }
+}
+
+/* TITLE TEXT */
 .class-name {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 @media (min-width: 480px) {
-  .class-name { font-size: 1.15rem; }
+  .class-name { font-size: 1.1rem; }
 }
 @media (min-width: 768px) {
   .class-name { font-size: 1.25rem; }
-}
-
-/* EMOJI BADGE IN TILE */
-.class-emoji {
-  font-size: 1.5rem;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-}
-@media (min-width: 480px) {
-  .class-emoji { font-size: 1.6rem; }
-}
-@media (min-width: 768px) {
-  .class-emoji { font-size: 1.8rem; }
 }
 
 /* SUBJECT COLOURS */
@@ -158,11 +165,11 @@ body {
 .tile-s2   { background: var(--s2-grad); }
 .tile-n5   { background: var(--n5-grad); }
 .tile-high { background: var(--higher-grad); }
-.tile-adv  { background: var(--adv-grad); color:#000; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+.tile-adv  { background: var(--adv-grad); color:#000; text-shadow: 0 2px 4px rgba(255,255,255,0.4); }
 .tile-eng  { background: var(--eng-grad); }
 .tile-elec { background: var(--elec-grad); }
 
-/* If tile uses light text vs dark text */
+/* override text colour for yellow tile (dark text reads better there) */
 .tile-adv .class-emoji,
 .tile-adv .class-name {
   color:#000;
@@ -177,9 +184,13 @@ body {
   box-shadow: var(--shadow-card);
   padding: 1rem 1rem 1.25rem;
   margin-bottom: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 .quick-header {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-main);
   margin: 0 0 0.75rem;
@@ -187,29 +198,34 @@ body {
   text-align: center;
   letter-spacing: 0.02em;
 }
+
 .quick-links-list {
   list-style: none;
   padding-left: 0;
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   text-align: center;
 }
+
 .quick-links-list li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
+
 .quick-links-list a {
   color: var(--text-main);
   font-weight: 700;
   text-decoration: none;
   background: rgba(15,23,42,0.6);
-  border-radius: var(--radius-pill);
+  border-radius: 0.5rem;
   padding: 0.6rem 0.9rem;
   display: inline-block;
+  min-width: 180px;
   box-shadow: 0 16px 32px rgba(0,0,0,0.8);
   border: 2px solid rgba(148,163,184,0.3);
   transition: box-shadow 0.18s ease, transform 0.18s ease;
 }
+
 .quick-links-list a:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 24px 48px rgba(0,0,0,0.9);
