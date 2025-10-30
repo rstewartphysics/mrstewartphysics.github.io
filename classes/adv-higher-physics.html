@@ -1,224 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Advanced Higher Physics</title>
+---
+layout: none
+title: Advanced Higher Physics
+---
+
 <style>
 :root {
-  --yellow1: #ffeb3b;
-  --yellow2: #fbc02d;
-  --yellow3: #f57f17;
-  --blue2: #1565c0;
-  --blue3: #0d47a1;
-  --bg-page: #fffdf6;
-  --text-main: #0f172a;
-  --text-dim: #475569;
+  --bg-page: #0f172a;
+  --text-main: #f8fafc;
   --radius-card: 1rem;
-  --radius-pill: 0.5rem;
-  --shadow-card: 0 10px 25px rgba(0,0,0,0.1);
-  --font-stack: "Trebuchet MS", "Segoe UI", sans-serif;
+  --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
+  --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+
+  /* gold variants */
+  --gold1: linear-gradient(135deg,#fde68a 0%,#facc15 100%);
+  --gold2: linear-gradient(135deg,#fcd34d 0%,#eab308 100%);
+  --gold3: linear-gradient(135deg,#fbbf24 0%,#ca8a04 100%);
+  --gold4: linear-gradient(135deg,#facc15 0%,#a16207 100%);
+  --gold5: linear-gradient(135deg,#eab308 0%,#854d0e 100%);
+
+  --header-grad-1: #78350f;
+  --header-grad-2: #92400e;
+  --header-grad-3: #facc15;
 }
 
+/* BASE */
 body {
   margin: 0;
   background: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
   line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem 4rem;
+}
+.page-wrap {
+  max-width: 1200px;
+  margin: 2rem auto 4rem;
+  padding: 0 1rem;
 }
 
-/* Animated gradient header */
-.header-card {
-  background: linear-gradient(270deg, var(--yellow1), var(--yellow2), var(--yellow3));
-  background-size: 600% 600%;
-  animation: gradientShift 10s ease infinite;
+/* HEADER */
+.header-block {
+  position: relative;
+  background: linear-gradient(270deg,var(--header-grad-1),var(--header-grad-2),var(--header-grad-3));
+  background-size: 400% 400%;
+  animation: headerPulse 10s ease infinite;
   border-radius: var(--radius-card);
-  color: #000;
-  box-shadow: var(--shadow-card);
-  padding: 1.5rem 1rem 1.25rem;
-  margin-bottom: 1.8rem;
-  border: 2px solid var(--yellow3);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  border: 2px solid rgba(250,204,21,0.3);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
-@keyframes gradientShift {
+@keyframes headerPulse {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
-.course-title {
-  margin: 0;
-  font-size: 1.8rem;
+.header-title {
+  font-size: 1.4rem;
   font-weight: 700;
-}
-.course-desc {
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  color: rgba(0,0,0,0.7);
-}
-
-/* Layout */
-.page-wrap {width: 100%; max-width: 950px;}
-
-/* Resource cards */
-.resource-card {
-  background: #fffef9;
-  border-radius: var(--radius-card);
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: var(--shadow-card);
-  padding: 1rem 1rem 1.25rem;
-  margin-bottom: 1.2rem;
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  grid-template-areas: "thumb main";
-  column-gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.resource-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-/* Alternate tinted backgrounds */
-.resource-card:nth-child(2n) {background: #fffbe6;}
-.resource-card:nth-child(3n) {background: #fff9d6;}
-
-/* Thumbnails */
-.thumb {
-  grid-area: thumb;
-  width: 90px;
-  height: 90px;
-  border-radius: var(--radius-card);
-  background: #fff8c6;
-  border: 2px solid var(--yellow3);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--yellow3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: var(--shadow-card);
-}
-.resource-main {grid-area: main; min-width: 0;}
-.resource-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--yellow3);
+  color: var(--text-main);
   margin: 0;
 }
-.resource-desc {
-  margin: 0.45rem 0 0.75rem;
-  color: var(--text-dim);
-  font-size: 0.95rem;
-}
-.resource-button {
-  display: inline-block;
-  background: var(--yellow2);
-  color: #000;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 0.6rem 0.9rem;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--yellow3);
-  box-shadow: 0 0 10px rgba(251,192,45,0.4);
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.resource-button:hover {
-  background: var(--yellow1);
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(251,192,45,0.6);
-}
+@media (min-width: 768px) {.header-title {font-size: 1.8rem;}}
 
-/* Footer */
-.footer-nav {text-align: center; margin-top: 2rem;}
-.footer-nav a {
-  background: #fff;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--blue3);
-  text-decoration: none;
-  padding: 0.6rem 1rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--blue3);
-  display: inline-block;
-  box-shadow: var(--shadow-card);
-  transition: background 0.2s;
+/* MENU BUTTON */
+.menu-btn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
-.footer-nav a:hover {background: #e3f2fd;}
+.menu-btn:hover {transform: scale(1.1);}
 
-@media (max-width: 480px) {
-  .resource-card {
-    grid-template-columns: 1fr;
-    grid-template-areas: "thumb" "main";
-  }
-  .thumb {width: 70px; height: 70px; margin-bottom: 0.5rem;}
+/* OVERLAY + DRAWER */
+.menu-overlay {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display:none; z-index:99;
 }
+.side-menu {
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
+  background: rgba(31,41,55,0.92);
+  backdrop-filter: blur(8px);
+  box-shadow:-4px 0 20px rgba(0,0,0,0.5);
+  transition:right 0.3s ease;
+  z-index:100;
+  display:flex; flex-direction:column;
+  padding-top:4rem;
+}
+.side-menu.open {right:0;}
+.menu-overlay.show {display:block;}
+.side-menu a {
+  color: var(--text-main);
+  text-decoration:none;
+  font-size:1.1rem;
+  padding:0.9rem 1.5rem;
+  display:flex; align-items:center;
+  gap:0.8rem;
+  transition:background 0.2s ease;
+}
+.side-menu a:hover {background:rgba(255,255,255,0.1);}
+
+/* GRID */
+.tile-grid {
+  display:grid;
+  gap:1rem;
+  margin-top:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
+
+/* BUTTONS */
+.class-tile {
+  display:block;
+  text-decoration:none;
+  color:#000;
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  padding:1.5rem 1rem;
+  min-height:120px;
+  border:2px solid rgba(0,0,0,0.2);
+  outline:2px solid rgba(255,255,255,0.07);
+  outline-offset:-4px;
+  transition:transform 0.18s ease,box-shadow 0.18s ease;
+  font-weight:700;
+}
+.class-tile:hover {
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.9);
+}
+.class-inner {
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:flex-end;
+  align-items:flex-start;
+}
+.class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
+.class-name {font-size:1.3rem;}
+
+/* gold variations */
+.tile-gold1 {background:var(--gold1);}
+.tile-gold2 {background:var(--gold2);}
+.tile-gold3 {background:var(--gold3);}
+.tile-gold4 {background:var(--gold4);}
+.tile-gold5 {background:var(--gold5);}
 </style>
-</head>
-<body>
+
 <div class="page-wrap">
 
-  <section class="header-card">
-    <h1 class="course-title">Advanced Higher Physics</h1>
-    <p class="course-desc">
-      Key resources, notes, and tools to support your Advanced Higher Physics learning and exam preparation.
-    </p>
+  <section class="header-block">
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h1 class="header-title">Mr Stewart’s Advanced Higher Physics</h1>
   </section>
 
-  <article class="resource-card">
-    <div class="thumb">PAPERS</div>
-    <div class="resource-main">
-      <h2 class="resource-title">Past Paper Questions by Topic</h2>
-      <p class="resource-desc">Advanced-level SQA questions arranged by topic to help refine your exam technique and identify weaker areas.</p>
-      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/ETbRUqslNcJPrnr_WK7swW4BHTrqW4SXlYiPiP-ZYW650w?e=BpXC0q" target="_blank">Open Resource</a>
-    </div>
-  </article>
+  <section class="tile-grid">
+    <a class="class-tile tile-gold1" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/ETbRUqslNcJPrnr_WK7swW4BHTrqW4SXlYiPiP-ZYW650w?e=BpXC0q">
+      <div class="class-inner"><div class="class-emoji">📄</div><h2 class="class-name">Past Paper Questions by Topic</h2></div>
+    </a>
 
-  <article class="resource-card">
-    <div class="thumb">FILES</div>
-    <div class="resource-main">
-      <h2 class="resource-title">Mr Stewart’s Files</h2>
-      <p class="resource-desc">Shared resources, notes, and lesson materials for Advanced Higher — the same files used in class.</p>
-      <a class="resource-button" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L" target="_blank">Open Resource</a>
-    </div>
-  </article>
+    <a class="class-tile tile-gold2" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L">
+      <div class="class-inner"><div class="class-emoji">📁</div><h2 class="class-name">Mr Stewart’s Files</h2></div>
+    </a>
 
-  <article class="resource-card">
-    <div class="thumb">SCHOLAR</div>
-    <div class="resource-main">
-      <h2 class="resource-title">Scholar</h2>
-      <p class="resource-desc">Official online learning platform with interactive tutorials, detailed notes, and self-marking questions.</p>
-      <a class="resource-button" href="https://scholar.hw.ac.uk/courses/" target="_blank">Open Resource</a>
-    </div>
-  </article>
+    <a class="class-tile tile-gold3" href="https://scholar.hw.ac.uk/courses/">
+      <div class="class-inner"><div class="class-emoji">🎓</div><h2 class="class-name">Scholar</h2></div>
+    </a>
 
-  <article class="resource-card">
-    <div class="thumb">YOUTUBE</div>
-    <div class="resource-main">
-      <h2 class="resource-title">The Other Mr Stewart</h2>
-      <p class="resource-desc">A curated collection of Advanced Higher Physics video lessons and worked examples from YouTube.</p>
-      <a class="resource-button" href="https://www.youtube.com/@mrstewartphysics/playlists" target="_blank">Open Resource</a>
-    </div>
-  </article>
+    <a class="class-tile tile-gold4" href="https://www.youtube.com/@mrstewartphysics/playlists">
+      <div class="class-inner"><div class="class-emoji">👨‍🏫</div><h2 class="class-name">The Other Mr Stewart</h2></div>
+    </a>
 
-  <article class="resource-card">
-    <div class="thumb">FLASH</div>
-    <div class="resource-main">
-      <h2 class="resource-title">Flash Physics Animations</h2>
-      <p class="resource-desc">Interactive visualisations of complex topics such as waves, fields, and quantum phenomena.</p>
-      <a class="resource-button" href="https://physicsflashrepo.ovh/" target="_blank">Open Resource</a>
-    </div>
-  </article>
-
-  <div class="footer-nav">
-    <a href="/">⬅ Back to Home</a>
-  </div>
-
+    <a class="class-tile tile-gold5" href="https://physicsflashrepo.ovh/">
+      <div class="class-inner"><div class="class-emoji">⚡</div><h2 class="class-name">Flash Physics Animations</h2></div>
+    </a>
+  </section>
 </div>
-</body>
-</html>
+
+<!-- NAV DRAWER -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
+}
+</script>
