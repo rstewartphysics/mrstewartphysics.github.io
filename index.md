@@ -30,7 +30,7 @@ body {
 
 .page-wrap {
   max-width: 1200px;
-  margin: 2rem auto 4rem;
+  margin: 3.5rem auto 4rem; /* more breathing room below banner */
   padding: 0 1rem;
 }
 
