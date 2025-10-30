@@ -37,13 +37,18 @@ body {
 .banner {
   width: 100%;
   height: auto;
-  max-height: 340px;
-  object-fit: cover;
+  max-height: 400px; /* slightly taller */
+  object-fit: contain; /* prevents cropping */
+  background-color: #0f172a; /* fills empty space with dark background */
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
+@media (max-width: 768px) {
+  .banner { max-height: 280px; }
+}
+  
 @media (max-width: 768px) {
   .banner { max-height: 240px; }
 }
