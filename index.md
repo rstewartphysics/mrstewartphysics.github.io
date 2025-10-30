@@ -102,7 +102,7 @@ hr.clean-line {
 
   <div class="tile-grid">
 
-    <a class="class-tile" href="/classes/s1-science/">
+    <a class="class-tile" href="/classes/s1-science.html">
       <h2>S1 Science</h2>
       <p>Topics, notes, revision videos, and homework.</p>
     </a>
