@@ -100,39 +100,39 @@ hr.clean-line {
     Choose your class below to get notes, videos, OneDrive resources, and homework.
   </p>
 
-  <div class="tile-grid">
+   <div class="tile-grid">
 
-    <a class="class-tile" href="/classes/s1-science">
+    <a class="class-tile" href="/classes/s1-science.md">
       <h2>S1 Science</h2>
       <p>Topics, notes, revision videos, and homework.</p>
     </a>
 
-    <a class="class-tile" href="/classes/s2-science">
+    <a class="class-tile" href="/classes/s2-science.md">
       <h2>S2 Science</h2>
       <p>Resources and tasks for S2.</p>
     </a>
 
-    <a class="class-tile" href="/classes/s3-n5-physics">
+    <a class="class-tile" href="/classes/s3-n5-physics.md">
       <h2>S3 / National 5 Physics</h2>
       <p>Course notes, past papers, required formulas.</p>
     </a>
 
-    <a class="class-tile" href="/classes/higher-physics">
+    <a class="class-tile" href="/classes/higher-physics.md">
       <h2>Higher Physics</h2>
       <p>Lesson slides, practice questions, videos.</p>
     </a>
 
-    <a class="class-tile" href="/classes/adv-higher-physics">
+    <a class="class-tile" href="/classes/adv-higher-physics.md">
       <h2>Advanced Higher Physics</h2>
       <p>AH notes, investigations, prep for assessments.</p>
     </a>
 
-    <a class="class-tile" href="/classes/engineering-science">
+    <a class="class-tile" href="/classes/engineering-science.md">
       <h2>Engineering Science</h2>
       <p>Circuits, mechanics, control systems, assignments.</p>
     </a>
 
-    <a class="class-tile" href="/classes/practical-electronics">
+    <a class="class-tile" href="/classes/practical-electronics.md">
       <h2>Practical Electronics</h2>
       <p>Build guides, circuit diagrams, component lists.</p>
     </a>
