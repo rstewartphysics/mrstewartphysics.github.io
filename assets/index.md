@@ -1,17 +1,14 @@
 ---
-layout: home
-title: Home
+layout: none
 ---
 
 <link rel="stylesheet" href="/assets/style.css">
 
-# Welcome 👋
-
-This site is for students of Berwickshire High School.  
-Choose your class below to get notes, videos, OneDrive resources, and homework.
+<h1>Welcome 👋</h1>
+<p>This site is for students of Berwickshire High School.<br>
+Choose your class below to get notes, videos, OneDrive resources, and homework.</p>
 
 <div class="tile-grid">
-
   <a class="class-tile" href="/classes/s1-science">
     <h2>S1 Science</h2>
     <p>Topics, notes, revision videos, and homework.</p>
@@ -46,12 +43,12 @@ Choose your class below to get notes, videos, OneDrive resources, and homework.
     <h2>Practical Electronics</h2>
     <p>Build guides, circuit diagrams, component lists.</p>
   </a>
-
 </div>
 
----
+<hr>
 
-### Quick Links
-
-- [Revision / Study Links](/quick-links)
-- [Contact / Support](/contact)
+<h3>Quick Links</h3>
+<ul>
+  <li><a href="/quick-links">Revision / Study Links</a></li>
+  <li><a href="/contact">Contact / Support</a></li>
+</ul>
