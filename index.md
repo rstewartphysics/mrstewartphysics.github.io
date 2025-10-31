@@ -176,7 +176,7 @@ main.page-wrap {
 
 <!-- NAV BUTTON + BANNER -->
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-<img src="https://rstewartphysics.github.io/assets/homepagebanner.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
+<img src="https://rstewartphysics.github.io/assets/homepagebanner2.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
 
 <main class="page-wrap">
   <!-- MAIN MENU BUTTONS -->
