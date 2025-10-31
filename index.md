@@ -7,13 +7,12 @@ title: Home
 
 <style>
 :root {
-  /* Core styling */
   --font-stack: "Trebuchet MS", "Segoe UI", sans-serif;
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #ffffff;
 
-  /* Background gradient (pulled from homepage banner colours) */
+  /* Background gradient matching banner colours */
   --bg-grad: radial-gradient(circle at 20% 30%, #0077ff 0%, #8b00ff 35%, #ff8800 70%, #00d4ff 100%);
 
   /* Tile gradients */
@@ -30,7 +29,6 @@ body {
   font-family: var(--font-stack);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
-  position: relative;
   overflow-x: hidden;
   min-height: 100vh;
   transition: background 10s ease-in-out;
@@ -52,35 +50,38 @@ body {
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
-  transform: translateZ(0);
-  will-change: transform;
 }
 @keyframes fadeIn { to { opacity: 1; } }
 @media (max-width: 768px) {.banner { max-height: 300px; }}
 
-/* Animated banner tint */
+/* Animated tint overlay */
 .banner-tint {
   position: absolute;
   inset: 0;
   background: linear-gradient(120deg, rgba(0,119,255,0.45), rgba(139,0,255,0.35), rgba(255,136,0,0.35));
   mix-blend-mode: multiply;
   animation: tintShift 12s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 @keyframes tintShift {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* Subtle parallax on scroll */
-window.addEventListener('scroll', () => {
-  const banner = document.querySelector('.banner');
-  const offset = window.scrollY * 0.25;
-  banner.style.transform = `translateY(${offset}px)`;
-});
+/* FADE SEPARATOR BELOW BANNER */
+.banner-separator {
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0));
+  filter: blur(4px);
+  margin-top: -3px;
+  position: relative;
+  z-index: 1;
+}
 
 /* MENU BUTTON */
 .menu-btn {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 20px;
   font-size: 1.6rem;
@@ -88,11 +89,14 @@ window.addEventListener('scroll', () => {
   border: none;
   color: #fff;
   cursor: pointer;
-  z-index: 10;
+  z-index: 200;
   transition: transform 0.2s ease;
   text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover { transform: scale(1.1); }
+.menu-btn:hover, .menu-btn:focus {
+  transform: scale(1.1);
+  outline: none;
+}
 
 /* DRAWER MENU */
 .menu-overlay {
@@ -107,7 +111,7 @@ window.addEventListener('scroll', () => {
   backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
-  z-index:100;
+  z-index:150;
   display:flex; flex-direction:column;
   padding-top:4rem;
 }
@@ -129,28 +133,10 @@ window.addEventListener('scroll', () => {
 .page-wrap {
   width:100%;
   max-width:1200px;
-  margin:0 auto;
-  padding:0 1rem 4rem;
+  margin:2rem auto 4rem;
+  padding:0 1rem;
   position:relative;
   z-index:1;
-}
-
-/* SECTION HEADER */
-.section-block {
-  margin-top:2rem;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 1rem;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-  padding: 1rem 1rem 1.5rem;
-}
-.section-title {
-  font-size:1.5rem;
-  font-weight:700;
-  color:#fff;
-  margin:0 0 1rem;
-  text-shadow:0 4px 10px rgba(0,0,0,0.8);
 }
 
 /* GRID */
@@ -158,6 +144,7 @@ window.addEventListener('scroll', () => {
   display:grid;
   gap:1rem;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  margin-top:1rem;
 }
 @media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
 
@@ -222,24 +209,17 @@ window.addEventListener('scroll', () => {
 </style>
 
 <!-- NAV BUTTON + BANNER -->
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 <div class="banner-wrap">
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
   <img src="/assets/homepagebanner2.png" alt="Mr Stewart’s Physics, Electronics and Engineering" class="banner">
   <div class="banner-tint"></div>
 </div>
 
+<!-- Soft fade separator -->
+<div class="banner-separator"></div>
+
 <div class="page-wrap">
-
-  <!-- WELCOME HEADER -->
-  <section class="section-block">
-    <h2 class="section-title">Welcome</h2>
-    <p>Mr Stewart’s Physics, Science, Electronics and Engineering.<br>
-    Choose a subject area below to get started.</p>
-  </section>
-
-  <!-- MAIN MENU BUTTONS -->
   <section class="tile-grid">
-
     <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
       <span class="visually-hidden">Science</span>
     </a>
@@ -261,7 +241,6 @@ window.addEventListener('scroll', () => {
         <h2 class="class-name">Engineering</h2>
       </div>
     </a>
-
   </section>
 </div>
 
@@ -289,18 +268,11 @@ function toggleMenu(){
   }
 }
 
-// ESC to close menu
-document.addEventListener('keydown',(e)=>{
-  if(e.key==='Escape'){
+// ESC to close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
-});
-
-// Parallax banner scroll
-window.addEventListener('scroll',()=>{
-  const banner=document.querySelector('.banner');
-  const offset=window.scrollY*0.25;
-  banner.style.transform=`translateY(${offset}px)`;
 });
 </script>
