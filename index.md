@@ -11,9 +11,7 @@ title: Home
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
 
-  /* gradients */
-  --science-grad: linear-gradient(135deg,#06b6d4 0%,#0e7490 100%);
-  --physics-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);
+  /* gradients for non-image tiles */
   --electronics-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);
   --engineering-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);
 }
@@ -30,7 +28,7 @@ body {
 
 .page-wrap {
   max-width: 1200px;
-  margin: 3.5rem auto 4rem; /* more breathing room below banner */
+  margin: 3.5rem auto 4rem;
   padding: 0 1rem;
 }
 
@@ -38,20 +36,15 @@ body {
 .banner {
   width: 100%;
   height: auto;
-  max-height: 340px; /* improved banner height */
+  max-height: 340px;
   object-fit: cover;
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
-@media (max-width: 768px) {
-  .banner { max-height: 240px; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@media (max-width: 768px) {.banner { max-height: 240px; }}
+@keyframes fadeIn {from {opacity:0;transform:translateY(-10px);} to {opacity:1;transform:translateY(0);}}
 
 /* MENU BUTTON */
 .menu-btn {
@@ -107,39 +100,65 @@ body {
 }
 @media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
 
-/* BUTTONS */
+/* ACCESSIBILITY */
+.visually-hidden {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* BASE TILE STYLE */
 .class-tile {
   display:block;
-  text-decoration:none;
-  color:#fff;
   border-radius:var(--radius-card);
-  box-shadow:var(--shadow-card);
-  padding:1.5rem 1rem;
   min-height:120px;
+  box-shadow:var(--shadow-card);
   border:2px solid rgba(0,0,0,0.4);
   outline:2px solid rgba(255,255,255,0.07);
   outline-offset:-4px;
+  position:relative;
+  overflow:hidden;
   transition:transform 0.18s ease,box-shadow 0.18s ease;
 }
 .class-tile:hover {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
 }
+
+/* IMAGE BUTTONS */
+.tile-science {
+  background-image: url("/assets/sciencebanner.png");
+  background-size: cover;
+  background-position: center;
+}
+.tile-physics {
+  background-image: url("/assets/physicsbanner.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* GRADIENT BUTTONS */
+.tile-electronics { background: var(--electronics-grad); }
+.tile-engineering { background: var(--engineering-grad); }
+
 .class-inner {
   display:flex;
   flex-direction:column;
   height:100%;
   justify-content:flex-end;
   align-items:flex-start;
+  padding:1.5rem 1rem;
+  color:#fff;
 }
+
 .class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
 .class-name {font-size:1.3rem; font-weight:700;}
-
-/* SUBJECT COLOURS */
-.tile-science     { background: var(--science-grad); }
-.tile-physics     { background: var(--physics-grad); }
-.tile-electronics { background: var(--electronics-grad); }
-.tile-engineering { background: var(--engineering-grad); }
 </style>
 
 <!-- NAV BUTTON + BANNER -->
@@ -149,18 +168,33 @@ body {
 <div class="page-wrap">
   <!-- MAIN MENU BUTTONS -->
   <section class="tile-grid">
-    <a class="class-tile tile-science" href="/classes/science.html">
-      <div class="class-inner"><div class="class-emoji">🧪</div><h2 class="class-name">Science</h2></div>
+
+    <!-- SCIENCE -->
+    <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
+      <span class="visually-hidden">Science</span>
     </a>
-    <a class="class-tile tile-physics" href="/classes/physics.html">
-      <div class="class-inner"><div class="class-emoji">⚡</div><h2 class="class-name">Physics</h2></div>
+
+    <!-- PHYSICS -->
+    <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
+      <span class="visually-hidden">Physics</span>
     </a>
-    <a class="class-tile tile-electronics" href="/classes/electronics.html">
-      <div class="class-inner"><div class="class-emoji">💡</div><h2 class="class-name">Electronics</h2></div>
+
+    <!-- ELECTRONICS -->
+    <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
+      <div class="class-inner">
+        <div class="class-emoji">💡</div>
+        <h2 class="class-name">Electronics</h2>
+      </div>
     </a>
-    <a class="class-tile tile-engineering" href="/classes/engineering.html">
-      <div class="class-inner"><div class="class-emoji">🧰</div><h2 class="class-name">Engineering</h2></div>
+
+    <!-- ENGINEERING -->
+    <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
+      <div class="class-inner">
+        <div class="class-emoji">🧰</div>
+        <h2 class="class-name">Engineering</h2>
+      </div>
     </a>
+
   </section>
 </div>
 
