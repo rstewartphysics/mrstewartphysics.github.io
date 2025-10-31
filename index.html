@@ -11,10 +11,16 @@ title: Home
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.7);
   --text-main: #ffffff;
-
   --bg1: #1e2b88;
   --bg2: #2b1462;
   --bg3: #092d4d;
+}
+
+/* --- Sticky footer layout --- */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* PAGE BASE */
@@ -24,9 +30,10 @@ body {
   color: var(--text-main);
   background: radial-gradient(circle at 25% 30%, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 90%);
   background-attachment: fixed;
-  min-height: 100vh;
   overflow-x: hidden;
   animation: bgDrift 20s ease-in-out infinite alternate;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
 @keyframes bgDrift {
   0% {background: radial-gradient(circle at 20% 30%, var(--bg1), var(--bg2), var(--bg3));}
@@ -57,7 +64,6 @@ body::after {
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
-  animation-fill-mode: forwards;
 }
 @keyframes fadeIn {to{opacity:1;}}
 @media (max-width:768px){.banner{max-height:300px;}}
@@ -150,12 +156,13 @@ body::after {
   outline:none;
 }
 
-/* PAGE WRAP */
-.page-wrap {
+/* MAIN CONTENT */
+main.page-wrap {
+  flex: 1 0 auto;
   width:100%;
   max-width:1200px;
-  margin:2rem auto 4rem;
-  padding:0 1.5rem 3rem;
+  margin:2rem auto 2rem;
+  padding:0 1.5rem;
   position:relative;
   z-index:1;
 }
@@ -189,8 +196,14 @@ body::after {
   color:#fff;
   position:relative;
   animation: tileFloat 6s ease-in-out infinite;
-  will-change: transform;
-  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease, opacity 0.4s ease;
+  opacity:0;
+  animation-delay:0.2s;
+  animation-fill-mode:forwards;
+}
+@keyframes tileFloat {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-3px);}
 }
 .class-tile:hover,.class-tile:focus {
   transform:translateY(-4px) scale(1.03);
@@ -198,10 +211,8 @@ body::after {
   filter:brightness(1.08);
   outline:3px solid #fff;
 }
-@keyframes tileFloat {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-3px);}
-}
+@keyframes fadeInTile {to{opacity:1;}}
+.class-tile {animation:fadeInTile 0.6s ease forwards;}
 
 /* TILE LABEL */
 .tile-label {
@@ -227,6 +238,11 @@ body::after {
 
 /* FOOTER */
 footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+  width: 100%;
   text-align:center;
   color:#fff;
   padding:1rem 0.5rem;
@@ -263,7 +279,7 @@ footer {
 
 <!-- DRAWER MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
-<nav class="side-menu" id="sideMenu">
+<nav class="side-menu" id="sideMenu" role="navigation">
   <a href="/">🏠 Home</a>
   <a href="/classes/science.html">🧪 Science</a>
   <a href="/classes/physics.html">⚡ Physics</a>
