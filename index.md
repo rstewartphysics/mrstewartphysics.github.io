@@ -236,7 +236,7 @@ body {
 
 <!-- HERO BANNER -->
 <div class="banner-wrap">
-  <img src="/assets/homepagebanner2.png" alt="Mr Stewart’s Physics, Science, Electronics and Engineering" class="banner">
+  <img src="/assets/homelogo.png" alt="Mr Stewart’s Physics, Science, Electronics and Engineering" class="banner">
   <div class="banner-tint"></div>
   <div class="banner-overlay-text"><h1>Welcome — explore Physics, Science, Electronics & Engineering</h1></div>
 </div>
