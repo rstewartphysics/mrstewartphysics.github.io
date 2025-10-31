@@ -1,6 +1,6 @@
 ---
 layout: none
-title: Work in Progress
+title: S2 Electricity
 ---
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,10 @@ title: Work in Progress
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #ffffff;
-  --bg-grad: radial-gradient(circle at 20% 30%, #00b894 0%, #0073ff 40%, #c00074 80%);
+  --bg-grad: radial-gradient(circle at 20% 30%, #0d1b4d 0%, #004aad 50%, #001233 100%);
 }
 
-/* PAGE BASE */
+/* BASE */
 body {
   margin: 0;
   background: var(--bg-grad);
@@ -32,11 +32,12 @@ body {
   width: 100%;
   overflow: hidden;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  isolation: isolate;
 }
 .banner {
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 340px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -44,9 +45,47 @@ body {
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
-@media (max-width: 768px) { .banner { max-height: 300px; } }
 
-/* NAV BUTTON */
+@media (max-width: 768px) {.banner { max-height: 260px; }}
+
+/* Overlay tint + text */
+.banner-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0, 174, 255, 0.35), rgba(0, 132, 255, 0.35));
+  mix-blend-mode: multiply;
+  animation: tintShift 10s ease-in-out infinite alternate;
+}
+@keyframes tintShift {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+
+.banner-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-family: var(--font-stack);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+}
+@media (max-width: 768px){
+  .banner-overlay-text h1{
+    font-size:1rem;
+    padding:0.8rem 0.5rem;
+  }
+}
+
+/* MENU BUTTON */
 .menu-btn {
   position: fixed;
   top: 15px;
@@ -60,10 +99,7 @@ body {
   transition: transform 0.2s ease;
   text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover, .menu-btn:focus {
-  transform: scale(1.1);
-  outline: none;
-}
+.menu-btn:hover, .menu-btn:focus {transform: scale(1.1); outline: none;}
 
 /* DRAWER MENU */
 .menu-overlay {
@@ -76,6 +112,7 @@ body {
   height:100%; width:270px;
   background: rgba(15,23,42,0.92);
   backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
@@ -85,11 +122,8 @@ body {
 .side-menu.open { right:0; }
 .menu-overlay.show { display:block; }
 .side-menu a {
-  color:#fff;
-  text-decoration:none;
-  font-size:1.1rem;
-  padding:0.9rem 1.5rem;
-  display:flex; align-items:center; gap:0.8rem;
+  color:#fff; text-decoration:none; font-size:1.1rem;
+  padding:0.9rem 1.5rem; display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
 .side-menu a:hover, .side-menu a:focus {
@@ -97,72 +131,104 @@ body {
   outline:none;
 }
 
-/* MESSAGE CARD */
+/* CONTENT AREA */
 .page-wrap {
   width:100%;
-  max-width:900px;
-  margin:3rem auto 4rem;
+  max-width:1200px;
+  margin:2rem auto 4rem;
   padding:0 1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
 }
 
-.message-card {
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.15);
+/* GRID */
+.tile-grid {
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  margin-top:1rem;
+}
+@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
+
+/* TILES */
+.class-tile {
+  display:block;
+  position:relative;
   border-radius:var(--radius-card);
+  background:rgba(0,48,120,0.55);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   box-shadow:var(--shadow-card);
-  padding:2rem 1.5rem;
-  max-width:600px;
-}
-.message-card h1 {
-  font-size:1.8rem;
-  margin-bottom:0.5rem;
-  text-shadow:0 4px 10px rgba(0,0,0,0.6);
-}
-.message-card p {
-  font-size:1rem;
-  opacity:0.95;
-  line-height:1.6;
-  margin-bottom:1.5rem;
-}
-.back-btn {
-  display:inline-block;
-  padding:0.7rem 1.4rem;
-  border-radius:0.6rem;
-  background:rgba(255,255,255,0.15);
   color:#fff;
   text-decoration:none;
-  font-weight:bold;
-  transition:background 0.2s ease;
+  min-height:140px;
+  border:2px solid rgba(0,0,0,0.4);
+  outline:2px solid rgba(255,255,255,0.15);
+  outline-offset:-4px;
+  transition:transform 0.18s ease,box-shadow 0.18s ease,filter 0.2s ease;
 }
-.back-btn:hover, .back-btn:focus {
-  background:rgba(255,255,255,0.25);
-  outline:none;
+.class-tile:hover, .class-tile:focus {
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.9);
+  filter:brightness(1.08);
+  outline:3px solid #fff;
+  outline-offset:3px;
 }
+
+/* TILE CONTENT */
+.class-inner {
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  height:100%;
+  padding:1rem 1rem 1.25rem;
+  text-shadow:0 2px 4px rgba(0,0,0,0.7);
+}
+.class-emoji {font-size:1.8rem;margin-bottom:0.5rem;}
+.class-name {font-size:1.1rem;font-weight:700;margin:0;}
 </style>
 
-<!-- NAV BUTTON + BANNER -->
-<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+<!-- MENU BUTTON -->
+<button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- BANNER -->
 <div class="banner-wrap">
-  <!-- Replace banner source per topic -->
-  <img src="/assets/electricitybaner.png" alt="Electricity Banner" class="banner">
+  <img src="/assets/electricitybanner.png" alt="Electricity banner" class="banner">
+  <div class="banner-tint"></div>
+  <div class="banner-overlay-text"><h1>Explore and learn about Electricity in S2 Science</h1></div>
 </div>
 
+<!-- CONTENT -->
 <div class="page-wrap">
-  <div class="message-card">
-    <h1>🔧 Work in Progress</h1>
-    <p>This topic page is currently under development.  
-    More resources, activities, and notes will be added soon.</p>
-    <a href="/classes/science.html" class="back-btn">⬅ Back to Science</a>
-  </div>
+  <section class="tile-grid">
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/EVJXDrI27slGrX1Ew3aZfpsBEmB0ZKeiMtQH2CGAsnk4pQ?e=dIjbqi">
+      <div class="class-inner"><div class="class-emoji">🧮</div><h2 class="class-name">Practice Tests</h2></div>
+    </a>
+
+    <a class="class-tile" href="https://student.magicschool.ai/s/join?joinCode=oqVbTQ">
+      <div class="class-inner"><div class="class-emoji">🤖</div><h2 class="class-name">AI Electricity Companion</h2></div>
+    </a>
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/EYXM_Qk_q25OjcoJF1WhXEkB5VE5zUPk58bn5rS4hoin2w?e=23Lzme">
+      <div class="class-inner"><div class="class-emoji">📘</div><h2 class="class-name">Knowledge Organiser</h2></div>
+    </a>
+
+    <a class="class-tile" href="https://quizlet.com/_bmh8by?x=1qqt&i=2gukdz">
+      <div class="class-inner"><div class="class-emoji">🎴</div><h2 class="class-name">Quizlet Flashcards</h2></div>
+    </a>
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:p:/g/personal/gw20stewartrobert1_glow_sch_uk/EaLbZM-jxZlFtcqFR1XiSYUBwvewduf1KJBOCTNSH7hg5w?e=hcJ0cE">
+      <div class="class-inner"><div class="class-emoji">📊</div><h2 class="class-name">PowerPoint</h2></div>
+    </a>
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:o:/g/personal/gw20stewartrobert1_glow_sch_uk/Elp5GXGzyDFGk9z5cGmmQIIBgTETQQ1JF7SyEhf5NiaHPA?e=vKvmX8">
+      <div class="class-inner"><div class="class-emoji">🧾</div><h2 class="class-name">Notes</h2></div>
+    </a>
+
+  </section>
 </div>
 
-<!-- DRAWER MENU -->
+<!-- DRAWER NAV -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -177,18 +243,11 @@ function toggleMenu(){
   const menu=document.getElementById('sideMenu');
   const overlay=document.getElementById('menuOverlay');
   const isOpen=menu.classList.contains('open');
-  if(isOpen){
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-  } else {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-  }
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
 }
-
-// ESC to close menu
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
