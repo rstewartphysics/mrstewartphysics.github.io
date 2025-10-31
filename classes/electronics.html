@@ -1,36 +1,217 @@
 ---
-layout: page
-title: Practical Electronics
+layout: none
+title: Electronics (Work in Progress)
 ---
 
-<link rel="stylesheet" href="/assets/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-# Practical Electronics
+<style>
+:root {
+  --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+  --radius-card: 1rem;
+  --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
+  --text-main: #fff;
+  --bg-grad: radial-gradient(circle at 20% 30%, #003c2e 0%, #005f47 40%, #052a1f 100%);
+}
 
-<div class="callout">
-  <strong>Safety:</strong> Always power down before changing components.
+/* BASE */
+body {
+  margin: 0;
+  background: var(--bg-grad);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* BANNER */
+.banner-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+.banner {
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+@media (max-width: 768px) {.banner { max-height: 260px; }}
+
+/* Overlay tint */
+.banner-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0,255,200,0.3), rgba(0,180,255,0.3));
+  mix-blend-mode: multiply;
+  animation: tintShift 12s ease-in-out infinite alternate;
+}
+@keyframes tintShift {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+
+/* Fade separator */
+.banner-separator {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+}
+
+/* MENU BUTTON */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 200;
+  transition: transform 0.2s ease;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+}
+.menu-btn:hover, .menu-btn:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
+/* DRAWER MENU */
+.menu-overlay {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display:none; z-index:99;
+}
+.side-menu {
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow:-4px 0 25px rgba(0,0,0,0.6);
+  transition:right 0.3s ease;
+  z-index:150;
+  display:flex; flex-direction:column;
+  padding-top:4rem;
+}
+.side-menu.open { right:0; }
+.menu-overlay.show { display:block; }
+.side-menu a {
+  color:#fff;
+  text-decoration:none;
+  font-size:1.1rem;
+  padding:0.9rem 1.5rem;
+  display:flex; align-items:center; gap:0.8rem;
+  transition:background 0.2s ease;
+}
+.side-menu a:hover, .side-menu a:focus {
+  background:rgba(255,255,255,0.12);
+  outline:none;
+}
+
+/* PAGE WRAP */
+.page-wrap {
+  width:100%;
+  max-width:900px;
+  margin:2rem auto 4rem;
+  padding:0 1rem;
+  text-align:center;
+}
+
+/* CARD */
+.wip-card {
+  display:inline-block;
+  background: rgba(0,60,50,0.4);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 2rem 1.5rem;
+  border: 2px solid rgba(0,0,0,0.4);
+  outline: 2px solid rgba(255,255,255,0.1);
+  outline-offset: -4px;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 20px rgba(0,255,180,0.3); }
+  100% { box-shadow: 0 0 40px rgba(0,255,180,0.6); }
+}
+.wip-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display:block;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+}
+.wip-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.wip-text {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* RESPONSIVE TWEAK */
+@media (max-width: 600px) {
+  .wip-card {padding:1.5rem 1rem;}
+  .wip-title {font-size:1.3rem;}
+  .wip-text {font-size:1rem;}
+}
+</style>
+
+<!-- MENU BUTTON -->
+<button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <img src="/assets/Electronicsbanner.png" alt="Electronics Banner" class="banner">
+  <div class="banner-tint"></div>
 </div>
 
-## Class Resources
-<a class="link-button" href="https://onedrive.example/practical-electronics" target="_blank">
-  📂 Practical Electronics OneDrive
-</a>
+<div class="banner-separator"></div>
 
-<a class="link-button" href="https://onedrive.example/component-list.pdf" target="_blank">
-  🧰 Component List
-</a>
+<!-- CONTENT -->
+<main class="page-wrap">
+  <div class="wip-card" role="status" aria-live="polite">
+    <div class="wip-icon">⚙️</div>
+    <div class="wip-title">Work in Progress</div>
+    <div class="wip-text">The Electronics section is currently under construction.  
+      New resources and interactive tools will be added soon — stay tuned!</div>
+  </div>
+</main>
 
-## Circuit Walkthrough Video
-<iframe
-  class="responsive-video"
-  src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
-  allowfullscreen
-></iframe>
+<!-- DRAWER NAVIGATION -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
 
-## Current Focus
-- Reading resistor values  
-- Breadboard layout  
-- Safe soldering practice
-
-## Reminder
-Bring safety glasses and keep hair tied back near soldering irons.
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+});
+</script>
