@@ -10,22 +10,24 @@ title: Advanced Higher Physics
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
-  --bg-grad: radial-gradient(circle at 20% 30%, #4a3a00 0%, #2c2200 40%, #0f172a 80%);
-  --ah-card-bg: rgba(250,204,21,0.18);
+  --bg1: #4a3a00;
+  --bg2: #2c2200;
+  --bg3: #0f172a;
+  --ah-card-bg: rgba(255,215,50,0.35);
 }
 
-/* PAGE BASE */
+/* BASE */
 body {
   margin: 0;
-  background: var(--bg-grad);
+  background: radial-gradient(circle at 25% 30%, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 90%);
   background-attachment: fixed;
   color: #fff;
   font-family: var(--font-stack);
-  -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* BANNER */
@@ -33,38 +35,30 @@ body {
   position: relative;
   width: 100%;
   overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-  isolation: isolate;
 }
 .banner {
   width: 100%;
   height: auto;
-  max-height: 340px;
+  max-height: 360px;
   object-fit: cover;
-  object-position: center;
   display: block;
   opacity: 0;
-  transform: translateY(0);
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
 @media (max-width: 768px) {.banner { max-height: 260px; }}
 
-/* Tint + Overlay Text */
+/* Banner tint + overlay */
 .banner-tint {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%),
-    linear-gradient(120deg, rgba(250,204,21,0.4), rgba(253,224,71,0.45));
+  background: linear-gradient(120deg, rgba(255,210,50,0.4), rgba(255,150,0,0.35), rgba(255,240,100,0.25));
   mix-blend-mode: multiply;
-  animation: tintShift 12s ease-in-out infinite alternate;
-  pointer-events: none;
+  animation: tintShift 20s ease-in-out infinite alternate;
 }
-@keyframes tintShift {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
+@keyframes tintShift {0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
 
 .banner-overlay-text {
   position: absolute;
@@ -76,145 +70,150 @@ body {
   color: #fff;
   text-align: center;
   padding: 1rem 0.5rem;
-  font-family: var(--font-stack);
-  font-size: 1.2rem;
   font-weight: 600;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  font-size: 1.2rem;
   border-top: 1px solid rgba(255,255,255,0.2);
-  z-index: 2;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
-@media (max-width: 768px){
-  .banner-overlay-text h1{font-size:1rem;padding:0.8rem 0.5rem;}
+.banner-overlay-text h1 {margin:0;}
+@media(max-width:900px){
+  .banner-overlay-text{font-size:1rem;}
+  .banner-overlay-text h1{font-size:0.95rem;line-height:1.3;}
 }
 
 /* SEPARATOR */
 .banner-separator {
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
-  position: relative;
-  z-index: 1;
+  width:100%;
+  height:60px;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+  margin-top:-3px;
 }
 
-/* MENU BUTTON */
+/* MENU */
 .menu-btn {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  font-size: 1.6rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  z-index: 200;
-  transition: transform 0.2s ease;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  position:fixed;
+  top:15px; right:20px;
+  font-size:1.6rem;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  z-index:200;
+  transition:transform 0.2s ease;
+  text-shadow:0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover, .menu-btn:focus {transform: scale(1.1);outline:none;}
+.menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
 
-/* DRAWER MENU */
 .menu-overlay {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
   display:none; z-index:99;
 }
 .side-menu {
-  position: fixed; top:0; right:-270px;
+  position:fixed; top:0; right:-270px;
   height:100%; width:270px;
-  background: rgba(15,23,42,0.92);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  background:rgba(15,23,42,0.92);
+  backdrop-filter:blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
   display:flex; flex-direction:column;
   padding-top:4rem;
 }
-.side-menu.open { right:0; }
-.menu-overlay.show { display:block; }
+.side-menu.open{right:0;}
+.menu-overlay.show{display:block;}
 .side-menu a {
-  color:#fff; text-decoration:none; font-size:1.1rem;
-  padding:0.9rem 1.5rem; display:flex; align-items:center; gap:0.8rem;
+  color:#fff; text-decoration:none;
+  font-size:1.1rem;
+  padding:0.9rem 1.5rem;
+  display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover, .side-menu a:focus {
+.side-menu a:hover,.side-menu a:focus {
   background:rgba(255,255,255,0.12);
   outline:none;
 }
 
-/* PAGE CONTENT */
+/* MAIN CONTENT */
 .page-wrap {
+  flex:1;
   width:100%;
   max-width:1200px;
-  margin:2rem auto 4rem;
-  padding:0 1rem;
-  position:relative;
-  z-index:1;
+  margin:2rem auto;
+  padding:0 1rem 4rem;
 }
 
 /* GRID */
 .tile-grid {
   display:grid;
-  gap:1rem;
+  gap:1.2rem;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  margin-top:1rem;
+  justify-items:center;
+  align-items:stretch;
 }
-@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
+@media(max-width:700px){.tile-grid{gap:0.9rem;}}
 
-/* AH RESOURCE CARD */
+/* CARD STYLE */
 .class-tile {
-  display:block;
   position:relative;
-  min-height:140px;
+  display:block;
   border-radius:var(--radius-card);
-  background: var(--ah-card-bg);
-  backdrop-filter: blur(8px) saturate(140%);
-  -webkit-backdrop-filter: blur(8px) saturate(140%);
-  border:2px solid rgba(0,0,0,0.5);
-  outline:2px solid rgba(255,255,255,0.2);
+  background:var(--ah-card-bg);
+  backdrop-filter:blur(8px) saturate(160%);
+  -webkit-backdrop-filter:blur(8px) saturate(160%);
+  border:2px solid rgba(255,255,255,0.25);
+  outline:2px solid rgba(255,255,255,0.1);
   outline-offset:-4px;
   box-shadow:var(--shadow-card);
-  color:#000;
+  color:#fff;
   text-decoration:none;
-  cursor:pointer;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
 }
-.class-tile:hover, .class-tile:focus {
+.class-tile:hover,.class-tile:focus {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
-  filter:brightness(1.08);
+  filter:brightness(1.1);
   outline:3px solid #fff;
-  outline-offset:3px;
 }
 
-/* CONTENT INSIDE EACH CARD */
+/* INNER CARD CONTENT */
 .class-inner {
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  align-items:flex-start;
   height:100%;
   padding:1rem 1rem 1.25rem;
-  color:#000;
-  text-shadow:0 2px 4px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.4);
+  color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,0.7);
 }
 .class-emoji {
-  font-size:1.6rem;
+  font-size:1.8rem;
   margin-bottom:0.5rem;
-  line-height:1;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
 }
 .class-name {
   font-size:1.1rem;
   font-weight:700;
   line-height:1.3;
   margin:0;
-  color:#000;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  color:#fff;
+  padding:1rem 0.5rem;
+  font-size:0.9rem;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(8px);
+  border-top:1px solid rgba(255,255,255,0.2);
+  margin-top:auto;
+  width:100%;
+  box-shadow:0 -3px 10px rgba(0,0,0,0.4);
 }
 </style>
 
 <!-- MENU BUTTON -->
-<button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 
 <!-- BANNER -->
 <div class="banner-wrap">
@@ -222,11 +221,10 @@ body {
   <div class="banner-tint"></div>
   <div class="banner-overlay-text"><h1>Explore advanced topics and resources for AH Physics</h1></div>
 </div>
-
 <div class="banner-separator"></div>
 
 <!-- CONTENT -->
-<div class="page-wrap">
+<main class="page-wrap">
   <section class="tile-grid">
 
     <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/ETbRUqslNcJPrnr_WK7swW4BHTrqW4SXlYiPiP-ZYW650w?e=BpXC0q">
@@ -250,9 +248,12 @@ body {
     </a>
 
   </section>
-</div>
+</main>
 
-<!-- DRAWER NAV -->
+<!-- FOOTER -->
+<footer>© Mr R Stewart’s Science, Physics, Electronics & Engineering</footer>
+
+<!-- DRAWER MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -266,11 +267,10 @@ body {
 function toggleMenu(){
   const menu=document.getElementById('sideMenu');
   const overlay=document.getElementById('menuOverlay');
-  const isOpen=menu.classList.contains('open');
-  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
-  else{menu.classList.add('open');overlay.classList.add('show');}
+  menu.classList.toggle('open');
+  overlay.classList.toggle('show');
 }
-document.addEventListener('keydown',(e)=>{
+document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
