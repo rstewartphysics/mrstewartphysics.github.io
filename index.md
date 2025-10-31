@@ -66,15 +66,17 @@ main.page-wrap {
 /* OVERLAY + DRAWER */
 .menu-overlay {
   position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.45);
   display:none; z-index:99;
 }
 .side-menu {
   position: fixed; top:0; right:-270px;
   height:100%; width:270px;
-  background: rgba(15,23,42,0.92);
-  backdrop-filter: blur(8px);
-  box-shadow:-4px 0 20px rgba(0,0,0,0.5);
+  background: rgba(20,30,60,0.45);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-left: 1px solid rgba(255,255,255,0.15);
+  box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:100;
   display:flex; flex-direction:column;
@@ -82,6 +84,7 @@ main.page-wrap {
 }
 .side-menu.open { right:0; }
 .menu-overlay.show { display:block; }
+
 .side-menu a {
   color: var(--text-main);
   text-decoration:none;
@@ -89,9 +92,13 @@ main.page-wrap {
   padding:0.9rem 1.5rem;
   display:flex; align-items:center;
   gap:0.8rem;
+  border-radius:0.5rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover, .side-menu a:focus { background:rgba(255,255,255,0.1); outline:none; }
+.side-menu a:hover, .side-menu a:focus {
+  background:rgba(255,255,255,0.12);
+  outline:none;
+}
 
 /* GRID */
 .tile-grid {
@@ -119,7 +126,7 @@ main.page-wrap {
 .class-tile {
   display:block;
   border-radius:var(--radius-card);
-  min-height:140px; /* better tap area */
+  min-height:140px;
   box-shadow:var(--shadow-card);
   border:2px solid rgba(0,0,0,0.4);
   outline:2px solid rgba(255,255,255,0.07);
@@ -153,7 +160,6 @@ main.page-wrap {
 .tile-electronics { background: var(--electronics-grad); color:#fff; }
 .tile-engineering { background: var(--engineering-grad); color:#fff; }
 
-/* Inner content wrapper */
 .class-inner {
   display:flex;
   flex-direction:column;
@@ -166,16 +172,6 @@ main.page-wrap {
 
 .class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
 .class-name {font-size:1.3rem; font-weight:700;}
-
-/* Optional visible captions under image tiles */
-.caption {
-  text-align:center;
-  margin-top:0.4rem;
-  font-weight:600;
-  color:#f8fafc;
-  opacity:0.85;
-  font-size:1rem;
-}
 </style>
 
 <!-- NAV BUTTON + BANNER -->
@@ -187,40 +183,30 @@ main.page-wrap {
   <section class="tile-grid">
 
     <!-- SCIENCE -->
-    <div>
-      <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
-        <span class="visually-hidden">Science</span>
-      </a>
-      <div class="caption">Science</div>
-    </div>
+    <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
+      <span class="visually-hidden">Science</span>
+    </a>
 
     <!-- PHYSICS -->
-    <div>
-      <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
-        <span class="visually-hidden">Physics</span>
-      </a>
-      <div class="caption">Physics</div>
-    </div>
+    <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
+      <span class="visually-hidden">Physics</span>
+    </a>
 
     <!-- ELECTRONICS -->
-    <div>
-      <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
-        <div class="class-inner">
-          <div class="class-emoji">💡</div>
-          <h2 class="class-name">Electronics</h2>
-        </div>
-      </a>
-    </div>
+    <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
+      <div class="class-inner">
+        <div class="class-emoji">💡</div>
+        <h2 class="class-name">Electronics</h2>
+      </div>
+    </a>
 
     <!-- ENGINEERING -->
-    <div>
-      <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
-        <div class="class-inner">
-          <div class="class-emoji">🧰</div>
-          <h2 class="class-name">Engineering</h2>
-        </div>
-      </a>
-    </div>
+    <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
+      <div class="class-inner">
+        <div class="class-emoji">🧰</div>
+        <h2 class="class-name">Engineering</h2>
+      </div>
+    </a>
 
   </section>
 </main>
@@ -249,7 +235,7 @@ function toggleMenu(){
   }
 }
 
-// Close menu with ESC key for accessibility
+// Close menu with ESC key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.getElementById('sideMenu').classList.remove('open');
