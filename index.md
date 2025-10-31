@@ -43,7 +43,6 @@ body {
   object-position: center;
   display: block;
   opacity: 0;
-  transform: translateY(0);
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
@@ -86,10 +85,17 @@ body {
   border-top: 1px solid rgba(255,255,255,0.2);
   z-index: 2;
 }
-@media (max-width: 768px){
-  .banner-overlay-text h1{
-    font-size:1rem;
-    padding:0.8rem 0.5rem;
+.banner-overlay-text h1 {
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .banner-overlay-text {
+    font-size: 1rem;
+    padding: 0.6rem 0.5rem;
+  }
+  .banner-overlay-text h1 {
+    font-size: 0.95rem;
+    line-height: 1.3;
   }
 }
 
@@ -172,7 +178,12 @@ body {
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   margin-top:1rem;
 }
-@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
+@media (max-width:1100px){
+  .tile-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:700px){
+  .tile-grid{grid-template-columns:1fr;}
+}
 
 /* TILE BASE */
 .class-tile {
@@ -198,7 +209,6 @@ body {
   filter:brightness(1.08);
   outline:3px solid #fff;
   outline-offset:3px;
-  text-decoration:none;
 }
 
 /* Tile label bar */
@@ -214,14 +224,18 @@ body {
   font-family: var(--font-stack);
   font-weight: 600;
   font-size: 1rem;
-  padding: 0.6rem 0.4rem;
+  padding: 0.5rem 0.3rem;
   border-top: 1px solid rgba(255,255,255,0.2);
   text-shadow: 0 2px 5px rgba(0,0,0,0.6);
-  transition: background 0.3s ease;
+  line-height: 1.2;
+  border-radius: inherit;
+  bottom: 0;
+  transition: background 0.3s ease, transform 0.2s ease;
   pointer-events: none;
 }
 .class-tile:hover .tile-label {
   background: rgba(0,0,0,0.6);
+  transform: scale(1.02);
 }
 
 /* INDIVIDUAL TILE IMAGES */
