@@ -11,15 +11,7 @@ title: Home
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #ffffff;
-
-  /* Background gradient sampled from the homepage banner colours */
-  --bg-grad: radial-gradient(
-    circle at 20% 30%,
-    #0077ff 0%,
-    #8b00ff 35%,
-    #ff8800 70%,
-    #00d4ff 100%
-  );
+  --bg-grad: radial-gradient(circle at 20% 30%, #0077ff 0%, #8b00ff 35%, #ff8800 70%, #00d4ff 100%);
 }
 
 /* PAGE BASE */
@@ -36,7 +28,7 @@ body {
   transition: background 10s ease-in-out;
 }
 
-/* BANNER (top hero) */
+/* BANNER */
 .banner-wrap {
   position: relative;
   width: 100%;
@@ -55,12 +47,9 @@ body {
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
+@media (max-width: 768px) {.banner { max-height: 300px; }}
 
-@media (max-width: 768px) {
-  .banner { max-height: 300px; }
-}
-
-/* Animated tint overlay across banner */
+/* Animated tint overlay */
 .banner-tint {
   position: absolute;
   inset: 0;
@@ -75,25 +64,46 @@ body {
   pointer-events: none;
 }
 @keyframes tintShift {
-  0%   { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* Soft fade separator under banner (to blend into page content) */
+/* Translucent info bar across banner */
+.banner-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-family: var(--font-stack);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+}
+@media (max-width: 768px){
+  .banner-overlay-text h1{
+    font-size:1rem;
+    padding:0.8rem 0.5rem;
+  }
+}
+
+/* Fade separator */
 .banner-separator {
   width: 100%;
   height: 70px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.35) 0%,
-    rgba(0,0,0,0) 80%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0));
   position: relative;
   z-index: 1;
   margin-top: -3px;
 }
 
-/* MENU BUTTON (fixed so it's always tappable, matches other pages) */
+/* MENU BUTTON */
 .menu-btn {
   position: fixed;
   top: 15px;
@@ -107,57 +117,45 @@ body {
   transition: transform 0.2s ease;
   text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover,
-.menu-btn:focus {
+.menu-btn:hover, .menu-btn:focus {
   transform: scale(1.1);
   outline: none;
 }
 
-/* DRAWER MENU (sitewide shared style) */
+/* DRAWER MENU */
 .menu-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  position: fixed; top:0; left:0; width:100%; height:100%;
   background: rgba(0,0,0,0.5);
-  display:none;
-  z-index:99;
+  display:none; z-index:99;
 }
 .side-menu {
-  position: fixed;
-  top:0;
-  right:-270px;
-  height:100%;
-  width:270px;
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
   background: rgba(15,23,42,0.92);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
-  display:flex;
-  flex-direction:column;
+  display:flex; flex-direction:column;
   padding-top:4rem;
 }
 .side-menu.open { right:0; }
 .menu-overlay.show { display:block; }
-
 .side-menu a {
   color:#fff;
   text-decoration:none;
   font-size:1.1rem;
   padding:0.9rem 1.5rem;
-  display:flex;
-  align-items:center;
-  gap:0.8rem;
+  display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover,
-.side-menu a:focus {
+.side-menu a:hover, .side-menu a:focus {
   background:rgba(255,255,255,0.12);
   outline:none;
 }
 
-/* PAGE WRAP (content container) */
+/* PAGE WRAP */
 .page-wrap {
   width:100%;
   max-width:1200px;
@@ -167,35 +165,16 @@ body {
   z-index:1;
 }
 
-/* GRID OF SUBJECT TILES */
+/* GRID */
 .tile-grid {
   display:grid;
   gap:1rem;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   margin-top:1rem;
 }
-@media (max-width:900px){
-  .tile-grid{grid-template-columns:1fr;}
-}
+@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
 
-/* ACCESSIBILITY HELPERS */
-.visually-hidden {
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0 0 0 0);
-  white-space:nowrap;
-  border:0;
-}
-
-/* TILE BASE (shared button style)
-   - full banner image
-   - no visible text
-   - large tap target
-*/
+/* TILE BASE */
 .class-tile {
   display:block;
   border-radius:var(--radius-card);
@@ -206,18 +185,14 @@ body {
   outline-offset:-4px;
   position:relative;
   overflow:hidden;
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.2s ease;
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
   cursor:pointer;
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   text-decoration:none;
 }
-.class-tile:hover,
-.class-tile:focus {
+.class-tile:hover, .class-tile:focus {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
   filter:brightness(1.08);
@@ -226,19 +201,34 @@ body {
   text-decoration:none;
 }
 
-/* INDIVIDUAL TILE IMAGES (now all 4 use banners) */
-.tile-science {
-  background-image:url("/assets/sciencebanner.png");
+/* Tile label bar */
+.tile-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-stack);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  transition: background 0.3s ease;
+  pointer-events: none;
 }
-.tile-physics {
-  background-image:url("/assets/physicsbanner.png");
+.class-tile:hover .tile-label {
+  background: rgba(0,0,0,0.6);
 }
-.tile-electronics {
-  background-image:url("/assets/Electronicsbanner.png");
-}
-.tile-engineering {
-  background-image:url("/assets/Engeneringbanner.png");
-}
+
+/* INDIVIDUAL TILE IMAGES */
+.tile-science { background-image:url("/assets/sciencebanner.png"); }
+.tile-physics { background-image:url("/assets/physicsbanner.png"); }
+.tile-electronics { background-image:url("/assets/Electronicsbanner.png"); }
+.tile-engineering { background-image:url("/assets/Engeneringbanner.png"); }
 </style>
 
 <!-- NAV BUTTON -->
@@ -246,42 +236,23 @@ body {
 
 <!-- HERO BANNER -->
 <div class="banner-wrap">
-  <img
-    src="/assets/homepagebanner2.png"
-    alt="Mr Stewart’s Physics, Electronics and Engineering"
-    class="banner">
+  <img src="/assets/homepagebanner2.png" alt="Mr Stewart’s Physics, Science, Electronics and Engineering" class="banner">
   <div class="banner-tint"></div>
+  <div class="banner-overlay-text"><h1>Welcome — explore Physics, Science, Electronics & Engineering</h1></div>
 </div>
 
 <div class="banner-separator"></div>
 
 <div class="page-wrap">
   <section class="tile-grid">
-
-    <!-- SCIENCE -->
-    <a class="class-tile tile-science" href="/classes/science.html">
-      <span class="visually-hidden">Science</span>
-    </a>
-
-    <!-- PHYSICS -->
-    <a class="class-tile tile-physics" href="/classes/physics.html">
-      <span class="visually-hidden">Physics</span>
-    </a>
-
-    <!-- ELECTRONICS -->
-    <a class="class-tile tile-electronics" href="/classes/electronics.html">
-      <span class="visually-hidden">Electronics</span>
-    </a>
-
-    <!-- ENGINEERING -->
-    <a class="class-tile tile-engineering" href="/classes/engineering.html">
-      <span class="visually-hidden">Engineering</span>
-    </a>
-
+    <a class="class-tile tile-science" href="/classes/science.html"><div class="tile-label">Science</div></a>
+    <a class="class-tile tile-physics" href="/classes/physics.html"><div class="tile-label">Physics</div></a>
+    <a class="class-tile tile-electronics" href="/classes/electronics.html"><div class="tile-label">Electronics</div></a>
+    <a class="class-tile tile-engineering" href="/classes/engineering.html"><div class="tile-label">Engineering</div></a>
   </section>
 </div>
 
-<!-- DRAWER NAVIGATION -->
+<!-- DRAWER MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -293,31 +264,22 @@ body {
 
 <script>
 function toggleMenu(){
-  const menu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('menuOverlay');
-  const isOpen = menu.classList.contains('open');
-  if(isOpen){
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-  } else {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-  }
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
 }
-
-// ESC closes menu (keyboard / iPad with keyboard support)
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
 });
-
-// subtle parallax scroll on the homepage banner, same as Physics/Higher
-window.addEventListener('scroll', () => {
-  const banner = document.querySelector('.banner');
-  if (!banner) return;
-  const offset = window.scrollY * 0.25;
-  banner.style.transform = `translateY(${offset}px)`;
+window.addEventListener('scroll',()=>{
+  const banner=document.querySelector('.banner');
+  if(!banner)return;
+  const offset=window.scrollY*0.25;
+  banner.style.transform=`translateY(${offset}px)`;
 });
 </script>
