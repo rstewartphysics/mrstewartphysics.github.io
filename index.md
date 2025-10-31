@@ -3,6 +3,8 @@ layout: none
 title: Home
 ---
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 :root {
   --bg-page: #0f172a;
@@ -26,7 +28,7 @@ body {
   line-height: 1.5;
 }
 
-.page-wrap {
+main.page-wrap {
   max-width: 1200px;
   margin: 3.5rem auto 4rem;
   padding: 0 1rem;
@@ -59,7 +61,7 @@ body {
   z-index: 10;
   transition: transform 0.2s ease;
 }
-.menu-btn:hover { transform: scale(1.1); }
+.menu-btn:hover, .menu-btn:focus { transform: scale(1.1); outline: none; }
 
 /* OVERLAY + DRAWER */
 .menu-overlay {
@@ -89,7 +91,7 @@ body {
   gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover { background:rgba(255,255,255,0.1); }
+.side-menu a:hover, .side-menu a:focus { background:rgba(255,255,255,0.1); outline:none; }
 
 /* GRID */
 .tile-grid {
@@ -100,7 +102,7 @@ body {
 }
 @media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
 
-/* ACCESSIBILITY */
+/* ACCESSIBILITY HELPERS */
 .visually-hidden {
   position:absolute;
   width:1px;
@@ -117,18 +119,22 @@ body {
 .class-tile {
   display:block;
   border-radius:var(--radius-card);
-  min-height:120px;
+  min-height:140px; /* better tap area */
   box-shadow:var(--shadow-card);
   border:2px solid rgba(0,0,0,0.4);
   outline:2px solid rgba(255,255,255,0.07);
   outline-offset:-4px;
   position:relative;
   overflow:hidden;
-  transition:transform 0.18s ease,box-shadow 0.18s ease;
+  transition:transform 0.18s ease,box-shadow 0.18s ease, filter 0.2s ease;
+  cursor: pointer;
 }
-.class-tile:hover {
+.class-tile:hover, .class-tile:focus {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
+  filter: brightness(1.08);
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }
 
 /* IMAGE BUTTONS */
@@ -144,9 +150,10 @@ body {
 }
 
 /* GRADIENT BUTTONS */
-.tile-electronics { background: var(--electronics-grad); }
-.tile-engineering { background: var(--engineering-grad); }
+.tile-electronics { background: var(--electronics-grad); color:#fff; }
+.tile-engineering { background: var(--engineering-grad); color:#fff; }
 
+/* Inner content wrapper */
 .class-inner {
   display:flex;
   flex-direction:column;
@@ -159,44 +166,64 @@ body {
 
 .class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
 .class-name {font-size:1.3rem; font-weight:700;}
+
+/* Optional visible captions under image tiles */
+.caption {
+  text-align:center;
+  margin-top:0.4rem;
+  font-weight:600;
+  color:#f8fafc;
+  opacity:0.85;
+  font-size:1rem;
+}
 </style>
 
 <!-- NAV BUTTON + BANNER -->
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 <img src="https://rstewartphysics.github.io/assets/homepagebanner.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
 
-<div class="page-wrap">
+<main class="page-wrap">
   <!-- MAIN MENU BUTTONS -->
   <section class="tile-grid">
 
     <!-- SCIENCE -->
-    <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
-      <span class="visually-hidden">Science</span>
-    </a>
+    <div>
+      <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
+        <span class="visually-hidden">Science</span>
+      </a>
+      <div class="caption">Science</div>
+    </div>
 
     <!-- PHYSICS -->
-    <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
-      <span class="visually-hidden">Physics</span>
-    </a>
+    <div>
+      <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
+        <span class="visually-hidden">Physics</span>
+      </a>
+      <div class="caption">Physics</div>
+    </div>
 
     <!-- ELECTRONICS -->
-    <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
-      <div class="class-inner">
-        <div class="class-emoji">💡</div>
-        <h2 class="class-name">Electronics</h2>
-      </div>
-    </a>
+    <div>
+      <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
+        <div class="class-inner">
+          <div class="class-emoji">💡</div>
+          <h2 class="class-name">Electronics</h2>
+        </div>
+      </a>
+    </div>
 
     <!-- ENGINEERING -->
-    <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
-      <div class="class-inner">
-        <div class="class-emoji">🧰</div>
-        <h2 class="class-name">Engineering</h2>
-      </div>
-    </a>
+    <div>
+      <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
+        <div class="class-inner">
+          <div class="class-emoji">🧰</div>
+          <h2 class="class-name">Engineering</h2>
+        </div>
+      </a>
+    </div>
 
   </section>
-</div>
+</main>
 
 <!-- DRAWER NAVIGATION -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
@@ -213,7 +240,20 @@ function toggleMenu(){
   const menu=document.getElementById('sideMenu');
   const overlay=document.getElementById('menuOverlay');
   const isOpen=menu.classList.contains('open');
-  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
-  else{menu.classList.add('open');overlay.classList.add('show');}
+  if(isOpen){
+    menu.classList.remove('open');
+    overlay.classList.remove('show');
+  } else {
+    menu.classList.add('open');
+    overlay.classList.add('show');
+  }
 }
+
+// Close menu with ESC key for accessibility
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+});
 </script>
