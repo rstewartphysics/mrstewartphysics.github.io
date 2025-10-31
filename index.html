@@ -11,16 +11,10 @@ title: Home
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.7);
   --text-main: #ffffff;
+
   --bg1: #1e2b88;
   --bg2: #2b1462;
   --bg3: #092d4d;
-}
-
-/* --- Sticky footer layout --- */
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 /* PAGE BASE */
@@ -30,22 +24,15 @@ body {
   color: var(--text-main);
   background: radial-gradient(circle at 25% 30%, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 90%);
   background-attachment: fixed;
+  min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
   animation: bgDrift 20s ease-in-out infinite alternate;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
 }
 @keyframes bgDrift {
   0% {background: radial-gradient(circle at 20% 30%, var(--bg1), var(--bg2), var(--bg3));}
   100% {background: radial-gradient(circle at 70% 70%, #203c9f, #321d7a, #0c2e54);}
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at center, transparent 70%, rgba(0,0,0,0.25) 100%);
-  z-index: 0;
 }
 
 /* BANNER */
@@ -53,6 +40,7 @@ body::after {
   position: relative;
   width: 100%;
   overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
   z-index: 1;
 }
@@ -66,8 +54,9 @@ body::after {
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn {to{opacity:1;}}
-@media (max-width:768px){.banner{max-height:300px;}}
+@media (max-width:768px){.banner{max-height:280px;}}
 
+/* Banner tint animation */
 .banner-tint {
   position: absolute;
   inset: 0;
@@ -76,12 +65,11 @@ body::after {
   animation: tintShift 20s ease-in-out infinite alternate;
 }
 @keyframes tintShift {
-  0% {background-position: 0% 50%; filter: brightness(1);}
-  50% {background-position: 100% 50%; filter: brightness(1.05);}
-  100% {background-position: 0% 50%; filter: brightness(0.95);}
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
 }
 
-/* BANNER TEXT */
+/* Overlay text */
 .banner-overlay-text {
   position: absolute;
   bottom: 0;
@@ -102,7 +90,7 @@ body::after {
   .banner-overlay-text h1{font-size:0.95rem;line-height:1.3;}
 }
 
-/* SEPARATOR */
+/* Separator */
 .banner-separator {
   width:100%;
   height:60px;
@@ -157,17 +145,17 @@ body::after {
 }
 
 /* MAIN CONTENT */
-main.page-wrap {
-  flex: 1 0 auto;
+.page-wrap {
+  flex: 1;
   width:100%;
   max-width:1200px;
-  margin:2rem auto 2rem;
-  padding:0 1.5rem;
+  margin:2rem auto;
+  padding:0 1rem 4rem;
   position:relative;
   z-index:1;
 }
 
-/* GRID */
+/* TILE GRID */
 .tile-grid {
   display:grid;
   gap:1.2rem;
@@ -175,6 +163,10 @@ main.page-wrap {
   justify-items:center;
   align-items:stretch;
   margin-top:1rem;
+  padding: 0 0.5rem;
+}
+@media (max-width:700px){
+  .tile-grid{gap:0.9rem;}
 }
 
 /* TILE BASE */
@@ -194,16 +186,7 @@ main.page-wrap {
   background-position:center;
   text-decoration:none;
   color:#fff;
-  position:relative;
-  animation: tileFloat 6s ease-in-out infinite;
-  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease, opacity 0.4s ease;
-  opacity:0;
-  animation-delay:0.2s;
-  animation-fill-mode:forwards;
-}
-@keyframes tileFloat {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-3px);}
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
 }
 .class-tile:hover,.class-tile:focus {
   transform:translateY(-4px) scale(1.03);
@@ -211,10 +194,8 @@ main.page-wrap {
   filter:brightness(1.08);
   outline:3px solid #fff;
 }
-@keyframes fadeInTile {to{opacity:1;}}
-.class-tile {animation:fadeInTile 0.6s ease forwards;}
 
-/* TILE LABEL */
+/* LABEL */
 .tile-label {
   width:100%;
   background:rgba(0,0,0,0.45);
@@ -226,7 +207,6 @@ main.page-wrap {
   border-top:1px solid rgba(255,255,255,0.2);
   text-shadow:0 2px 5px rgba(0,0,0,0.6);
   border-radius:0 0 var(--radius-card) var(--radius-card);
-  pointer-events:none;
 }
 .class-tile:hover .tile-label {background:rgba(0,0,0,0.6);}
 
@@ -238,11 +218,6 @@ main.page-wrap {
 
 /* FOOTER */
 footer {
-  flex-shrink: 0;
-  margin-top: auto;
-  position: relative;
-  bottom: 0;
-  width: 100%;
   text-align:center;
   color:#fff;
   padding:1rem 0.5rem;
@@ -250,6 +225,9 @@ footer {
   background:rgba(0,0,0,0.4);
   backdrop-filter:blur(8px);
   border-top:1px solid rgba(255,255,255,0.2);
+  margin-top:auto;
+  width:100%;
+  box-shadow:0 -3px 10px rgba(0,0,0,0.4);
 }
 </style>
 
@@ -279,7 +257,7 @@ footer {
 
 <!-- DRAWER MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
-<nav class="side-menu" id="sideMenu" role="navigation">
+<nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
   <a href="/classes/science.html">🧪 Science</a>
   <a href="/classes/physics.html">⚡ Physics</a>
