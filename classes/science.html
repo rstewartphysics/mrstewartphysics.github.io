@@ -158,6 +158,29 @@ body {
   outline-offset:3px;
 }
 
+/* SUBTLE LABEL BELOW IMAGE */
+.tile-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-stack);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 0.4rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+.topic-tile:hover .tile-label {
+  background: rgba(0,0,0,0.6);
+}
+
 /* ACCESSIBILITY HIDDEN LABELS */
 .visually-hidden {
   position:absolute;
@@ -182,6 +205,7 @@ body {
 .tile-electricity  { background-image:url("/assets/electricitybanner.png"); }
 .tile-forces       { background-image:url("/assets/forcesbanner.png"); }
 .tile-body         { background-image:url("/assets/bodybanner.png"); }
+.tile-health       { background-image:url("/assets/healthanddiseasebanner.png"); }
 .tile-acids        { background-image:url("/assets/acidsbanner.png"); }
 .tile-fuels        { background-image:url("/assets/fuelsbanner.png"); }
 </style>
@@ -201,26 +225,32 @@ body {
 
       <a class="topic-tile tile-waves" href="/classes/s1-waves.html">
         <span class="visually-hidden">Waves (Physics)</span>
+        <div class="tile-label">Waves</div>
       </a>
 
       <a class="topic-tile tile-energy" href="/classes/s1-energy.html">
         <span class="visually-hidden">Energy (Physics)</span>
+        <div class="tile-label">Energy</div>
       </a>
 
       <a class="topic-tile tile-cells" href="/classes/s1-cells.html">
         <span class="visually-hidden">Cells (Biology)</span>
+        <div class="tile-label">Cells</div>
       </a>
 
       <a class="topic-tile tile-sampling" href="/classes/s1-sampling.html">
         <span class="visually-hidden">Sampling (Biology)</span>
+        <div class="tile-label">Sampling</div>
       </a>
 
       <a class="topic-tile tile-chemical" href="/classes/s1-chemical-reactions.html">
         <span class="visually-hidden">Chemical Reactions (Chemistry)</span>
+        <div class="tile-label">Chemical Reactions</div>
       </a>
 
       <a class="topic-tile tile-periodic" href="/classes/s1-periodic-table.html">
         <span class="visually-hidden">Periodic Table (Chemistry)</span>
+        <div class="tile-label">Periodic Table</div>
       </a>
     </div>
   </section>
@@ -232,23 +262,34 @@ body {
 
       <a class="topic-tile tile-electricity" href="/classes/s2-electricity.html">
         <span class="visually-hidden">Electricity (Physics)</span>
+        <div class="tile-label">Electricity</div>
       </a>
 
       <a class="topic-tile tile-forces" href="/classes/s2-forces.html">
         <span class="visually-hidden">Forces (Physics)</span>
+        <div class="tile-label">Forces</div>
       </a>
 
       <a class="topic-tile tile-body" href="/classes/s2-body-systems.html">
         <span class="visually-hidden">Body Systems (Biology)</span>
+        <div class="tile-label">Body Systems</div>
+      </a>
+
+      <a class="topic-tile tile-health" href="/classes/s2-health-and-disease.html">
+        <span class="visually-hidden">Health & Disease (Biology)</span>
+        <div class="tile-label">Health & Disease</div>
       </a>
 
       <a class="topic-tile tile-acids" href="/classes/s2-acids-and-alkalis.html">
         <span class="visually-hidden">Acids & Alkalis (Chemistry)</span>
+        <div class="tile-label">Acids & Alkalis</div>
       </a>
 
       <a class="topic-tile tile-fuels" href="/classes/s2-fuels-and-metals.html">
         <span class="visually-hidden">Fuels & Metals (Chemistry)</span>
+        <div class="tile-label">Fuels & Metals</div>
       </a>
+
     </div>
   </section>
 </div>
@@ -276,8 +317,6 @@ function toggleMenu(){
     overlay.classList.add('show');
   }
 }
-
-// ESC to close menu
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.getElementById('sideMenu').classList.remove('open');
