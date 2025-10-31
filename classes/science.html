@@ -11,8 +11,6 @@ title: Science
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #ffffff;
-
-  /* background gradient sampled from science banner palette */
   --bg-grad: radial-gradient(circle at 20% 30%, #00b894 0%, #0073ff 40%, #c00074 80%);
 }
 
@@ -47,6 +45,31 @@ body {
 }
 @keyframes fadeIn { to { opacity: 1; } }
 @media (max-width: 768px) { .banner { max-height: 300px; } }
+
+/* TRANSLUCENT BANNER TEXT */
+.banner-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-family: var(--font-stack);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  .banner-overlay-text h1 {
+    font-size: 1rem;
+    padding: 0.8rem 0.5rem;
+  }
+}
 
 /* NAV BUTTON */
 .menu-btn {
@@ -201,7 +224,6 @@ body {
 .tile-sampling     { background-image:url("/assets/samplingbanner.png"); }
 .tile-chemical     { background-image:url("/assets/chemicalbanner.png"); }
 .tile-periodic     { background-image:url("/assets/periodictable.png"); }
-
 .tile-electricity  { background-image:url("/assets/electricitybanner.png"); }
 .tile-forces       { background-image:url("/assets/forcesbanner.png"); }
 .tile-body         { background-image:url("/assets/bodybanner.png"); }
@@ -214,6 +236,7 @@ body {
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 <div class="banner-wrap">
   <img src="/assets/sciencebanner.png" alt="Science Banner" class="banner">
+  <div class="banner-overlay-text"><h1>Explore S1 and S2 Science Topics</h1></div>
 </div>
 
 <div class="page-wrap">
@@ -222,36 +245,12 @@ body {
   <section class="section-block">
     <h2 class="section-title">S1 Science</h2>
     <div class="topic-grid">
-
-      <a class="topic-tile tile-waves" href="/classes/s1-waves.html">
-        <span class="visually-hidden">Waves (Physics)</span>
-        <div class="tile-label">Waves</div>
-      </a>
-
-      <a class="topic-tile tile-energy" href="/classes/s1-energy.html">
-        <span class="visually-hidden">Energy (Physics)</span>
-        <div class="tile-label">Energy</div>
-      </a>
-
-      <a class="topic-tile tile-cells" href="/classes/s1-cells.html">
-        <span class="visually-hidden">Cells (Biology)</span>
-        <div class="tile-label">Cells</div>
-      </a>
-
-      <a class="topic-tile tile-sampling" href="/classes/s1-sampling.html">
-        <span class="visually-hidden">Sampling (Biology)</span>
-        <div class="tile-label">Sampling</div>
-      </a>
-
-      <a class="topic-tile tile-chemical" href="/classes/s1-chemical-reactions.html">
-        <span class="visually-hidden">Chemical Reactions (Chemistry)</span>
-        <div class="tile-label">Chemical Reactions</div>
-      </a>
-
-      <a class="topic-tile tile-periodic" href="/classes/s1-periodic-table.html">
-        <span class="visually-hidden">Periodic Table (Chemistry)</span>
-        <div class="tile-label">Periodic Table</div>
-      </a>
+      <a class="topic-tile tile-waves" href="/classes/s1-waves.html"><div class="tile-label">Waves</div></a>
+      <a class="topic-tile tile-energy" href="/classes/s1-energy.html"><div class="tile-label">Energy</div></a>
+      <a class="topic-tile tile-cells" href="/classes/s1-cells.html"><div class="tile-label">Cells</div></a>
+      <a class="topic-tile tile-sampling" href="/classes/s1-sampling.html"><div class="tile-label">Sampling</div></a>
+      <a class="topic-tile tile-chemical" href="/classes/s1-chemical-reactions.html"><div class="tile-label">Chemical Reactions</div></a>
+      <a class="topic-tile tile-periodic" href="/classes/s1-periodic-table.html"><div class="tile-label">Periodic Table</div></a>
     </div>
   </section>
 
@@ -259,37 +258,12 @@ body {
   <section class="section-block">
     <h2 class="section-title">S2 Science</h2>
     <div class="topic-grid">
-
-      <a class="topic-tile tile-electricity" href="/classes/s2-electricity.html">
-        <span class="visually-hidden">Electricity (Physics)</span>
-        <div class="tile-label">Electricity</div>
-      </a>
-
-      <a class="topic-tile tile-forces" href="/classes/s2-forces.html">
-        <span class="visually-hidden">Forces (Physics)</span>
-        <div class="tile-label">Forces</div>
-      </a>
-
-      <a class="topic-tile tile-body" href="/classes/s2-body-systems.html">
-        <span class="visually-hidden">Body Systems (Biology)</span>
-        <div class="tile-label">Body Systems</div>
-      </a>
-
-      <a class="topic-tile tile-health" href="/classes/s2-health-and-disease.html">
-        <span class="visually-hidden">Health & Disease (Biology)</span>
-        <div class="tile-label">Health & Disease</div>
-      </a>
-
-      <a class="topic-tile tile-acids" href="/classes/s2-acids-and-alkalis.html">
-        <span class="visually-hidden">Acids & Alkalis (Chemistry)</span>
-        <div class="tile-label">Acids & Alkalis</div>
-      </a>
-
-      <a class="topic-tile tile-fuels" href="/classes/s2-fuels-and-metals.html">
-        <span class="visually-hidden">Fuels & Metals (Chemistry)</span>
-        <div class="tile-label">Fuels & Metals</div>
-      </a>
-
+      <a class="topic-tile tile-electricity" href="/classes/s2-electricity.html"><div class="tile-label">Electricity</div></a>
+      <a class="topic-tile tile-forces" href="/classes/s2-forces.html"><div class="tile-label">Forces</div></a>
+      <a class="topic-tile tile-body" href="/classes/s2-body-systems.html"><div class="tile-label">Body Systems</div></a>
+      <a class="topic-tile tile-health" href="/classes/s2-health-and-disease.html"><div class="tile-label">Health & Disease</div></a>
+      <a class="topic-tile tile-acids" href="/classes/s2-acids-and-alkalis.html"><div class="tile-label">Acids & Alkalis</div></a>
+      <a class="topic-tile tile-fuels" href="/classes/s2-fuels-and-metals.html"><div class="tile-label">Fuels & Metals</div></a>
     </div>
   </section>
 </div>
