@@ -1,0 +1,362 @@
+---
+layout: none
+title: Science
+---
+
+<style>
+:root {
+  /* pull from banner colours / vibe */
+  --bg-grad: radial-gradient(circle at 15% 20%, #0fa36b 0%, #0073ff 40%, #c00074 80%);
+  --text-main: #ffffff;
+
+  --radius-card: 1rem;
+  --shadow-card: 0 24px 48px rgba(0,0,0,0.6);
+  --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+
+  /* department gradients */
+  --physics-grad: linear-gradient(135deg,#1e40af 0%,#0ea5e9 100%); /* deep blue → sciencey cyan */
+  --chem-grad:    linear-gradient(135deg,#ef4444 0%,#b91c1c 100%); /* bright red → dark red */
+  --bio-grad:     linear-gradient(135deg,#10b981 0%,#065f46 100%); /* bright green → deep green */
+}
+
+/* PAGE BASE */
+body {
+  margin: 0;
+  background: var(--bg-grad);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* BANNER */
+.banner-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+.banner {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+@media (max-width: 768px) {
+  .banner { max-height: 300px; }
+}
+
+/* We won't tint over the science banner because it already has the correct colour scheme */
+.banner-tint {
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at 80% 30%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%);
+  pointer-events:none;
+}
+
+/* NAV BUTTON (hamburger) */
+.menu-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+}
+.menu-btn:hover { transform: scale(1.1); }
+
+/* DRAWER MENU */
+.menu-overlay {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display:none; z-index:99;
+}
+.side-menu {
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(8px);
+  box-shadow:-4px 0 20px rgba(0,0,0,0.5);
+  transition:right 0.3s ease;
+  z-index:100;
+  display:flex; flex-direction:column;
+  padding-top:4rem;
+}
+.side-menu.open { right:0; }
+.menu-overlay.show { display:block; }
+.side-menu a {
+  color: #fff;
+  text-decoration:none;
+  font-size:1.1rem;
+  padding:0.9rem 1.5rem;
+  display:flex; align-items:center;
+  gap:0.8rem;
+  transition:background 0.2s ease;
+}
+.side-menu a:hover { background:rgba(255,255,255,0.1); }
+
+/* PAGE CONTENT WRAP */
+.page-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* SECTION BLOCKS */
+.section-block {
+  margin-top: 2rem;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 1rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  padding: 1rem 1rem 1.5rem;
+}
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  display: inline-block;
+  margin: 0 0 1rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+}
+
+/* TOPIC GRID */
+.topic-grid {
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+@media (max-width:900px){.topic-grid{grid-template-columns:1fr;}}
+
+/* TILE BASE */
+.topic-tile {
+  display:block;
+  text-decoration:none;
+  color:#fff;
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  padding:1.25rem 1rem 1rem;
+  min-height:110px;
+  border:2px solid rgba(0,0,0,0.6);
+  outline:2px solid rgba(255,255,255,0.15);
+  outline-offset:-4px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.topic-tile:hover {
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.9);
+}
+
+.tile-inner {
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:flex-end;
+  align-items:flex-start;
+}
+.tile-emoji {
+  font-size:1.6rem;
+  font-weight:normal;
+  margin-bottom:0.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+}
+.tile-name {
+  font-size:1.1rem;
+  font-weight:700;
+  line-height:1.3;
+  text-shadow:0 3px 6px rgba(0,0,0,0.6);
+}
+.tile-sub {
+  font-size:0.8rem;
+  line-height:1.3;
+  opacity:0.9;
+  text-shadow:0 3px 6px rgba(0,0,0,0.6);
+}
+
+/* SUBJECT COLOUR VARIANTS */
+.physics-tile { background: var(--physics-grad); }
+.chem-tile    { background: var(--chem-grad); }
+.bio-tile     { background: var(--bio-grad); }
+</style>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="/assets/sciencebanner.png" alt="Science Banner" class="banner">
+  <div class="banner-tint"></div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- S1 SCIENCE -->
+  <section class="section-block">
+    <h2 class="section-title">S1 Science</h2>
+
+    <div class="topic-grid">
+
+      <!-- Waves (physics) -->
+      <a class="topic-tile physics-tile" href="/classes/s1-waves.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🌊</div>
+          <div class="tile-name">Waves</div>
+          <div class="tile-sub">Physics</div>
+        </div>
+      </a>
+
+      <!-- Energy (physics) -->
+      <a class="topic-tile physics-tile" href="/classes/s1-energy.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">⚡</div>
+          <div class="tile-name">Energy</div>
+          <div class="tile-sub">Physics</div>
+        </div>
+      </a>
+
+      <!-- Cells (biology) -->
+      <a class="topic-tile bio-tile" href="/classes/s1-cells.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🧬</div>
+          <div class="tile-name">Cells</div>
+          <div class="tile-sub">Biology</div>
+        </div>
+      </a>
+
+      <!-- Sampling (biology) -->
+      <a class="topic-tile bio-tile" href="/classes/s1-sampling.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🌱</div>
+          <div class="tile-name">Sampling</div>
+          <div class="tile-sub">Biology</div>
+        </div>
+      </a>
+
+      <!-- Chemical reactions (chemistry) -->
+      <a class="topic-tile chem-tile" href="/classes/s1-chemical-reactions.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">⚗️</div>
+          <div class="tile-name">Chemical Reactions</div>
+          <div class="tile-sub">Chemistry</div>
+        </div>
+      </a>
+
+      <!-- Periodic table (chemistry) -->
+      <a class="topic-tile chem-tile" href="/classes/s1-periodic-table.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🧪</div>
+          <div class="tile-name">Periodic Table</div>
+          <div class="tile-sub">Chemistry</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- S2 SCIENCE -->
+  <section class="section-block">
+    <h2 class="section-title">S2 Science</h2>
+
+    <div class="topic-grid">
+
+      <!-- Electricity (physics) -->
+      <a class="topic-tile physics-tile" href="/classes/s2-electricity.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">💡</div>
+          <div class="tile-name">Electricity</div>
+          <div class="tile-sub">Physics</div>
+        </div>
+      </a>
+
+      <!-- Forces (physics) -->
+      <a class="topic-tile physics-tile" href="/classes/s2-forces.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🧲</div>
+          <div class="tile-name">Forces</div>
+          <div class="tile-sub">Physics</div>
+        </div>
+      </a>
+
+      <!-- Health and disease (biology) -->
+      <a class="topic-tile bio-tile" href="/classes/s2-health-and-disease.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🦠</div>
+          <div class="tile-name">Health &amp; Disease</div>
+          <div class="tile-sub">Biology</div>
+        </div>
+      </a>
+
+      <!-- Body systems (biology) -->
+      <a class="topic-tile bio-tile" href="/classes/s2-body-systems.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🫁</div>
+          <div class="tile-name">Body Systems</div>
+          <div class="tile-sub">Biology</div>
+        </div>
+      </a>
+
+      <!-- Acids and Alkali (chemistry) -->
+      <a class="topic-tile chem-tile" href="/classes/s2-acids-and-alkalis.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🧫</div>
+          <div class="tile-name">Acids &amp; Alkalis</div>
+          <div class="tile-sub">Chemistry</div>
+        </div>
+      </a>
+
+      <!-- Fuels and metal (chemistry) -->
+      <a class="topic-tile chem-tile" href="/classes/s2-fuels-and-metals.html">
+        <div class="tile-inner">
+          <div class="tile-emoji">🔥</div>
+          <div class="tile-name">Fuels &amp; Metals</div>
+          <div class="tile-sub">Chemistry</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- DRAWER MENU -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){
+    menu.classList.remove('open');
+    overlay.classList.remove('show');
+  } else {
+    menu.classList.add('open');
+    overlay.classList.add('show');
+  }
+}
+</script>
