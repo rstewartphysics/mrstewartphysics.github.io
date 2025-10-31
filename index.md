@@ -7,13 +7,16 @@ title: Home
 
 <style>
 :root {
-  --bg-page: #0f172a;
-  --text-main: #f8fafc;
+  /* Core styling */
+  --font-stack: "Trebuchet MS", "Segoe UI", sans-serif;
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
-  --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+  --text-main: #ffffff;
 
-  /* gradients for non-image tiles */
+  /* Background gradient (pulled from homepage banner colours) */
+  --bg-grad: radial-gradient(circle at 20% 30%, #0077ff 0%, #8b00ff 35%, #ff8800 70%, #00d4ff 100%);
+
+  /* Tile gradients */
   --electronics-grad: linear-gradient(135deg,#34d399 0%,#065f46 100%);
   --engineering-grad: linear-gradient(135deg,#fb923c 0%,#c2410c 100%);
 }
@@ -21,32 +24,59 @@ title: Home
 /* PAGE BASE */
 body {
   margin: 0;
-  background: var(--bg-page);
+  background: var(--bg-grad);
+  background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-stack);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
-}
-
-main.page-wrap {
-  max-width: 1200px;
-  margin: 3.5rem auto 4rem;
-  padding: 0 1rem;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background 10s ease-in-out;
 }
 
 /* BANNER */
+.banner-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
 .banner {
   width: 100%;
   height: auto;
-  max-height: 340px;
+  max-height: 420px;
   object-fit: cover;
+  object-position: center;
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  transform: translateZ(0);
+  will-change: transform;
 }
-@media (max-width: 768px) {.banner { max-height: 240px; }}
-@keyframes fadeIn {from {opacity:0;transform:translateY(-10px);} to {opacity:1;transform:translateY(0);}}
+@keyframes fadeIn { to { opacity: 1; } }
+@media (max-width: 768px) {.banner { max-height: 300px; }}
+
+/* Animated banner tint */
+.banner-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0,119,255,0.45), rgba(139,0,255,0.35), rgba(255,136,0,0.35));
+  mix-blend-mode: multiply;
+  animation: tintShift 12s ease-in-out infinite alternate;
+}
+@keyframes tintShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Subtle parallax on scroll */
+window.addEventListener('scroll', () => {
+  const banner = document.querySelector('.banner');
+  const offset = window.scrollY * 0.25;
+  banner.style.transform = `translateY(${offset}px)`;
+});
 
 /* MENU BUTTON */
 .menu-btn {
@@ -60,22 +90,21 @@ main.page-wrap {
   cursor: pointer;
   z-index: 10;
   transition: transform 0.2s ease;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover, .menu-btn:focus { transform: scale(1.1); outline: none; }
+.menu-btn:hover { transform: scale(1.1); }
 
-/* OVERLAY + DRAWER */
+/* DRAWER MENU */
 .menu-overlay {
   position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.5);
   display:none; z-index:99;
 }
 .side-menu {
   position: fixed; top:0; right:-270px;
   height:100%; width:270px;
-  background: rgba(20,30,60,0.45);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border-left: 1px solid rgba(255,255,255,0.15);
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:100;
@@ -84,27 +113,50 @@ main.page-wrap {
 }
 .side-menu.open { right:0; }
 .menu-overlay.show { display:block; }
-
 .side-menu a {
-  color: var(--text-main);
+  color:#fff;
   text-decoration:none;
   font-size:1.1rem;
   padding:0.9rem 1.5rem;
-  display:flex; align-items:center;
+  display:flex;
+  align-items:center;
   gap:0.8rem;
-  border-radius:0.5rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover, .side-menu a:focus {
-  background:rgba(255,255,255,0.12);
-  outline:none;
+.side-menu a:hover { background:rgba(255,255,255,0.12); }
+
+/* PAGE WRAP */
+.page-wrap {
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 1rem 4rem;
+  position:relative;
+  z-index:1;
+}
+
+/* SECTION HEADER */
+.section-block {
+  margin-top:2rem;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 1rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  padding: 1rem 1rem 1.5rem;
+}
+.section-title {
+  font-size:1.5rem;
+  font-weight:700;
+  color:#fff;
+  margin:0 0 1rem;
+  text-shadow:0 4px 10px rgba(0,0,0,0.8);
 }
 
 /* GRID */
 .tile-grid {
   display:grid;
   gap:1rem;
-  margin-top:1.5rem;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
 @media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
@@ -122,7 +174,7 @@ main.page-wrap {
   border:0;
 }
 
-/* BASE TILE STYLE */
+/* TILE BASE */
 .class-tile {
   display:block;
   border-radius:var(--radius-card);
@@ -133,32 +185,28 @@ main.page-wrap {
   outline-offset:-4px;
   position:relative;
   overflow:hidden;
-  transition:transform 0.18s ease,box-shadow 0.18s ease, filter 0.2s ease;
-  cursor: pointer;
+  transition:transform 0.18s ease,box-shadow 0.18s ease,filter 0.2s ease;
+  cursor:pointer;
 }
 .class-tile:hover, .class-tile:focus {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
-  filter: brightness(1.08);
-  outline: 3px solid #fff;
-  outline-offset: 3px;
+  filter:brightness(1.08);
+  outline:3px solid #fff;
+  outline-offset:3px;
 }
 
-/* IMAGE BUTTONS */
+/* IMAGE TILES */
 .tile-science {
-  background-image: url("/assets/sciencebanner.png");
-  background-size: cover;
-  background-position: center;
+  background:url("/assets/sciencebanner.png") center/cover no-repeat;
 }
 .tile-physics {
-  background-image: url("/assets/physicsbanner.png");
-  background-size: cover;
-  background-position: center;
+  background:url("/assets/physicsbanner.png") center/cover no-repeat;
 }
 
-/* GRADIENT BUTTONS */
-.tile-electronics { background: var(--electronics-grad); color:#fff; }
-.tile-engineering { background: var(--engineering-grad); color:#fff; }
+/* GRADIENT TILES */
+.tile-electronics { background:var(--electronics-grad); color:#fff; }
+.tile-engineering { background:var(--engineering-grad); color:#fff; }
 
 .class-inner {
   display:flex;
@@ -169,30 +217,37 @@ main.page-wrap {
   padding:1.5rem 1rem;
   color:#fff;
 }
-
 .class-emoji {font-size:1.8rem; margin-bottom:0.5rem;}
 .class-name {font-size:1.3rem; font-weight:700;}
 </style>
 
 <!-- NAV BUTTON + BANNER -->
-<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-<img src="https://rstewartphysics.github.io/assets/homepagebanner2.png" alt="Mr Stewart's Physics, Electronics and Engineering" class="banner">
+<div class="banner-wrap">
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <img src="/assets/homepagebanner2.png" alt="Mr Stewart’s Physics, Electronics and Engineering" class="banner">
+  <div class="banner-tint"></div>
+</div>
 
-<main class="page-wrap">
+<div class="page-wrap">
+
+  <!-- WELCOME HEADER -->
+  <section class="section-block">
+    <h2 class="section-title">Welcome</h2>
+    <p>Mr Stewart’s Physics, Science, Electronics and Engineering.<br>
+    Choose a subject area below to get started.</p>
+  </section>
+
   <!-- MAIN MENU BUTTONS -->
   <section class="tile-grid">
 
-    <!-- SCIENCE -->
     <a class="class-tile tile-science" href="/classes/science.html" aria-label="Science">
       <span class="visually-hidden">Science</span>
     </a>
 
-    <!-- PHYSICS -->
     <a class="class-tile tile-physics" href="/classes/physics.html" aria-label="Physics">
       <span class="visually-hidden">Physics</span>
     </a>
 
-    <!-- ELECTRONICS -->
     <a class="class-tile tile-electronics" href="/classes/electronics.html" aria-label="Electronics">
       <div class="class-inner">
         <div class="class-emoji">💡</div>
@@ -200,7 +255,6 @@ main.page-wrap {
       </div>
     </a>
 
-    <!-- ENGINEERING -->
     <a class="class-tile tile-engineering" href="/classes/engineering.html" aria-label="Engineering">
       <div class="class-inner">
         <div class="class-emoji">🧰</div>
@@ -209,9 +263,9 @@ main.page-wrap {
     </a>
 
   </section>
-</main>
+</div>
 
-<!-- DRAWER NAVIGATION -->
+<!-- DRAWER MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -235,11 +289,18 @@ function toggleMenu(){
   }
 }
 
-// Close menu with ESC key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+// ESC to close menu
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
+});
+
+// Parallax banner scroll
+window.addEventListener('scroll',()=>{
+  const banner=document.querySelector('.banner');
+  const offset=window.scrollY*0.25;
+  banner.style.transform=`translateY(${offset}px)`;
 });
 </script>
