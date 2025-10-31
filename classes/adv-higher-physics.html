@@ -10,18 +10,8 @@ title: Advanced Higher Physics
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
   --radius-card: 1rem;
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
-
-  /* Advanced Higher theme colours:
-     warm gold glow fading into deep navy */
-  --bg-grad: radial-gradient(
-    circle at 20% 30%,
-    #4a3a00 0%,
-    #2c2200 40%,
-    #0f172a 80%
-  );
-
-  /* Glassy AH card background: warm translucent gold */
-  --ah-card-bg: rgba(250,204,21,0.18); /* amber w/ alpha */
+  --bg-grad: radial-gradient(circle at 20% 30%, #4a3a00 0%, #2c2200 40%, #0f172a 80%);
+  --ah-card-bg: rgba(250,204,21,0.18);
 }
 
 /* PAGE BASE */
@@ -38,7 +28,7 @@ body {
   position: relative;
 }
 
-/* BANNER WRAP */
+/* BANNER */
 .banner-wrap {
   position: relative;
   width: 100%;
@@ -58,27 +48,15 @@ body {
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
+@media (max-width: 768px) {.banner { max-height: 260px; }}
 
-@media (max-width: 768px) {
-  .banner { max-height: 260px; }
-}
-
-/* Animated golden tint over AH banner */
+/* Tint + Overlay Text */
 .banner-tint {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) 40%,
-      rgba(0,0,0,0.4) 100%
-    ),
-    linear-gradient(
-      120deg,
-      rgba(250,204,21,0.4),
-      rgba(253,224,71,0.45)
-    );
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%),
+    linear-gradient(120deg, rgba(250,204,21,0.4), rgba(253,224,71,0.45));
   mix-blend-mode: multiply;
   animation: tintShift 12s ease-in-out infinite alternate;
   pointer-events: none;
@@ -88,20 +66,37 @@ body {
   100% { background-position: 100% 50%; }
 }
 
-/* FADE SEPARATOR BELOW BANNER (matches Physics/Higher) */
+.banner-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-family: var(--font-stack);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+}
+@media (max-width: 768px){
+  .banner-overlay-text h1{font-size:1rem;padding:0.8rem 0.5rem;}
+}
+
+/* SEPARATOR */
 .banner-separator {
   width: 100%;
   height: 50px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.5) 0%,
-    rgba(0,0,0,0) 80%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
   position: relative;
   z-index: 1;
 }
 
-/* MENU BUTTON (fixed in the same place on every page) */
+/* MENU BUTTON */
 .menu-btn {
   position: fixed;
   top: 15px;
@@ -115,57 +110,39 @@ body {
   transition: transform 0.2s ease;
   text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover,
-.menu-btn:focus {
-  transform: scale(1.1);
-  outline: none;
-}
+.menu-btn:hover, .menu-btn:focus {transform: scale(1.1);outline:none;}
 
-/* DRAWER MENU (same as Physics/Higher) */
+/* DRAWER MENU */
 .menu-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  position: fixed; top:0; left:0; width:100%; height:100%;
   background: rgba(0,0,0,0.5);
-  display:none;
-  z-index:99;
+  display:none; z-index:99;
 }
 .side-menu {
-  position: fixed;
-  top:0;
-  right:-270px;
-  height:100%;
-  width:270px;
+  position: fixed; top:0; right:-270px;
+  height:100%; width:270px;
   background: rgba(15,23,42,0.92);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
-  display:flex;
-  flex-direction:column;
+  display:flex; flex-direction:column;
   padding-top:4rem;
 }
 .side-menu.open { right:0; }
 .menu-overlay.show { display:block; }
-
 .side-menu a {
-  color:#fff;
-  text-decoration:none;
-  font-size:1.1rem;
-  padding:0.9rem 1.5rem;
-  display:flex;
-  align-items:center;
-  gap:0.8rem;
+  color:#fff; text-decoration:none; font-size:1.1rem;
+  padding:0.9rem 1.5rem; display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover,
-.side-menu a:focus {
+.side-menu a:hover, .side-menu a:focus {
   background:rgba(255,255,255,0.12);
   outline:none;
 }
 
-/* PAGE CONTENT WRAP */
+/* PAGE CONTENT */
 .page-wrap {
   width:100%;
   max-width:1200px;
@@ -175,53 +152,42 @@ body {
   z-index:1;
 }
 
-/* GRID FOR RESOURCE CARDS */
+/* GRID */
 .tile-grid {
   display:grid;
   gap:1rem;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   margin-top:1rem;
 }
-@media (max-width:900px){
-  .tile-grid{grid-template-columns:1fr;}
-}
+@media (max-width:900px){.tile-grid{grid-template-columns:1fr;}}
 
-/* AH RESOURCE CARD ("glass gold") */
+/* AH RESOURCE CARD */
 .class-tile {
   display:block;
   position:relative;
   min-height:140px;
   border-radius:var(--radius-card);
-
   background: var(--ah-card-bg);
   backdrop-filter: blur(8px) saturate(140%);
   -webkit-backdrop-filter: blur(8px) saturate(140%);
-
   border:2px solid rgba(0,0,0,0.5);
   outline:2px solid rgba(255,255,255,0.2);
   outline-offset:-4px;
-
   box-shadow:var(--shadow-card);
   color:#000;
   text-decoration:none;
   cursor:pointer;
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.2s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
 }
-.class-tile:hover,
-.class-tile:focus {
+.class-tile:hover, .class-tile:focus {
   transform:translateY(-4px) scale(1.02);
   box-shadow:0 30px 60px rgba(0,0,0,0.9);
   filter:brightness(1.08);
   outline:3px solid #fff;
   outline-offset:3px;
-  text-decoration:none;
 }
 
-/* CONTENT INSIDE EACH AH CARD */
+/* CONTENT INSIDE EACH CARD */
 .class-inner {
   display:flex;
   flex-direction:column;
@@ -229,7 +195,6 @@ body {
   align-items:flex-start;
   height:100%;
   padding:1rem 1rem 1.25rem;
-  /* because AH cards are bright, use dark text with a light glow */
   color:#000;
   text-shadow:0 2px 4px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.4);
 }
@@ -253,57 +218,41 @@ body {
 
 <!-- BANNER -->
 <div class="banner-wrap">
-  <img
-    src="/assets/advbanner.png"
-    alt="Advanced Higher Physics"
-    class="banner">
+  <img src="/assets/advbanner.png" alt="Advanced Higher Physics" class="banner">
   <div class="banner-tint"></div>
+  <div class="banner-overlay-text"><h1>Explore advanced topics and resources for AH Physics</h1></div>
 </div>
 
 <div class="banner-separator"></div>
 
+<!-- CONTENT -->
 <div class="page-wrap">
   <section class="tile-grid">
 
     <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:b:/g/personal/gw20stewartrobert1_glow_sch_uk/ETbRUqslNcJPrnr_WK7swW4BHTrqW4SXlYiPiP-ZYW650w?e=BpXC0q">
-      <div class="class-inner">
-        <div class="class-emoji">📘</div>
-        <h2 class="class-name">Past Paper Questions by Topic</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">📘</div><h2 class="class-name">Past Paper Questions by Topic</h2></div>
     </a>
 
     <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L">
-      <div class="class-inner">
-        <div class="class-emoji">📂</div>
-        <h2 class="class-name">Mr Stewart’s Files</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">📂</div><h2 class="class-name">Mr Stewart’s Files</h2></div>
     </a>
 
     <a class="class-tile" href="https://scholar.hw.ac.uk/courses/">
-      <div class="class-inner">
-        <div class="class-emoji">🎓</div>
-        <h2 class="class-name">Scholar</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">🎓</div><h2 class="class-name">Scholar</h2></div>
     </a>
 
     <a class="class-tile" href="https://www.youtube.com/@mrstewartphysics/playlists">
-      <div class="class-inner">
-        <div class="class-emoji">📺</div>
-        <h2 class="class-name">The Other Mr Stewart</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">📺</div><h2 class="class-name">The Other Mr Stewart</h2></div>
     </a>
 
     <a class="class-tile" href="https://physicsflashrepo.ovh/">
-      <div class="class-inner">
-        <div class="class-emoji">⚛️</div>
-        <h2 class="class-name">Flash Physics Animations</h2>
-      </div>
+      <div class="class-inner"><div class="class-emoji">⚛️</div><h2 class="class-name">Flash Physics Animations</h2></div>
     </a>
 
   </section>
 </div>
 
-<!-- DRAWER NAVIGATION -->
+<!-- DRAWER NAV -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -315,31 +264,22 @@ body {
 
 <script>
 function toggleMenu(){
-  const menu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('menuOverlay');
-  const isOpen = menu.classList.contains('open');
-  if(isOpen){
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-  } else {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-  }
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
 }
-
-// ESC closes drawer
 document.addEventListener('keydown',(e)=>{
   if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
 });
-
-// subtle parallax scroll on the AH banner
 window.addEventListener('scroll',()=>{
-  const banner = document.querySelector('.banner');
-  if(!banner) return;
-  const offset = window.scrollY * 0.25;
-  banner.style.transform = `translateY(${offset}px)`;
+  const banner=document.querySelector('.banner');
+  if(!banner)return;
+  const offset=window.scrollY*0.25;
+  banner.style.transform=`translateY(${offset}px)`;
 });
 </script>
