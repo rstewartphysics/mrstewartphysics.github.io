@@ -12,7 +12,7 @@ title: Physics
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #f8fafc;
 
-  /* Physics page background: deep navy + subtle purple/blue glow */
+  /* Physics page background: deep navy with subtle blue/purple glow */
   --bg-grad: radial-gradient(
     circle at 20% 30%,
     #1a2248 0%,
@@ -20,11 +20,6 @@ title: Physics
     #3b1d6b 70%,
     #0f172a 100%
   );
-
-  /* Level colour atmospheres (fallback behind thumbs) */
-  --n5-grad: linear-gradient(135deg,#ec4899 0%,#be185d 100%);
-  --higher-grad: linear-gradient(135deg,#3b82f6 0%,#1e3a8a 100%);
-  --adv-grad: linear-gradient(135deg,#fde047 0%,#ca8a04 100%);
 }
 
 /* PAGE BASE */
@@ -56,11 +51,10 @@ body {
   object-position: center;
   display: block;
   opacity: 0;
-  transform: translateY(0); /* start state for parallax */
+  transform: translateY(0);
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
-
 @media (max-width: 768px) {
   .banner { max-height: 260px; }
 }
@@ -102,10 +96,9 @@ body {
   );
   position: relative;
   z-index: 1;
-  /* dropped the blur for better perf */
 }
 
-/* MENU BUTTON (fixed so it's always tappable) */
+/* MENU BUTTON (fixed so it's always tappable and not hidden under the notch) */
 .menu-btn {
   position: fixed;
   top: 15px;
@@ -179,7 +172,7 @@ body {
   z-index:1;
 }
 
-/* GRID */
+/* GRID OF LEVELS */
 .tile-grid {
   display:grid;
   gap:1rem;
@@ -203,91 +196,51 @@ body {
   border:0;
 }
 
-/* TILE BASE */
+/* EACH TILE IS NOW JUST THE BANNER IMAGE */
 .class-tile {
-  display:block;
-  border-radius:var(--radius-card);
-  min-height:140px;
-  box-shadow:var(--shadow-card);
-  border:2px solid rgba(0,0,0,0.4);
-  outline:2px solid rgba(255,255,255,0.07);
-  outline-offset:-4px;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  background:#000; /* fallback */
-  color:#fff;
+  position: relative;
+  display: block;
+  min-height: 140px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 2px solid rgba(0,0,0,0.6);
+  outline: 2px solid rgba(255,255,255,0.15);
+  outline-offset: -4px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
     filter 0.2s ease;
+  text-decoration: none;
 }
 .class-tile:hover,
 .class-tile:focus {
-  transform:translateY(-4px) scale(1.02);
-  box-shadow:0 30px 60px rgba(0,0,0,0.9);
-  filter:brightness(1.08);
-  outline:3px solid #fff;
-  outline-offset:3px;
-  text-decoration:none;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+  filter: brightness(1.08);
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }
 
-/* Per-level base background colour, shows around the edges of the thumb */
-.tile-n5   { background: var(--n5-grad); }
-.tile-high { background: var(--higher-grad); }
-.tile-adv  {
-  background: var(--adv-grad);
-  color:#000;
-  text-shadow:0 2px 4px rgba(255,255,255,0.6);
+/* specific banners per level */
+.tile-n5 {
+  background-image: url("/assets/n5physicsbanner.png");
 }
-
-/* TILE CONTENT */
-.class-inner {
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  padding:1rem 1rem 1.25rem;
-  justify-content:flex-end;
-  align-items:flex-start;
-  position:relative;
-  z-index:2;
-  font-size:1rem;
-  line-height:1.4;
-  font-weight:600;
-  color:inherit;
-  text-shadow:0 2px 4px rgba(0,0,0,0.7);
+.tile-high {
+  background-image: url("/assets/hphysicsbanner.png");
 }
-
-/* Thumbnail banner badge */
-.class-thumb {
-  width:100%;
-  height:60px;
-  border-radius:0.6rem;
-  background-size:cover;
-  background-position:center;
-  border:2px solid rgba(0,0,0,0.4);
-  box-shadow:0 12px 24px rgba(0,0,0,0.6);
-  margin-bottom:0.75rem;
-  outline:2px solid rgba(255,255,255,0.1);
-  outline-offset:-4px;
-}
-
-/* map thumbnails to your assets */
-.thumb-n5   { background-image:url("/assets/n5physicsbanner.png"); }
-.thumb-high { background-image:url("/assets/hphysicsbanner.png"); }
-.thumb-adv  { background-image:url("/assets/advbanner.png"); }
-
-.class-name {
-  font-size:1.1rem;
-  font-weight:700;
-  margin:0;
+.tile-adv {
+  background-image: url("/assets/advbanner.png");
 }
 </style>
 
 <!-- MENU BUTTON -->
 <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 
-<!-- PHYSICS BANNER -->
+<!-- PAGE BANNER -->
 <div class="banner-wrap">
   <img src="/assets/physicsbanner.png"
        alt="Physics"
@@ -299,31 +252,20 @@ body {
 
 <div class="page-wrap">
   <section class="tile-grid">
-
     <!-- NATIONAL 5 -->
     <a class="class-tile tile-n5" href="/classes/s3-n5-physics.html">
-      <div class="class-inner">
-        <div class="class-thumb thumb-n5" aria-hidden="true"></div>
-        <h2 class="class-name">National 5 Physics</h2>
-      </div>
+      <span class="visually-hidden">National 5 Physics</span>
     </a>
 
     <!-- HIGHER -->
     <a class="class-tile tile-high" href="/classes/higher-physics.html">
-      <div class="class-inner">
-        <div class="class-thumb thumb-high" aria-hidden="true"></div>
-        <h2 class="class-name">Higher Physics</h2>
-      </div>
+      <span class="visually-hidden">Higher Physics</span>
     </a>
 
     <!-- ADVANCED HIGHER -->
     <a class="class-tile tile-adv" href="/classes/adv-higher-physics.html">
-      <div class="class-inner">
-        <div class="class-thumb thumb-adv" aria-hidden="true"></div>
-        <h2 class="class-name">Advanced Higher Physics</h2>
-      </div>
+      <span class="visually-hidden">Advanced Higher Physics</span>
     </a>
-
   </section>
 </div>
 
@@ -359,7 +301,7 @@ document.addEventListener('keydown',(e)=>{
   }
 });
 
-// tiny parallax on scroll
+// tiny parallax scroll on the physics banner
 window.addEventListener('scroll',()=>{
   const banner = document.querySelector('.banner');
   if(!banner) return;
