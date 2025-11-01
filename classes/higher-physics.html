@@ -15,7 +15,46 @@ title: Higher Physics
   --bg2: #152b63;
   --bg3: #0a1130;
 }
+/* --- Mobile layout fixes for tile sizing and zoom --- */
+@media (max-width: 480px) {
 
+  /* Keep tiles more natural on phones */
+  .class-tile {
+    /* remove forced aspect ratio on very small screens */
+    aspect-ratio: auto;
+
+    /* keep them from feeling gigantic edge-to-edge */
+    max-width: 340px;
+    width: 100%;
+
+    /* center the tile in the column */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Let the image control its own height without stretching the tile taller than it should */
+  .class-tile img {
+    width: 100%;
+    height: auto;          /* <- was 100%, which caused the giant zoom on iOS Safari */
+    object-fit: cover;     /* still crops nicely if needed */
+    display: block;
+  }
+
+  /* Slightly tighter label band on small screens */
+  .tile-label {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  /* Make the banner text a touch smaller so it fits without wrapping awkwardly */
+  .banner-overlay-text {
+    font-size: 1rem;
+  }
+  .banner-overlay-text h1 {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+}
 /* PAGE BASE */
 body {
   margin: 0;
