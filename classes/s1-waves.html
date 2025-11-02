@@ -16,7 +16,7 @@ title: S1 Waves
   --bg3: #b4f1ff;
 }
 
-/* Base layout */
+/* BASE */
 body {
   margin: 0;
   font-family: var(--font-stack);
@@ -31,12 +31,11 @@ body {
   flex-direction: column;
 }
 
-/* Banner */
+/* BANNER */
 .banner-wrap {
   position: relative;
   width: 100%;
   overflow: hidden;
-  flex-shrink: 0;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
 .banner {
@@ -49,71 +48,72 @@ body {
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
-@media (max-width: 768px){ .banner{ max-height:260px; } }
+@media (max-width: 768px) { .banner { max-height: 260px; } }
 
 .banner-overlay-text {
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(8px);
-  color:#fff;
-  text-align:center;
-  padding:1rem 0.5rem;
-  font-weight:600;
-  font-size:1.3rem;
-  border-top:1px solid rgba(255,255,255,0.25);
-  text-shadow:0 0 10px rgba(255,255,255,0.7);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+  border-top: 1px solid rgba(255,255,255,0.25);
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
 }
 
-/* Menu button */
+/* MENU BUTTON */
 .menu-btn {
-  position:fixed;
-  top:15px; right:20px;
-  font-size:1.6rem;
-  background:none;
-  border:none;
-  color:#fff;
-  cursor:pointer;
-  z-index:200;
-  transition:transform 0.2s ease;
-  text-shadow:0 4px 10px rgba(0,0,0,0.8);
+  position: fixed;
+  top: 15px; right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 200;
+  transition: transform 0.2s ease;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
+.menu-btn:hover, .menu-btn:focus { transform: scale(1.1); outline: none; }
 
-/* Drawer menu */
+/* DRAWER MENU */
 .menu-overlay {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none; z-index:99;
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display: none; z-index: 99;
 }
 .side-menu {
-  position:fixed; top:0; right:-270px;
+  position: fixed; top:0; right:-270px;
   height:100%; width:270px;
-  background:rgba(15,23,42,0.92);
-  backdrop-filter:blur(12px) saturate(160%);
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
   display:flex; flex-direction:column;
   padding-top:4rem;
 }
-.side-menu.open{right:0;}
-.menu-overlay.show{display:block;}
+.side-menu.open { right:0; }
+.menu-overlay.show { display:block; }
 .side-menu a {
-  color:#fff; text-decoration:none;
+  color:#fff;
+  text-decoration:none;
   font-size:1.1rem;
   padding:0.9rem 1.5rem;
   display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover,.side-menu a:focus {
+.side-menu a:hover, .side-menu a:focus {
   background:rgba(255,255,255,0.12);
   outline:none;
 }
 
-/* Glow background */
+/* GLOW BACKGROUND */
 .page-wrap {
   flex:1;
   width:100%;
@@ -136,7 +136,7 @@ body {
 }
 @keyframes glowPulse { 0%{opacity:0.4;}100%{opacity:0.7;} }
 
-/* Tile grid */
+/* GRID */
 .tile-grid {
   display:grid;
   gap:1.5rem;
@@ -147,9 +147,11 @@ body {
 }
 @media(max-width:700px){ .tile-grid{gap:1rem;} }
 
-/* Tiles */
+/* TILE FIXES */
 .class-tile {
-  display:block;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   position:relative;
   border-radius:var(--radius-card);
   border:2px solid rgba(255,255,255,0.25);
@@ -160,16 +162,19 @@ body {
   cursor:pointer;
   transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
   overflow:hidden;
-  min-height:140px;
+  height:160px;              /* ✅ ensures visible tile even with no image */
+  width:100%;
   box-shadow:0 10px 24px rgba(0,0,0,0.5);
 }
-.class-tile:hover,.class-tile:focus{
+.class-tile:hover,.class-tile:focus {
   transform:translateY(-4px) scale(1.03);
   box-shadow:0 25px 50px rgba(255,255,255,0.4);
   filter:brightness(1.1);
   outline:3px solid #fff;
   outline-offset:3px;
 }
+
+/* TILE LABEL */
 .tile-label {
   position:absolute;
   bottom:0;
@@ -185,17 +190,17 @@ body {
   border-top:1px solid rgba(255,255,255,0.25);
 }
 
-/* Distinct placeholder gradients */
+/* BRIGHT GRADIENTS */
 .booklet{background:linear-gradient(135deg,#00b4d8,#0077b6);}
-.powerpoint{background:linear-gradient(135deg,#ff8800,#ffb84d);}
+.powerpoint{background:linear-gradient(135deg,#ffb84d,#ff8800);}
 .practice{background:linear-gradient(135deg,#ef476f,#ff8fa3);}
-.ai{background:linear-gradient(135deg,#8338ec,#a55eea);}
-.ko{background:linear-gradient(135deg,#06d6a0,#48cae4);}
+.ai{background:linear-gradient(135deg,#a55eea,#8338ec);}
+.ko{background:linear-gradient(135deg,#48cae4,#06d6a0);}
 .bbc{background:linear-gradient(135deg,#ff006e,#fb5607);}
-.quizlet{background:linear-gradient(135deg,#118ab2,#06d6a0);}
+.quizlet{background:linear-gradient(135deg,#06d6a0,#118ab2);}
 
-/* Footer */
-footer{
+/* FOOTER */
+footer {
   text-align:center;
   color:#fff;
   padding:1rem 0.5rem;
@@ -207,21 +212,18 @@ footer{
   width:100%;
   box-shadow:0 -3px 10px rgba(0,0,0,0.4);
 }
-.visually-hidden{
-  position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;
-}
 </style>
 
-<!-- Menu button -->
+<!-- MENU BUTTON -->
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
 
-<!-- Banner -->
+<!-- BANNER -->
 <div class="banner-wrap">
   <img src="/assets/Wavesbaner.png" alt="S1 Waves Banner" class="banner">
   <div class="banner-overlay-text"><h1>Explore Waves Resources</h1></div>
 </div>
 
-<!-- Content -->
+<!-- CONTENT -->
 <main class="page-wrap">
   <section class="tile-grid">
 
@@ -256,10 +258,10 @@ footer{
   </section>
 </main>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>© Mr R Stewart’s Science, Physics, Electronics & Engineering</footer>
 
-<!-- Drawer navigation -->
+<!-- MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
