@@ -1,10 +1,3 @@
----
-layout: none
-title: Higher Physics
----
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 :root {
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
@@ -15,47 +8,33 @@ title: Higher Physics
   --bg2: #152b63;
   --bg3: #0a1130;
 }
-/* --- Mobile layout fixes for tile sizing and zoom --- */
+
+/* ------------------ MOBILE FIXES ------------------ */
 @media (max-width: 480px) {
-
-  /* Keep tiles more natural on phones */
   .class-tile {
-    /* remove forced aspect ratio on very small screens */
     aspect-ratio: auto;
-
-    /* keep them from feeling gigantic edge-to-edge */
     max-width: 340px;
     width: 100%;
-
-    /* center the  in the column */
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
   }
-
-  /* Let the image control its own height without stretching the  taller than it should */
-  .class- img {
+  .class-tile img {
     width: 100%;
-    height: auto;          /* <- was 100%, which caused the giant zoom on iOS Safari */
-    object-fit: cover;     /* still crops nicely if needed */
+    height: auto;
+    object-fit: cover;
     display: block;
   }
-
-  /* Slightly tighter label band on small screens */
-  .-label {
+  .tile-label {
     font-size: 0.95rem;
     padding: 0.5rem;
   }
-
-  /* Make the banner text a touch smaller so it fits without wrapping awkwardly */
-  .banner-overlay-text {
-    font-size: 1rem;
-  }
+  .banner-overlay-text,
   .banner-overlay-text h1 {
     font-size: 1rem;
     line-height: 1.35;
   }
 }
-/* PAGE BASE */
+
+/* ------------------ PAGE BASE ------------------ */
 body {
   margin: 0;
   background: radial-gradient(circle at 25% 30%, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 90%);
@@ -70,7 +49,7 @@ body {
   flex-direction: column;
 }
 
-/* BANNER */
+/* ------------------ BANNER ------------------ */
 .banner-wrap {
   position: relative;
   width: 100%;
@@ -97,7 +76,10 @@ body {
   mix-blend-mode: multiply;
   animation: tintShift 20s ease-in-out infinite alternate;
 }
-@keyframes tintShift { 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
+@keyframes tintShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
 
 .banner-overlay-text {
   position: absolute;
@@ -115,101 +97,120 @@ body {
   text-shadow: 0 0 10px rgba(0,255,255,0.5);
 }
 .banner-overlay-text h1 { margin: 0; }
-@media(max-width:900px){
-  .banner-overlay-text{font-size:1rem;}
-  .banner-overlay-text h1{font-size:0.95rem;line-height:1.3;}
+@media (max-width: 900px) {
+  .banner-overlay-text { font-size: 1rem; }
+  .banner-overlay-text h1 { font-size: 0.95rem; line-height: 1.3; }
 }
 
-/* MENU BUTTON */
+/* ------------------ MENU BUTTON ------------------ */
 .menu-btn {
-  position:fixed;
-  top:15px; right:20px;
-  font-size:1.6rem;
-  background:none;
-  border:none;
-  color:#fff;
-  cursor:pointer;
-  z-index:200;
-  transition:transform 0.2s ease;
-  text-shadow:0 4px 10px rgba(0,0,0,0.8);
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 200;
+  transition: transform 0.2s ease;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
+.menu-btn:hover,
+.menu-btn:focus {
+  transform: scale(1.1);
+  outline: none;
+}
 
-/* DRAWER MENU */
+/* ------------------ DRAWER MENU ------------------ */
 .menu-overlay {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none; z-index:99;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 99;
 }
 .side-menu {
-  position:fixed; top:0; right:-270px;
-  height:100%; width:270px;
-  background:rgba(15,23,42,0.92);
-  backdrop-filter:blur(12px) saturate(160%);
-  box-shadow:-4px 0 25px rgba(0,0,0,0.6);
-  transition:right 0.3s ease;
-  z-index:150;
-  display:flex; flex-direction:column;
-  padding-top:4rem;
+  position: fixed;
+  top: 0; right: -270px;
+  height: 100%; width: 270px;
+  background: rgba(15,23,42,0.92);
+  backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: -4px 0 25px rgba(0,0,0,0.6);
+  transition: right 0.3s ease;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
 }
-.side-menu.open{right:0;}
-.menu-overlay.show{display:block;}
+.side-menu.open { right: 0; }
+.menu-overlay.show { display: block; }
 .side-menu a {
-  color:#fff; text-decoration:none;
-  font-size:1.1rem;
-  padding:0.9rem 1.5rem;
-  display:flex; align-items:center; gap:0.8rem;
-  transition:background 0.2s ease;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: background 0.2s ease;
 }
-.side-menu a:hover,.side-menu a:focus {
-  background:rgba(255,255,255,0.12);
-  outline:none;
+.side-menu a:hover,
+.side-menu a:focus {
+  background: rgba(255,255,255,0.12);
+  outline: none;
 }
 
-/* PAGE WRAP + ELECTRIC GLOW */
+/* ------------------ PAGE WRAP + GLOW ------------------ */
 .page-wrap {
-  flex:1;
-  width:100%;
-  max-width:1200px;
-  margin:2rem auto;
-  padding:0 1rem 4rem;
-  position:relative;
-  z-index:1;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem 4rem;
+  position: relative;
+  z-index: 1;
 }
 .page-wrap::before {
-  content:"";
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  width:120%;
-  height:120%;
-  background:radial-gradient(circle at center, rgba(0,255,255,0.15) 0%, rgba(0,255,255,0.05) 40%, transparent 80%);
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at center,
+    rgba(0,255,255,0.15) 0%,
+    rgba(0,255,255,0.05) 40%,
+    transparent 80%);
   animation: glowPulse 6s ease-in-out infinite alternate;
-  z-index:-1;
-  pointer-events:none;
+  z-index: -1;
+  pointer-events: none;
 }
 @keyframes glowPulse {
-  0% {opacity:0.35;}
-  100% {opacity:0.6;}
+  0% { opacity: 0.35; }
+  100% { opacity: 0.6; }
 }
 
-/* GRID */
-.-grid {
-  display:grid;
-  gap:1.6rem;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  justify-items:center;
-  align-items:stretch;
-  margin-top:1rem;
+/* ------------------ GRID ------------------ */
+.tile-grid {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-items: center;
+  align-items: stretch;
+  margin-top: 1rem;
 }
-@media (max-width:700px){ .-grid{gap:1rem;} }
+@media (max-width: 700px) { .tile-grid { gap: 1rem; } }
 
-/* TILE */
+/* ------------------ TILE ------------------ */
 .class-tile {
   display: block;
   position: relative;
   border-radius: var(--radius-card);
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.8);
+  box-shadow:
+    inset 0 0 20px rgba(255,255,255,0.05),
+    0 20px 40px rgba(0,0,0,0.8);
   border: 2px solid rgba(255,255,255,0.25);
   outline: 2px solid rgba(255,255,255,0.1);
   outline-offset: -4px;
@@ -221,7 +222,6 @@ body {
   aspect-ratio: 1.1 / 1;
   min-height: 140px;
 }
-
 .class-tile:hover,
 .class-tile:focus {
   transform: translateY(-4px) scale(1.02);
@@ -230,7 +230,6 @@ body {
   outline: 3px solid #0ff;
   outline-offset: 3px;
 }
-
 .class-tile img {
   width: 100%;
   height: 100%;
@@ -238,155 +237,43 @@ body {
   display: block;
 }
 
-
-
-/* ICON IMAGE */
-.class-tile img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  border-radius: 0.8rem;
-  pointer-events: none;
-  display: block;
-}
-
-/* TILE LABEL */
+/* ------------------ TILE LABEL ------------------ */
 .tile-label {
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(10px);
-  padding:0.6rem;
-  text-align:center;
-  font-weight:700;
-  font-size:1rem;
-  text-shadow:0 2px 6px rgba(0,0,0,0.7);
-  border-top:1px solid rgba(255,255,255,0.25);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  border-top: 1px solid rgba(255,255,255,0.25);
 }
 
-/* FOOTER */
+/* ------------------ FOOTER ------------------ */
 footer {
-  text-align:center;
-  color:#fff;
-  padding:1rem 0.5rem;
-  font-size:0.9rem;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(8px);
-  border-top:1px solid rgba(255,255,255,0.2);
-  margin-top:auto;
-  width:100%;
-  box-shadow:0 -3px 10px rgba(0,0,0,0.4);
+  text-align: center;
+  color: #fff;
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: auto;
+  width: 100%;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.4);
 }
 
-/* ACCESSIBILITY */
+/* ------------------ ACCESSIBILITY ------------------ */
 .visually-hidden {
-  position:absolute !important;
-  height:1px; width:1px;
-  overflow:hidden;
-  clip:rect(1px,1px,1px,1px);
-  white-space:nowrap;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px,1px,1px,1px);
+  white-space: nowrap;
 }
 </style>
-
-<!-- MENU BUTTON -->
-<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-
-<!-- BANNER -->
-<div class="banner-wrap">
-  <img src="/assets/hphysicsbanner.png" alt="Higher Physics banner" class="banner">
-  <div class="banner-tint"></div>
-  <div class="banner-overlay-text"><h1>Explore resources and support for Higher Physics</h1></div>
-</div>
-
-<!-- CONTENT -->
-<main class="page-wrap">
-  <section class="tile-grid">
-
-    <a class="class-tile" href="https://student.magicschool.ai/s/join?joinCode=o6paYQ" target="_blank" aria-label="AI Tutor – Mr Stewart’s Physics Helper">
-      <img src="/assets/higher/AI.png" alt="">
-      <div class="tile-label">AI Tutor</div>
-    </a>
-
-    <a class="class-tile" href="/classes/higher/Higher Physics Past Papers (September 2025 Update).pdf" target="_blank" aria-label="Higher Physics Past Papers by Topic Finder">
-      <img src="/assets/higher/higherpastpapers.png" alt="">
-      <div class="tile-label">Past Papers Finder</div>
-    </a>
-
-    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L" target="_blank" aria-label="Mr Stewart’s Resources">
-      <img src="/assets/higher/mrstewartsmaterials.png" alt="">
-      <div class="tile-label">Mr Stewart’s Resources</div>
-    </a>
-
-    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/Eqbob1cLAspLihPfnlpwkoIB8XS8ilM10Fw4Nl6lwV6yTg?e=EormyU" target="_blank" aria-label="Tricky Questions">
-      <img src="/assets/higher/tricky.png" alt="">
-      <div class="tile-label">Tricky Questions</div>
-    </a>
-
-    <a class="class-tile" href="https://www.physicsscotland.co.uk/classes/higher-physics" target="_blank" aria-label="Physics Scotland Notes">
-      <img src="/assets/higher/physicsscotland.png" alt="">
-      <div class="tile-label">Physics Scotland Notes</div>
-    </a>
-
-    <a class="class-tile" href="https://physicsflashrepo.ovh/" target="_blank" aria-label="Flash Physics">
-      <img src="/assets/higher/flashphsyics.png" alt="">
-      <div class="tile-label">Flash Physics</div>
-    </a>
-
-    <a class="class-tile" href="https://sway.office.com/t01NVX6h5b8SiFmF?ref=Link&loc=play" target="_blank" aria-label="Self-Marking Multiple Choice">
-      <img src="/assets/higher/mc.png" alt="">
-      <div class="tile-label">Self-Marking Multiple Choice</div>
-    </a>
-
-    <a class="class-tile" href="https://quizlet.com/join/TetMQdg6Y" target="_blank" aria-label="Quizlets">
-      <img src="/assets/higher/quizlet.png" alt="">
-      <div class="tile-label">Quizlets</div>
-    </a>
-
-    <a class="class-tile" href="https://scholar.hw.ac.uk/courses/" target="_blank" aria-label="Scholar">
-      <img src="/assets/higher/scholar.png" alt="">
-      <div class="tile-label">Scholar</div>
-    </a>
-
-    <a class="class-tile" href="https://www.bbc.co.uk/bitesize/subjects/zpyb4wx" target="_blank" aria-label="BBC Bitesize">
-      <img src="/assets/higher/bbc.png" alt="">
-      <div class="tile-label">BBC Bitesize</div>
-    </a>
-
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer>© Mr R Stewart’s Science, Physics, Electronics & Engineering</footer>
-
-<!-- DRAWER NAVIGATION -->
-<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
-<nav class="side-menu" id="sideMenu">
-  <a href="/">🏠 Home</a>
-  <a href="/classes/science.html">🧪 Science</a>
-  <a href="/classes/physics.html">⚡ Physics</a>
-  <a href="/classes/electronics.html">💡 Electronics</a>
-  <a href="/classes/engineering.html">🧰 Engineering</a>
-</nav>
-
-<script>
-function toggleMenu(){
-  const menu=document.getElementById('sideMenu');
-  const overlay=document.getElementById('menuOverlay');
-  menu.classList.toggle('open');
-  overlay.classList.toggle('show');
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    document.getElementById('sideMenu').classList.remove('open');
-    document.getElementById('menuOverlay').classList.remove('show');
-  }
-});
-window.addEventListener('scroll',()=>{
-  const banner=document.querySelector('.banner');
-  if(!banner)return;
-  const offset=window.scrollY*0.25;
-  banner.style.transform=`translateY(${offset}px)`;
-});
-</script>
