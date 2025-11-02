@@ -1,6 +1,6 @@
 ---
 layout: none
-title: Work in Progress
+title: S1 Waves
 ---
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,160 +9,257 @@ title: Work in Progress
 :root {
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
   --radius-card: 1rem;
-  --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
+  --shadow-card: 0 18px 40px rgba(0,0,0,0.55);
   --text-main: #ffffff;
-  --bg-grad: radial-gradient(circle at 20% 30%, #00b894 0%, #0073ff 40%, #c00074 80%);
+  --bg1: #2a69ff;
+  --bg2: #5ecbff;
+  --bg3: #b4f1ff;
 }
 
-/* PAGE BASE */
+/* Base layout */
 body {
   margin: 0;
-  background: var(--bg-grad);
-  color: var(--text-main);
   font-family: var(--font-stack);
+  background: radial-gradient(circle at 25% 30%, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* BANNER */
+/* Banner */
 .banner-wrap {
   position: relative;
   width: 100%;
   overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
 .banner {
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 360px;
   object-fit: cover;
-  object-position: center;
   display: block;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
-@media (max-width: 768px) { .banner { max-height: 300px; } }
+@media (max-width: 768px){ .banner{ max-height:260px; } }
 
-/* NAV BUTTON */
+.banner-overlay-text {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  text-align:center;
+  padding:1rem 0.5rem;
+  font-weight:600;
+  font-size:1.3rem;
+  border-top:1px solid rgba(255,255,255,0.25);
+  text-shadow:0 0 10px rgba(255,255,255,0.7);
+}
+
+/* Menu button */
 .menu-btn {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  font-size: 1.6rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  z-index: 200;
-  transition: transform 0.2s ease;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  position:fixed;
+  top:15px; right:20px;
+  font-size:1.6rem;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  z-index:200;
+  transition:transform 0.2s ease;
+  text-shadow:0 4px 10px rgba(0,0,0,0.8);
 }
-.menu-btn:hover, .menu-btn:focus {
-  transform: scale(1.1);
-  outline: none;
-}
+.menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
 
-/* DRAWER MENU */
+/* Drawer menu */
 .menu-overlay {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
   display:none; z-index:99;
 }
 .side-menu {
-  position: fixed; top:0; right:-270px;
+  position:fixed; top:0; right:-270px;
   height:100%; width:270px;
-  background: rgba(15,23,42,0.92);
-  backdrop-filter: blur(12px) saturate(160%);
+  background:rgba(15,23,42,0.92);
+  backdrop-filter:blur(12px) saturate(160%);
   box-shadow:-4px 0 25px rgba(0,0,0,0.6);
   transition:right 0.3s ease;
   z-index:150;
   display:flex; flex-direction:column;
   padding-top:4rem;
 }
-.side-menu.open { right:0; }
-.menu-overlay.show { display:block; }
+.side-menu.open{right:0;}
+.menu-overlay.show{display:block;}
 .side-menu a {
-  color:#fff;
-  text-decoration:none;
+  color:#fff; text-decoration:none;
   font-size:1.1rem;
   padding:0.9rem 1.5rem;
   display:flex; align-items:center; gap:0.8rem;
   transition:background 0.2s ease;
 }
-.side-menu a:hover, .side-menu a:focus {
+.side-menu a:hover,.side-menu a:focus {
   background:rgba(255,255,255,0.12);
   outline:none;
 }
 
-/* MESSAGE CARD */
+/* Glow background */
 .page-wrap {
+  flex:1;
   width:100%;
-  max-width:900px;
-  margin:3rem auto 4rem;
-  padding:0 1rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
+  max-width:1200px;
+  margin:2rem auto;
+  padding:0 1rem 4rem;
+  position:relative;
+  z-index:1;
 }
+.page-wrap::before {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:120%; height:120%;
+  background:radial-gradient(circle at center, rgba(0,255,255,0.25) 0%, rgba(0,255,255,0.1) 40%, transparent 80%);
+  animation:glowPulse 6s ease-in-out infinite alternate;
+  z-index:-1;
+  pointer-events:none;
+}
+@keyframes glowPulse { 0%{opacity:0.4;}100%{opacity:0.7;} }
 
-.message-card {
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.15);
+/* Tile grid */
+.tile-grid {
+  display:grid;
+  gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  justify-items:center;
+  align-items:stretch;
+  margin-top:1rem;
+}
+@media(max-width:700px){ .tile-grid{gap:1rem;} }
+
+/* Tiles */
+.class-tile {
+  display:block;
+  position:relative;
   border-radius:var(--radius-card);
-  box-shadow:var(--shadow-card);
-  padding:2rem 1.5rem;
-  max-width:600px;
-}
-.message-card h1 {
-  font-size:1.8rem;
-  margin-bottom:0.5rem;
-  text-shadow:0 4px 10px rgba(0,0,0,0.6);
-}
-.message-card p {
-  font-size:1rem;
-  opacity:0.95;
-  line-height:1.6;
-  margin-bottom:1.5rem;
-}
-.back-btn {
-  display:inline-block;
-  padding:0.7rem 1.4rem;
-  border-radius:0.6rem;
-  background:rgba(255,255,255,0.15);
+  border:2px solid rgba(255,255,255,0.25);
+  outline:2px solid rgba(255,255,255,0.1);
+  outline-offset:-4px;
   color:#fff;
   text-decoration:none;
-  font-weight:bold;
-  transition:background 0.2s ease;
+  cursor:pointer;
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
+  overflow:hidden;
+  min-height:140px;
+  box-shadow:0 10px 24px rgba(0,0,0,0.5);
 }
-.back-btn:hover, .back-btn:focus {
-  background:rgba(255,255,255,0.25);
-  outline:none;
+.class-tile:hover,.class-tile:focus{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 25px 50px rgba(255,255,255,0.4);
+  filter:brightness(1.1);
+  outline:3px solid #fff;
+  outline-offset:3px;
+}
+.tile-label {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(8px);
+  padding:0.6rem;
+  text-align:center;
+  font-weight:700;
+  font-size:1rem;
+  text-shadow:0 2px 6px rgba(0,0,0,0.6);
+  border-top:1px solid rgba(255,255,255,0.25);
+}
+
+/* Distinct placeholder gradients */
+.booklet{background:linear-gradient(135deg,#00b4d8,#0077b6);}
+.powerpoint{background:linear-gradient(135deg,#ff8800,#ffb84d);}
+.practice{background:linear-gradient(135deg,#ef476f,#ff8fa3);}
+.ai{background:linear-gradient(135deg,#8338ec,#a55eea);}
+.ko{background:linear-gradient(135deg,#06d6a0,#48cae4);}
+.bbc{background:linear-gradient(135deg,#ff006e,#fb5607);}
+.quizlet{background:linear-gradient(135deg,#118ab2,#06d6a0);}
+
+/* Footer */
+footer{
+  text-align:center;
+  color:#fff;
+  padding:1rem 0.5rem;
+  font-size:0.9rem;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(8px);
+  border-top:1px solid rgba(255,255,255,0.2);
+  margin-top:auto;
+  width:100%;
+  box-shadow:0 -3px 10px rgba(0,0,0,0.4);
+}
+.visually-hidden{
+  position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;
 }
 </style>
 
-<!-- NAV BUTTON + BANNER -->
+<!-- Menu button -->
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- Banner -->
 <div class="banner-wrap">
-  <!-- Replace banner source per topic -->
-  <img src="/assets/Wavesbaner.png" alt="Waves Banner" class="banner">
+  <img src="/assets/Wavesbaner.png" alt="S1 Waves Banner" class="banner">
+  <div class="banner-overlay-text"><h1>Explore Waves Resources</h1></div>
 </div>
 
-<div class="page-wrap">
-  <div class="message-card">
-    <h1>🔧 Work in Progress</h1>
-    <p>This topic page is currently under development.  
-    More resources, activities, and notes will be added soon.</p>
-    <a href="/classes/science.html" class="back-btn">⬅ Back to Science</a>
-  </div>
-</div>
+<!-- Content -->
+<main class="page-wrap">
+  <section class="tile-grid">
 
-<!-- DRAWER MENU -->
+    <a class="class-tile booklet" href="https://glowscotland-my.sharepoint.com/:w:/g/personal/gw20stewartrobert1_glow_sch_uk/EdmyzsHK6fRMo9xKuz_hvyQB8lyzs2-DHGDbsTxVrTwqcA?e=fWyfaz" target="_blank" aria-label="Waves Booklet">
+      <div class="tile-label">Booklet</div>
+    </a>
+
+    <a class="class-tile powerpoint" href="https://glowscotland-my.sharepoint.com/:p:/g/personal/gw20stewartrobert1_glow_sch_uk/EcBNHmeJ6P5Ao3HXnOXqKwMBIASLt4Wtr5PkrV0-JNFwnQ?e=iNOgdW" target="_blank" aria-label="Waves PowerPoint">
+      <div class="tile-label">PowerPoint</div>
+    </a>
+
+    <a class="class-tile practice" href="/classes/workinprogress.html" aria-label="Practice Tests placeholder">
+      <div class="tile-label">Practice Tests</div>
+    </a>
+
+    <a class="class-tile ai" href="/classes/workinprogress.html" aria-label="AI Helper placeholder">
+      <div class="tile-label">AI Helper</div>
+    </a>
+
+    <a class="class-tile ko" href="/classes/workinprogress.html" aria-label="Knowledge Organiser placeholder">
+      <div class="tile-label">Knowledge Organiser</div>
+    </a>
+
+    <a class="class-tile bbc" href="/classes/workinprogress.html" aria-label="BBC Bitesize placeholder">
+      <div class="tile-label">BBC Bitesize</div>
+    </a>
+
+    <a class="class-tile quizlet" href="/classes/workinprogress.html" aria-label="Quizlet Flashcards placeholder">
+      <div class="tile-label">Quizlet Flashcards</div>
+    </a>
+
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>© Mr R Stewart’s Science, Physics, Electronics & Engineering</footer>
+
+<!-- Drawer navigation -->
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <nav class="side-menu" id="sideMenu">
   <a href="/">🏠 Home</a>
@@ -176,21 +273,19 @@ body {
 function toggleMenu(){
   const menu=document.getElementById('sideMenu');
   const overlay=document.getElementById('menuOverlay');
-  const isOpen=menu.classList.contains('open');
-  if(isOpen){
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-  } else {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-  }
+  menu.classList.toggle('open');
+  overlay.classList.toggle('show');
 }
-
-// ESC to close menu
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
   }
+});
+window.addEventListener('scroll',()=>{
+  const banner=document.querySelector('.banner');
+  if(!banner)return;
+  const offset=window.scrollY*0.25;
+  banner.style.transform=`translateY(${offset}px)`;
 });
 </script>
