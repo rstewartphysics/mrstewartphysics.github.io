@@ -1,3 +1,10 @@
+---
+layout: none
+title: Higher Physics
+---
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 :root {
   --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
@@ -277,3 +284,104 @@ footer {
   white-space: nowrap;
 }
 </style>
+
+<!-- MENU BUTTON -->
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <img src="/assets/hphysicsbanner.png" alt="Higher Physics banner" class="banner">
+  <div class="banner-tint"></div>
+  <div class="banner-overlay-text"><h1>Explore resources and support for Higher Physics</h1></div>
+</div>
+
+<!-- CONTENT -->
+<main class="page-wrap">
+  <section class="tile-grid">
+
+    <a class="class-tile" href="https://student.magicschool.ai/s/join?joinCode=o6paYQ" target="_blank" aria-label="AI Tutor – Mr Stewart’s Physics Helper">
+      <img src="/assets/higher/AI.png" alt="">
+      <div class="tile-label">AI Tutor</div>
+    </a>
+
+    <a class="class-tile" href="/classes/higher/Higher Physics Past Papers (September 2025 Update).pdf" target="_blank" aria-label="Higher Physics Past Papers by Topic Finder">
+      <img src="/assets/higher/higherpastpapers.png" alt="">
+      <div class="tile-label">Past Papers Finder</div>
+    </a>
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/EsrN6PPS0HtMkclmwJPrEiEBBbTgPcjZuWg-_m0yP25E5A?e=QnwV3L" target="_blank" aria-label="Mr Stewart’s Resources">
+      <img src="/assets/higher/mrstewartsmaterials.png" alt="">
+      <div class="tile-label">Mr Stewart’s Resources</div>
+    </a>
+
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:f:/g/personal/gw20stewartrobert1_glow_sch_uk/Eqbob1cLAspLihPfnlpwkoIB8XS8ilM10Fw4Nl6lwV6yTg?e=EormyU" target="_blank" aria-label="Tricky Questions">
+      <img src="/assets/higher/tricky.png" alt="">
+      <div class="tile-label">Tricky Questions</div>
+    </a>
+
+    <a class="class-tile" href="https://www.physicsscotland.co.uk/classes/higher-physics" target="_blank" aria-label="Physics Scotland Notes">
+      <img src="/assets/higher/physicsscotland.png" alt="">
+      <div class="tile-label">Physics Scotland Notes</div>
+    </a>
+
+    <a class="class-tile" href="https://physicsflashrepo.ovh/" target="_blank" aria-label="Flash Physics">
+      <img src="/assets/higher/flashphsyics.png" alt="">
+      <div class="tile-label">Flash Physics</div>
+    </a>
+
+    <a class="class-tile" href="https://sway.office.com/t01NVX6h5b8SiFmF?ref=Link&loc=play" target="_blank" aria-label="Self-Marking Multiple Choice">
+      <img src="/assets/higher/mc.png" alt="">
+      <div class="tile-label">Self-Marking Multiple Choice</div>
+    </a>
+
+    <a class="class-tile" href="https://quizlet.com/join/TetMQdg6Y" target="_blank" aria-label="Quizlets">
+      <img src="/assets/higher/quizlet.png" alt="">
+      <div class="tile-label">Quizlets</div>
+    </a>
+
+    <a class="class-tile" href="https://scholar.hw.ac.uk/courses/" target="_blank" aria-label="Scholar">
+      <img src="/assets/higher/scholar.png" alt="">
+      <div class="tile-label">Scholar</div>
+    </a>
+
+    <a class="class-tile" href="https://www.bbc.co.uk/bitesize/subjects/zpyb4wx" target="_blank" aria-label="BBC Bitesize">
+      <img src="/assets/higher/bbc.png" alt="">
+      <div class="tile-label">BBC Bitesize</div>
+    </a>
+
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>© Mr R Stewart’s Science, Physics, Electronics & Engineering</footer>
+
+<!-- DRAWER NAVIGATION -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  menu.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+});
+window.addEventListener('scroll',()=>{
+  const banner=document.querySelector('.banner');
+  if(!banner)return;
+  const offset=window.scrollY*0.25;
+  banner.style.transform=`translateY(${offset}px)`;
+});
+</script>
