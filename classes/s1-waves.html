@@ -113,7 +113,7 @@ body {
   outline:none;
 }
 
-/* GLOW BACKGROUND */
+/* PAGE GLOW */
 .page-wrap {
   flex:1;
   width:100%;
@@ -147,11 +147,8 @@ body {
 }
 @media(max-width:700px){ .tile-grid{gap:1rem;} }
 
-/* TILE FIXES */
+/* TILE */
 .class-tile {
-  display:flex;
-  justify-content:center;
-  align-items:center;
   position:relative;
   border-radius:var(--radius-card);
   border:2px solid rgba(255,255,255,0.25);
@@ -159,12 +156,15 @@ body {
   outline-offset:-4px;
   color:#fff;
   text-decoration:none;
-  cursor:pointer;
-  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
   overflow:hidden;
-  height:160px;              /* ✅ ensures visible tile even with no image */
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.2s ease;
+  height:160px;
   width:100%;
   box-shadow:0 10px 24px rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,0.05);
 }
 .class-tile:hover,.class-tile:focus {
   transform:translateY(-4px) scale(1.03);
@@ -174,7 +174,15 @@ body {
   outline-offset:3px;
 }
 
-/* TILE LABEL */
+/* ICON IMAGE */
+.class-tile img {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* LABEL */
 .tile-label {
   position:absolute;
   bottom:0;
@@ -189,15 +197,6 @@ body {
   text-shadow:0 2px 6px rgba(0,0,0,0.6);
   border-top:1px solid rgba(255,255,255,0.25);
 }
-
-/* BRIGHT GRADIENTS */
-.booklet{background:linear-gradient(135deg,#00b4d8,#0077b6);}
-.powerpoint{background:linear-gradient(135deg,#ffb84d,#ff8800);}
-.practice{background:linear-gradient(135deg,#ef476f,#ff8fa3);}
-.ai{background:linear-gradient(135deg,#a55eea,#8338ec);}
-.ko{background:linear-gradient(135deg,#48cae4,#06d6a0);}
-.bbc{background:linear-gradient(135deg,#ff006e,#fb5607);}
-.quizlet{background:linear-gradient(135deg,#06d6a0,#118ab2);}
 
 /* FOOTER */
 footer {
@@ -227,31 +226,38 @@ footer {
 <main class="page-wrap">
   <section class="tile-grid">
 
-    <a class="class-tile booklet" href="https://glowscotland-my.sharepoint.com/:w:/g/personal/gw20stewartrobert1_glow_sch_uk/EdmyzsHK6fRMo9xKuz_hvyQB8lyzs2-DHGDbsTxVrTwqcA?e=fWyfaz" target="_blank" aria-label="Waves Booklet">
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:w:/g/personal/gw20stewartrobert1_glow_sch_uk/EdmyzsHK6fRMo9xKuz_hvyQB8lyzs2-DHGDbsTxVrTwqcA?e=fWyfaz" target="_blank" aria-label="Waves Booklet">
+      <img src="/assets/BGE/notes.png" alt="Booklet Icon">
       <div class="tile-label">Booklet</div>
     </a>
 
-    <a class="class-tile powerpoint" href="https://glowscotland-my.sharepoint.com/:p:/g/personal/gw20stewartrobert1_glow_sch_uk/EcBNHmeJ6P5Ao3HXnOXqKwMBIASLt4Wtr5PkrV0-JNFwnQ?e=iNOgdW" target="_blank" aria-label="Waves PowerPoint">
+    <a class="class-tile" href="https://glowscotland-my.sharepoint.com/:p:/g/personal/gw20stewartrobert1_glow_sch_uk/EcBNHmeJ6P5Ao3HXnOXqKwMBIASLt4Wtr5PkrV0-JNFwnQ?e=iNOgdW" target="_blank" aria-label="Waves PowerPoint">
+      <img src="/assets/BGE/ppt.png" alt="PowerPoint Icon">
       <div class="tile-label">PowerPoint</div>
     </a>
 
-    <a class="class-tile practice" href="/classes/workinprogress.html" aria-label="Practice Tests placeholder">
+    <a class="class-tile" href="/classes/S1/S1 Waves Practice Tests.pdf" target="_blank" aria-label="Practice Tests">
+      <img src="/assets/BGE/tests.png" alt="Practice Tests Icon">
       <div class="tile-label">Practice Tests</div>
     </a>
 
-    <a class="class-tile ai" href="/classes/workinprogress.html" aria-label="AI Helper placeholder">
+    <a class="class-tile" href="/classes/workinprogress.html" aria-label="AI Helper">
+      <img src="/assets/BGE/BGEAI.png" alt="AI Helper Icon">
       <div class="tile-label">AI Helper</div>
     </a>
 
-    <a class="class-tile ko" href="/classes/workinprogress.html" aria-label="Knowledge Organiser placeholder">
+    <a class="class-tile" href="/classes/workinprogress.html" aria-label="Knowledge Organiser">
+      <img src="/assets/BGE/knowledge.png" alt="Knowledge Organiser Icon">
       <div class="tile-label">Knowledge Organiser</div>
     </a>
 
-    <a class="class-tile bbc" href="/classes/workinprogress.html" aria-label="BBC Bitesize placeholder">
+    <a class="class-tile" href="/classes/workinprogress.html" aria-label="BBC Bitesize">
+      <img src="/assets/BGE/bitesize.png" alt="BBC Bitesize Icon">
       <div class="tile-label">BBC Bitesize</div>
     </a>
 
-    <a class="class-tile quizlet" href="/classes/workinprogress.html" aria-label="Quizlet Flashcards placeholder">
+    <a class="class-tile" href="/classes/workinprogress.html" aria-label="Quizlet Flashcards">
+      <img src="/assets/BGE/flashcards.png" alt="Flashcards Icon">
       <div class="tile-label">Quizlet Flashcards</div>
     </a>
 
