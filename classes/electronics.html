@@ -179,5 +179,72 @@ body {
   border:0;
 }
 
-/* RESPONSIVE TWEAK */
-@media (max-width
+/* RESPONSIVE */
+@media (max-width:600px){
+  .tile{font-size:1.1rem;height:130px;}
+}
+</style>
+
+<!-- MENU BUTTON -->
+<button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <img src="/assets/Electronicsbanner.png" alt="Electronics Banner" class="banner">
+  <div class="banner-tint"></div>
+</div>
+<div class="banner-separator"></div>
+
+<!-- MAIN CONTENT -->
+<main class="page-wrap" aria-label="Electronics main content">
+  <h1 style="font-size:1.8rem;margin-bottom:1rem;">National 5 Electronics</h1>
+  <p style="opacity:0.9;">Choose a section to begin exploring notes, videos, and revision materials.</p>
+
+  <div class="tile-grid">
+    <a href="notes.html" class="tile" aria-label="Open Notes and Booklets">
+      <span class="tile-icon">📘</span>
+      <span>Notes & Booklets</span>
+    </a>
+
+    <a href="videos.html" class="tile" aria-label="Open Videos page">
+      <span class="tile-icon">🎥</span>
+      <span>Videos</span>
+    </a>
+
+    <a href="revision.html" class="tile" aria-label="Open Exam and Revision page">
+      <span class="tile-icon">🧮</span>
+      <span>Exam & Revision</span>
+    </a>
+
+    <a href="https://electronicsclub.info" target="_blank" rel="noopener" class="tile" aria-label="Open Electronics Club external website">
+      <span class="tile-icon">🌐</span>
+      <span>Electronics Club</span>
+    </a>
+  </div>
+</main>
+
+<!-- DRAWER NAVIGATION -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const isOpen=menu.classList.contains('open');
+  if(isOpen){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+});
+</script>
