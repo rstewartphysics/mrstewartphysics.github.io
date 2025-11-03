@@ -1,0 +1,180 @@
+---
+layout: none
+title: Electronics Revision
+---
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --font-stack: "Trebuchet MS","Segoe UI",sans-serif;
+  --radius-card: 1rem;
+  --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
+  --text-main: #fff;
+  --bg-grad: radial-gradient(circle at 20% 30%, #003c2e 0%, #005f47 40%, #052a1f 100%);
+  --tile-grad: linear-gradient(135deg,#00906f 0%,#005f47 100%);
+}
+
+body {
+  margin: 0;
+  background: var(--bg-grad);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* BANNER */
+.banner-wrap {position:relative;width:100%;overflow:hidden;box-shadow:0 6px 15px rgba(0,0,0,0.6);}
+.banner {width:100%;max-height:340px;object-fit:cover;object-position:center;display:block;opacity:0;animation:fadeIn 1.2s ease forwards;}
+@keyframes fadeIn {to {opacity:1;}}
+@media (max-width:768px){.banner{max-height:260px;}}
+.banner-tint {position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,255,200,0.3),rgba(0,180,255,0.3));mix-blend-mode:multiply;animation:tintShift 12s ease-in-out infinite alternate;}
+@keyframes tintShift{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+.banner-separator{width:100%;height:50px;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0));}
+
+/* MENU */
+.menu-btn{position:fixed;top:15px;right:20px;font-size:1.6rem;background:none;border:none;color:#fff;cursor:pointer;z-index:200;transition:transform 0.2s ease;text-shadow:0 4px 10px rgba(0,0,0,0.8);}
+.menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
+.menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:99;}
+.side-menu{position:fixed;top:0;right:-270px;height:100%;width:270px;background:rgba(15,23,42,0.92);
+backdrop-filter:blur(12px) saturate(160%);-webkit-backdrop-filter:blur(12px) saturate(160%);
+box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;display:flex;flex-direction:column;padding-top:4rem;}
+.side-menu.open{right:0;}
+.menu-overlay.show{display:block;}
+.side-menu a{color:#fff;text-decoration:none;font-size:1.1rem;padding:0.9rem 1.5rem;display:flex;align-items:center;gap:0.8rem;}
+.side-menu a:hover,.side-menu a:focus{background:rgba(255,255,255,0.12);outline:none;}
+
+/* MAIN */
+.page-wrap{width:100%;max-width:1000px;margin:2rem auto 4rem;padding:0 1rem;text-align:center;}
+.section{margin-top:2.5rem;}
+.section h2{font-size:1.6rem;margin-bottom:1rem;border-bottom:2px solid rgba(255,255,255,0.25);display:inline-block;padding-bottom:0.3rem;}
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:1rem;}
+
+/* TILE */
+.tile{
+  height:120px;
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  background:var(--tile-grad);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:700;
+  font-size:1.1rem;
+  transition:transform 0.2s ease,box-shadow 0.2s ease;
+  border:2px solid rgba(255,255,255,0.15);
+  outline:2px solid transparent;
+  outline-offset:-4px;
+}
+.tile:hover,.tile:focus{transform:translateY(-6px);box-shadow:0 12px 36px rgba(0,0,0,0.7);outline:2px solid rgba(255,255,255,0.8);}
+.tile-icon{font-size:1.8rem;margin-bottom:0.4rem;text-shadow:0 3px 6px rgba(0,0,0,0.6);}
+@media(max-width:600px){.tile{font-size:1rem;height:110px;}}
+</style>
+
+<!-- MENU BUTTON -->
+<button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <img src="/assets/Electronicsbanner.png" alt="Electronics Banner" class="banner">
+  <div class="banner-tint"></div>
+</div>
+<div class="banner-separator"></div>
+
+<!-- MAIN -->
+<main class="page-wrap" aria-label="Electronics revision resources">
+  <h1 style="font-size:1.8rem;margin-bottom:1rem;">National 5 Electronics Revision</h1>
+  <p style="opacity:0.9;">Use the links below to access past papers, marking instructions, and key study resources.</p>
+
+  <!-- Question Papers -->
+  <section class="section">
+    <h2>📘 Question Papers</h2>
+    <div class="tile-grid">
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5%20Practical%20Electronics%20PPQ.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open N5 Practical Electronics PPQ">
+        <span class="tile-icon">🧩</span>Practice Paper (PPQ)
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_QP_2024.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2024 Question Paper">
+        <span class="tile-icon">📄</span>2024 Paper
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_all_2018.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2018 Question Paper">
+        <span class="tile-icon">📄</span>2018 Paper
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_all_2019.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2019 Question Paper">
+        <span class="tile-icon">📄</span>2019 Paper
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_all_2021.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2021 Question Paper">
+        <span class="tile-icon">📄</span>2021 Paper
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/PracticalElectronicsSQPN5.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open SQA Specimen Question Paper">
+        <span class="tile-icon">🧾</span>SQA Specimen Paper
+      </a>
+    </div>
+  </section>
+
+  <!-- Marking Instructions -->
+  <section class="section">
+    <h2>🧾 Marking Instructions</h2>
+    <div class="tile-grid">
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/mi_N5_Practical-Electronics_mi_2018.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2018 Marking Instructions">
+        <span class="tile-icon">📝</span>2018 MI
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/mi_N5_Practical-Electronics_mi_2019.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2019 Marking Instructions">
+        <span class="tile-icon">📝</span>2019 MI
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/mi_N5_Practical-Electronics_mi_2021.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2021 Marking Instructions">
+        <span class="tile-icon">📝</span>2021 MI
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/mi_N5_Practical-Electronics_mi_2024.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open 2024 Marking Instructions">
+        <span class="tile-icon">📝</span>2024 MI
+      </a>
+    </div>
+  </section>
+
+  <!-- Study Resources -->
+  <section class="section">
+    <h2>📚 Study Resources</h2>
+    <div class="tile-grid">
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_Data-sheet_2024.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open Data Sheet 2024">
+        <span class="tile-icon">📑</span>Data Sheet 2024
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/Circuit%20Symbols.docx" class="tile" target="_blank" rel="noopener" aria-label="Open Circuit Symbols Reference">
+        <span class="tile-icon">💡</span>Circuit Symbols
+      </a>
+      <a href="https://rstewartphysics.github.io/assets/electronics/revision/Practical%20Electronics%20Success%20Criteria.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open Success Criteria PDF">
+        <span class="tile-icon">✅</span>Success Criteria
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- DRAWER -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/classes/science.html">🧪 Science</a>
+  <a href="/classes/physics.html">⚡ Physics</a>
+  <a href="/classes/electronics.html">💡 Electronics</a>
+  <a href="/classes/engineering.html">🧰 Engineering</a>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu=document.getElementById('sideMenu');
+  const overlay=document.getElementById('menuOverlay');
+  const open=menu.classList.contains('open');
+  if(open){menu.classList.remove('open');overlay.classList.remove('show');}
+  else{menu.classList.add('open');overlay.classList.add('show');}
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+});
+</script>
