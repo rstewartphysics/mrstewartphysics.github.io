@@ -1,6 +1,6 @@
 ---
 layout: none
-title: Electronics (Work in Progress)
+title: National 5 Electronics
 ---
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,7 @@ title: Electronics (Work in Progress)
   --shadow-card: 0 24px 48px rgba(0,0,0,0.8);
   --text-main: #fff;
   --bg-grad: radial-gradient(circle at 20% 30%, #003c2e 0%, #005f47 40%, #052a1f 100%);
+  --tile-grad: linear-gradient(135deg,#00906f 0%,#005f47 100%);
 }
 
 /* BASE */
@@ -46,7 +47,6 @@ body {
 @keyframes fadeIn { to { opacity: 1; } }
 @media (max-width: 768px) {.banner { max-height: 260px; }}
 
-/* Overlay tint */
 .banner-tint {
   position: absolute;
   inset: 0;
@@ -58,8 +58,6 @@ body {
   0% {background-position: 0% 50%;}
   100% {background-position: 100% 50%;}
 }
-
-/* Fade separator */
 .banner-separator {
   width: 100%;
   height: 50px;
@@ -121,51 +119,69 @@ body {
 /* PAGE WRAP */
 .page-wrap {
   width:100%;
-  max-width:900px;
+  max-width:1000px;
   margin:2rem auto 4rem;
   padding:0 1rem;
   text-align:center;
 }
 
-/* CARD */
-.wip-card {
-  display:inline-block;
-  background: rgba(0,60,50,0.4);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  padding: 2rem 1.5rem;
-  border: 2px solid rgba(0,0,0,0.4);
-  outline: 2px solid rgba(255,255,255,0.1);
-  outline-offset: -4px;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-  animation: pulseGlow 3s ease-in-out infinite alternate;
+/* GRID */
+.tile-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;
+  justify-items:center;
+  margin-top:1.5rem;
 }
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 20px rgba(0,255,180,0.3); }
-  100% { box-shadow: 0 0 40px rgba(0,255,180,0.6); }
+
+/* TILE */
+.tile {
+  width:100%;
+  height:140px;
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);
+  background:var(--tile-grad);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:700;
+  font-size:1.3rem;
+  position:relative;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter:blur(8px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);
+  border:2px solid rgba(255,255,255,0.15);
+  outline:2px solid transparent;
+  outline-offset:-4px;
 }
-.wip-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display:block;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+.tile:hover, .tile:focus {
+  transform:translateY(-6px);
+  box-shadow:0 12px 36px rgba(0,0,0,0.7);
+  outline:2px solid rgba(255,255,255,0.8);
 }
-.wip-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.tile-icon {
+  font-size:2rem;
+  margin-bottom:0.4rem;
+  text-shadow:0 3px 6px rgba(0,0,0,0.6);
 }
-.wip-text {
-  font-size: 1.1rem;
-  opacity: 0.9;
+.visually-hidden {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
 }
 
 /* RESPONSIVE TWEAK */
-@media (max-width: 600px) {
-  .wip-card {padding:1.5rem 1rem;}
-  .wip-title {font-size:1.3rem;}
-  .wip-text {font-size:1rem;}
+@media (max-width:600px){
+  .tile{font-size:1.1rem;height:130px;}
 }
 </style>
 
@@ -177,16 +193,33 @@ body {
   <img src="/assets/Electronicsbanner.png" alt="Electronics Banner" class="banner">
   <div class="banner-tint"></div>
 </div>
-
 <div class="banner-separator"></div>
 
-<!-- CONTENT -->
-<main class="page-wrap">
-  <div class="wip-card" role="status" aria-live="polite">
-    <div class="wip-icon">⚙️</div>
-    <div class="wip-title">Work in Progress</div>
-    <div class="wip-text">The Electronics section is currently under construction.  
-      New resources and interactive tools will be added soon — stay tuned!</div>
+<!-- MAIN CONTENT -->
+<main class="page-wrap" aria-label="Electronics main content">
+  <h1 style="font-size:1.8rem;margin-bottom:1rem;">National 5 Electronics</h1>
+  <p style="opacity:0.9;">Choose a section to begin exploring notes, videos, and revision materials.</p>
+
+  <div class="tile-grid">
+    <a href="/electronics/notes.html" class="tile" aria-label="Open Notes and Booklets">
+      <span class="tile-icon">📘</span>
+      <span>Notes & Booklets</span>
+    </a>
+
+    <a href="/electronics/videos.html" class="tile" aria-label="Open Videos page">
+      <span class="tile-icon">🎥</span>
+      <span>Videos</span>
+    </a>
+
+    <a href="/electronics/revision.html" class="tile" aria-label="Open Exam and Revision page">
+      <span class="tile-icon">🧮</span>
+      <span>Exam & Revision</span>
+    </a>
+
+    <a href="https://electronicsclub.info" target="_blank" rel="noopener" class="tile" aria-label="Open Electronics Club external website">
+      <span class="tile-icon">🌐</span>
+      <span>Electronics Club</span>
+    </a>
   </div>
 </main>
 
