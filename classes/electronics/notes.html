@@ -30,14 +30,14 @@ body {
 /* BANNER */
 .banner-wrap {position:relative;width:100%;overflow:hidden;box-shadow:0 6px 15px rgba(0,0,0,0.6);}
 .banner {width:100%;height:auto;max-height:340px;object-fit:cover;object-position:center;display:block;opacity:0;animation:fadeIn 1.2s ease forwards;}
-@keyframes fadeIn {to {opacity:1;}}
+@keyframes fadeIn {to{opacity:1;}}
 @media (max-width:768px){.banner{max-height:260px;}}
-.banner-tint {position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,255,200,0.3),rgba(0,180,255,0.3));mix-blend-mode:multiply;animation:tintShift 12s ease-in-out infinite alternate;}
+.banner-tint{position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,255,200,0.3),rgba(0,180,255,0.3));mix-blend-mode:multiply;animation:tintShift 12s ease-in-out infinite alternate;}
 @keyframes tintShift{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
 .banner-separator{width:100%;height:50px;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0));}
 
 /* MENU BUTTON */
-.menu-btn {position:fixed;top:15px;right:20px;font-size:1.6rem;background:none;border:none;color:#fff;cursor:pointer;z-index:200;transition:transform 0.2s ease;text-shadow:0 4px 10px rgba(0,0,0,0.8);}
+.menu-btn{position:fixed;top:15px;right:20px;font-size:1.6rem;background:none;border:none;color:#fff;cursor:pointer;z-index:200;transition:transform 0.2s ease;text-shadow:0 4px 10px rgba(0,0,0,0.8);}
 .menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
 
 /* DRAWER MENU */
@@ -100,30 +100,34 @@ box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;di
   <p style="opacity:0.9;">Tap a block below to open its PDF booklet.</p>
 
   <div class="tile-grid">
-    <a href="/assets/electronics/RS_Electronics_B1_N5_2025.pdf" class="tile" aria-label="Open Block 1 PDF">
-      <span class="tile-icon">🔌</span>Block&nbsp;1:&nbsp;Circuits&nbsp;&amp;&nbsp;Current
+    <a href="https://rstewartphysics.github.io/assets/electronics/S3%20EA%20Learning%20Block%201%20Simple%20Resistive%20Networks.pdf" class="tile" aria-label="Open Block 1 PDF">
+      <span class="tile-icon">🔌</span>Block&nbsp;1:&nbsp;Simple&nbsp;Resistive&nbsp;Networks
     </a>
 
-    <a href="/assets/electronics/RS_Electronics_B2_N5_2025.pdf" class="tile" aria-label="Open Block 2 PDF">
-      <span class="tile-icon">💡</span>Block&nbsp;2:&nbsp;Electronics&nbsp;&amp;&nbsp;Components
+    <a href="https://rstewartphysics.github.io/assets/electronics/S3%20EA%20Learning%20Block%202%20Sensor%20Circuits.pdf" class="tile" aria-label="Open Block 2 PDF">
+      <span class="tile-icon">💡</span>Block&nbsp;2:&nbsp;Sensor&nbsp;Circuits
     </a>
 
-    <a href="/assets/electronics/N5_Electricity_Knowledge_Organiser.pdf" class="tile" aria-label="Open Electricity Knowledge Organiser PDF">
-      <span class="tile-icon">📖</span>Knowledge&nbsp;Organiser
+    <a href="https://rstewartphysics.github.io/assets/electronics/S3%20EA%20Learning%20Block%203%20Concepts.pdf" class="tile" aria-label="Open Block 3 PDF">
+      <span class="tile-icon">⚙️</span>Block&nbsp;3:&nbsp;Concepts
     </a>
 
-    <a href="/assets/electronics/N5_Space_Knowledge_Organiser.pdf" class="tile" aria-label="Open Space Knowledge Organiser PDF">
-      <span class="tile-icon">🌌</span>Extension&nbsp;Notes
+    <a href="https://rstewartphysics.github.io/assets/electronics/EA%20Learning%20Block%204%20Electromagnitism.pdf" class="tile" aria-label="Open Block 4 PDF">
+      <span class="tile-icon">🧲</span>Block&nbsp;4:&nbsp;Electromagnetism
     </a>
 
-    <a href="/assets/electronics/RS_Nuclear_Radiation_2025.pdf" class="tile" aria-label="Open Radiation Notes PDF">
-      <span class="tile-icon">☢️</span>Radiation&nbsp;Connections
+    <a href="https://rstewartphysics.github.io/assets/electronics/EA%20Learning%20Block%205%20Logic.pdf" class="tile" aria-label="Open Block 5 PDF">
+      <span class="tile-icon">🔧</span>Block&nbsp;5:&nbsp;Logic
     </a>
 
-    <a href="/assets/electronics/RS_Waves_N5_2025.pdf" class="tile" aria-label="Open Waves Notes PDF">
-      <span class="tile-icon">🌊</span>Waves&nbsp;Reference
+    <a href="https://rstewartphysics.github.io/assets/electronics/EA%20Learning%20Block%206%20Oscillators%20and%20Amplifiers.pdf" class="tile" aria-label="Open Block 6 PDF">
+      <span class="tile-icon">📈</span>Block&nbsp;6:&nbsp;Oscillators&nbsp;&amp;&nbsp;Amplifiers
     </a>
   </div>
+
+  <p style="margin-top:2rem;opacity:0.85;font-size:1rem;">
+    Extra resource: <a href="https://rstewartphysics.github.io/assets/electronics/Yenka.pdf" style="color:#7cf8e4;text-decoration:underline;">Yenka Simulation Guide</a>
+  </p>
 </main>
 
 <!-- DRAWER -->
