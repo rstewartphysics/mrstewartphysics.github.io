@@ -3,7 +3,7 @@ layout: none
 title: Electronics Revision
 ---
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-scale, initial-scale=1">
 
 <style>
 :root {
@@ -15,6 +15,7 @@ title: Electronics Revision
   --tile-grad: linear-gradient(135deg,#00906f 0%,#005f47 100%);
 }
 
+/* BASE */
 body {
   margin: 0;
   background: var(--bg-grad);
@@ -36,21 +37,42 @@ body {
 .banner-separator{width:100%;height:50px;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0));}
 
 /* MENU */
-.menu-btn{position:fixed;top:15px;right:20px;font-size:1.6rem;background:none;border:none;color:#fff;cursor:pointer;z-index:200;transition:transform 0.2s ease;text-shadow:0 4px 10px rgba(0,0,0,0.8);}
+.menu-btn{position:fixed;top:15px;right:20px;font-size:1.6rem;background:none;border:none;color:#fff;cursor:pointer;z-index:200;transition:transform .2s ease;text-shadow:0 4px 10px rgba(0,0,0,0.8);}
 .menu-btn:hover,.menu-btn:focus{transform:scale(1.1);outline:none;}
 .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:99;}
 .side-menu{position:fixed;top:0;right:-270px;height:100%;width:270px;background:rgba(15,23,42,0.92);
-backdrop-filter:blur(12px) saturate(160%);-webkit-backdrop-filter:blur(12px) saturate(160%);
-box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;display:flex;flex-direction:column;padding-top:4rem;}
+backdrop-filter:blur(12px)saturate(160%);-webkit-backdrop-filter:blur(12px)saturate(160%);
+box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right .3s ease;z-index:150;display:flex;flex-direction:column;padding-top:4rem;}
 .side-menu.open{right:0;}
 .menu-overlay.show{display:block;}
-.side-menu a{color:#fff;text-decoration:none;font-size:1.1rem;padding:0.9rem 1.5rem;display:flex;align-items:center;gap:0.8rem;}
+.side-menu a{color:#fff;text-decoration:none;font-size:1.1rem;padding:.9rem 1.5rem;display:flex;align-items:center;gap:.8rem;}
 .side-menu a:hover,.side-menu a:focus{background:rgba(255,255,255,0.12);outline:none;}
 
 /* MAIN */
 .page-wrap{width:100%;max-width:1000px;margin:2rem auto 4rem;padding:0 1rem;text-align:center;}
-.section{margin-top:2.5rem;}
+h1{font-size:2rem;letter-spacing:0.5px;margin-bottom:1rem;}
+.section{margin-top:2.5rem;
+  background:rgba(0,30,25,0.4);
+  border-radius:1.2rem;
+  padding:1.5rem 1rem 2rem;
+  backdrop-filter:blur(8px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
 .section h2{font-size:1.6rem;margin-bottom:1rem;border-bottom:2px solid rgba(255,255,255,0.25);display:inline-block;padding-bottom:0.3rem;}
+.section:nth-of-type(1) h2{color:#7fffd4;}
+.section:nth-of-type(2) h2{color:#9ef0ff;}
+.section:nth-of-type(3) h2{color:#afff9c;}
+.section::after{
+  content:"";
+  display:block;
+  height:2px;
+  margin:2rem auto 0;
+  width:60%;
+  background:linear-gradient(to right,transparent,rgba(0,255,200,0.4),transparent);
+}
+
+/* GRID */
 .tile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:1rem;}
 
 /* TILE */
@@ -72,9 +94,16 @@ box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;di
   outline:2px solid transparent;
   outline-offset:-4px;
 }
-.tile:hover,.tile:focus{transform:translateY(-6px);box-shadow:0 12px 36px rgba(0,0,0,0.7);outline:2px solid rgba(255,255,255,0.8);}
+.tile:hover,.tile:focus{
+  transform:translateY(-6px);
+  box-shadow:0 12px 36px rgba(0,255,180,0.3);
+  outline:2px solid rgba(255,255,255,0.8);
+}
 .tile-icon{font-size:1.8rem;margin-bottom:0.4rem;text-shadow:0 3px 6px rgba(0,0,0,0.6);}
-@media(max-width:600px){.tile{font-size:1rem;height:110px;}}
+@media(max-width:600px){
+  .tile{font-size:1rem;height:110px;align-items:center;text-align:center;}
+  .tile-icon{font-size:1.5rem;margin-bottom:0.3rem;}
+}
 </style>
 
 <!-- MENU BUTTON -->
@@ -89,12 +118,12 @@ box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;di
 
 <!-- MAIN -->
 <main class="page-wrap" aria-label="Electronics revision resources">
-  <h1 style="font-size:1.8rem;margin-bottom:1rem;">National 5 Electronics Revision</h1>
+  <h1>National 5 Electronics Revision</h1>
   <p style="opacity:0.9;">Use the links below to access past papers, marking instructions, and key study resources.</p>
 
   <!-- Question Papers -->
   <section class="section">
-    <h2>📘 Question Papers</h2>
+    <h2>📘 Question Papers & Practice</h2>
     <div class="tile-grid">
       <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5%20Practical%20Electronics%20PPQ.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open N5 Practical Electronics PPQ">
         <span class="tile-icon">🧩</span>Practice Paper (PPQ)
@@ -138,7 +167,7 @@ box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right 0.3s ease;z-index:150;di
 
   <!-- Study Resources -->
   <section class="section">
-    <h2>📚 Study Resources</h2>
+    <h2>📚 Study Resources & Data Sheets</h2>
     <div class="tile-grid">
       <a href="https://rstewartphysics.github.io/assets/electronics/revision/N5_Practical-Electronics_Data-sheet_2024.pdf" class="tile" target="_blank" rel="noopener" aria-label="Open Data Sheet 2024">
         <span class="tile-icon">📑</span>Data Sheet 2024
