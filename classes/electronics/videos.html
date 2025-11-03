@@ -48,16 +48,16 @@ box-shadow:-4px 0 25px rgba(0,0,0,0.6);transition:right .3s ease;z-index:150;dis
 .side-menu a:hover,.side-menu a:focus{background:rgba(255,255,255,0.12);outline:none;}
 
 /* MAIN */
-.page-wrap{width:100%;max-width:1100px;margin:2rem auto 4rem;padding:0 1rem;text-align:center;}
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:2rem;margin-top:2rem;}
-.video-card{background:rgba(0,60,50,0.4);border-radius:var(--radius-card);box-shadow:var(--shadow-card);
-padding:1rem;border:2px solid rgba(255,255,255,0.1);outline:2px solid transparent;outline-offset:-4px;
+.page-wrap{width:100%;max-width:900px;margin:2rem auto 4rem;padding:0 1rem;text-align:center;}
+.video-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2rem;}
+.video-link{display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;
+background:var(--tile-grad);color:#fff;font-weight:700;font-size:1.1rem;padding:1.5rem;height:120px;
+border-radius:var(--radius-card);box-shadow:var(--shadow-card);transition:transform .2s ease,box-shadow .2s ease;
 backdrop-filter:blur(8px)saturate(140%);-webkit-backdrop-filter:blur(8px)saturate(140%);
-transition:transform .2s ease,box-shadow .2s ease;}
-.video-card:hover,.video-card:focus-within{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.7);outline:2px solid rgba(255,255,255,0.8);}
-.video-card iframe{width:100%;height:100%;aspect-ratio:16/9;border:none;border-radius:var(--radius-card);}
-.video-title{margin-top:.6rem;font-weight:700;font-size:1.1rem;}
-@media(max-width:600px){.video-grid{grid-template-columns:1fr;gap:1.5rem;}.video-title{font-size:1rem;}}
+border:2px solid rgba(255,255,255,0.15);outline:2px solid transparent;outline-offset:-4px;}
+.video-link:hover,.video-link:focus{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.7);outline:2px solid rgba(255,255,255,0.8);}
+.video-link span{margin-top:.3rem;}
+@media(max-width:600px){.video-link{font-size:1rem;height:110px;}}
 </style>
 
 <!-- MENU BUTTON -->
@@ -73,58 +73,27 @@ transition:transform .2s ease,box-shadow .2s ease;}
 <!-- MAIN -->
 <main class="page-wrap" aria-label="Electronics videos">
   <h1 style="font-size:1.8rem;margin-bottom:1rem;">National 5 Electronics – Testing Videos</h1>
-  <p style="opacity:0.9;">These videos demonstrate testing stages for Burglar Alarm and Flashing Lights circuits. Watch each example below.</p>
+  <p style="opacity:0.9;">Click a link below to open each demonstration video in a new tab.</p>
 
-  <div class="video-grid">
-    
-    <!-- Video 1 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=222cdc8a-c589-47b6-a83a-691aba8821f3&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="1. Burglar Alarm Input Pre-Power up Testing"></iframe>
-      </div>
-      <div class="video-title">1️⃣ Burglar Alarm – Input Pre-Power-Up Testing</div>
-    </div>
-
-    <!-- Video 2 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=f2087d92-4ae8-40ad-86e8-180711e01de5&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="2. Burglar Alarm Input Functionality Testing"></iframe>
-      </div>
-      <div class="video-title">2️⃣ Burglar Alarm – Input Functionality Testing</div>
-    </div>
-
-    <!-- Video 3 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=30b956a2-3fbe-43fe-90d7-863ad6da4540&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="3. Burglar Alarm Process Pre Power Up"></iframe>
-      </div>
-      <div class="video-title">3️⃣ Burglar Alarm – Process Pre-Power-Up</div>
-    </div>
-
-    <!-- Video 4 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=7960be92-6e9c-481b-b323-9677e28fea87&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="4. Burglar Alarm Process Functionality Testing"></iframe>
-      </div>
-      <div class="video-title">4️⃣ Burglar Alarm – Process Functionality Testing</div>
-    </div>
-
-    <!-- Video 5 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=1a160ec0-dc13-4bbe-9f33-e5e1fd218e20&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="5. Flashing Lights Output Power Functionality"></iframe>
-      </div>
-      <div class="video-title">5️⃣ Flashing Lights – Output Power Functionality</div>
-    </div>
-
-    <!-- Video 6 -->
-    <div class="video-card">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-        <iframe src="https://glowscotland-my.sharepoint.com/personal/gw20stewartrobert1_glow_sch_uk/_layouts/15/embed.aspx?UniqueId=a8325ebb-4cdc-41b2-b513-77eef0cb9ffa&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" allowfullscreen title="6. Flashing Lights OutPut Pre Power up"></iframe>
-      </div>
-      <div class="video-title">6️⃣ Flashing Lights – Output Pre-Power-Up</div>
-    </div>
-
+  <div class="video-list">
+    <a href="https://glowscotland-my.sharepoint.com/:v:/g/personal/gw20stewartrobert1_glow_sch_uk/EYrcLCKJxbZHqDppGrqIIfMBdGe7bfi9PsHyBslSKZ31dA?e=76JWlp" target="_blank" rel="noopener" class="video-link" aria-label="Burglar Alarm Input Pre Power Up Testing">
+      <span>1️⃣ Burglar Alarm – Input Pre-Power-Up Testing</span>
+    </a>
+    <a href="https://glowscotland-my.sharepoint.com/:v:/g/personal/gw20stewartrobert1_glow_sch_uk/EZJ9CPLoSq1AhugYBxHgHeUBD-wjk0idpFxm569uO-Hcng?e=alSh7o" target="_blank" rel="noopener" class="video-link" aria-label="Burglar Alarm Input Functionality Testing">
+      <span>2️⃣ Burglar Alarm – Input Functionality Testing</span>
+    </a>
+    <a href="https://glowscotland-my.sharepoint.com/:v:/g/personal/gw20stewartrobert1_glow_sch_uk/EaJWuTC-P_5DkNeGOtbaRUABzTq3_VBWio5XfvMBuCcnkg?e=NwNovX" target="_blank" rel="noopener" class="video-link" aria-label="Burglar Alarm Process Pre Power Up">
+      <span>3️⃣ Burglar Alarm – Process Pre-Power-Up</span>
+    </a>
+    <a href="https://glowscotland-my.sharepoint.com/:v:/g/personal/gw20stewartrobert1_glow_sch_uk/EZK-YHmcbhtIsyOWd-KP6ocBeu0PyXQ0CndV1JCqGxKZhQ?e=0XCf75" target="_blank" rel="noopener" class="video-link" aria-label="Burglar Alarm Process Functionality Testing">
+      <span>4️⃣ Burglar Alarm – Process Functionality Testing</span>
+    </a>
+    <a href="https://glowscotland-my.sharepoint.com/:v:/g/personal/gw20stewartrobert1_glow_sch_uk/EcAOFhoT3L5LnzPl4f0hjiAB2sdcCAEDFRAICYZxQwKofA?e=JVUWJr" target="_blank" rel="noopener" class="video-link" aria-label="Flashing Lights Output Power Functionality">
+      <span>5️⃣ Flashing Lights – Output Power Functionality</span>
+    </a>
+    <a href="https://glowscotland-my.sharepoint.com/:v:/r/personal/gw20stewartrobert1_glow_sch_uk/Documents/1.%20Development/0a.%20Physics%20Shared%20with%20Students/4.%20Practical%20Electronics/Videos/6.%20Flashing%20Lights%20OutPut%20Pre%20Power%20up.mp4?csf=1&web=1&e=tFx8mz" target="_blank" rel="noopener" class="video-link" aria-label="Flashing Lights Output Pre Power Up">
+      <span>6️⃣ Flashing Lights – Output Pre-Power-Up</span>
+    </a>
   </div>
 </main>
 
